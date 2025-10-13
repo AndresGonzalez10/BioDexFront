@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
+  standalone: true,
+  imports: [RouterOutlet], // Necesitas importar RouterOutlet aquí
+  template: '<router-outlet></router-outlet>', // Solo un router-outlet
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'BioDex';
+  title = 'biodex-landing'; // Nombre de tu proyecto
 }

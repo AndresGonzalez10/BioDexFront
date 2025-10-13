@@ -1,0 +1,741 @@
+.landing-container {
+  background-color: #45a049;
+  background-image: url("/assets/fondo.jpg"); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  color: white; 
+  font-family: Arial, sans-serif; 
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: none; 
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar .logo img {
+  width: 30px; /* Tamaño del icono */
+  height: 30px;
+  margin-right: 10px;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-links li {
+  margin-right: 30px;
+}
+
+.navbar .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #a0d8b3; /* Un color de hover para los enlaces */
+}
+
+.login-button {
+  background-color: #4CAF50; /* Color verde */
+  color: black;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  background: linear-gradient(to right, #124916, #028d09)
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.hero-content {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: flex-start; /* Alinea a la izquierda */
+  padding-left: 100px; /* Ajusta el margen izquierdo */
+}
+
+.hero-content h1 {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.actions {
+  margin-bottom: 20px;
+}
+
+.primary-button, .secondary-button, .virtual-exhibitions-button {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  font-weight: bold;
+}
+
+.primary-button {
+  background: linear-gradient(to right, #124916, #028d09);
+  color: white;
+}
+
+.primary-button:hover {
+  background: linear-gradient(to right, #238f2a, #02c00c)
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: white;
+  border: 3px solid white;
+}
+
+.secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.virtual-exhibitions-button {
+ background: linear-gradient(to right, #116e17, #0ca53f);
+  color: white;
+  margin-top: 20px; 
+}
+
+.virtual-exhibitions-button:hover {
+  background-color: #5cb85f;
+}
+
+
+.about-section{
+  width: 1000px;
+  height: 890px;
+}
+
+.top-conten{
+ max-height: 400px;
+ height: 100%;
+}
+
+/* MENÚ LATERAL - COLUMNA 1 */
+.side-menu {
+  background-color: transparent; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  max-width: 500px;
+  width: 100%;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+.menu-header {
+  background-color: #000000; 
+  color: rgb(255, 255, 255); 
+  font-size: 1.4em;
+  font-weight: bold; 
+  padding: 15px 25px;
+  border-radius: 12px 12px 0 0; 
+}
+
+
+.menu-list li { 
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1.1em;
+  font-weight: 500; 
+}
+
+.menu-list li a {
+  color: #1a1a1a; 
+  text-decoration: none;
+  display: block;
+}
+
+
+.menu-list li:not(.menu-header):not(:last-child) {
+    border-bottom: 1px solid #f0f0f0; 
+}
+
+.menu-list li:last-child {
+    border-radius: 0 0 12px 12px;
+}
+
+.menu-list li:not(.menu-header):hover {
+  background-color: #f5f5f5;
+}
+
+/* QUÉ ES BIODEX - COLUMNA 2 (SUPERIOR) */
+
+.biodex-intro {
+  display: flex; 
+  flex-wrap: wrap; 
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* --- Contenedor de la Imagen (Izquierda) --- */
+.intro-image-container {
+  width: 35%; 
+  overflow: hidden;
+  border-radius: 8px;
+  border: 4px solid #007bff;
+  padding: 4px; 
+  box-sizing: border-box;
+}
+
+.intro-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px; 
+}
+
+/* --- Contenido de Texto (Derecha) --- */
+.intro-content {
+  width: 65%; 
+  padding-left: 25px;
+  box-sizing: border-box;
+}
+
+.intro-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.intro-header h2 {
+  font-size: 2.2em; 
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.intro-header .icon {
+  font-size: 1.5em; 
+  margin-left: 10px;
+}
+
+.biodex-intro p {
+  font-size: 1em;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+}
+
+
+.read-more {
+
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  margin-top: 30px; 
+  text-decoration: none;
+  font-weight: 600; 
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600; 
+  font-size: 1.1em;
+}
+
+.read-more {
+    padding: 10px 20px;
+    background-color: #f0f0f0; 
+    border-radius: 30px; 
+    transition: background-color 0.2s;
+    max-width: 300px; 
+    margin-left: 700px;
+}
+
+.read-more:hover {
+    background-color: #e0e0e0;
+}
+
+.read-more .arrow {
+  margin-left: 10px;
+  font-size: 1.5em;
+  color: white; 
+  background-color: #1a1a1a; 
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-wrapper {
+  width: 2000px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  grid-template-columns: 10fr 20fr 15fr; 
+  gap: 30px;
+}
+
+.column-center{
+  margin-top: 100px;
+  margin-left: 500px;
+  margin-right: 200px;
+}
+
+/* ========================================= */
+/* 3. MARIPOSAS Y PROPÓSITO - COLUMNA 2 / FILA 2 */
+/* ========================================= */
+
+.specimen-purpose-panel {
+    display: flex; 
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+    overflow: hidden;
+    margin: 200px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* --- Parte Izquierda: Imagen de Mariposas --- */
+.specimen-image-container {
+    width: 65%; /* La imagen es la parte más ancha del panel */
+    height: auto;
+    overflow: hidden;
+}
+
+.specimen-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    display: block;
+}
+
+/* --- Parte Derecha: Contenido de Propósito --- */
+.purpose-content {
+    width: 35%; /* El texto ocupa el espacio restante */
+    padding: 30px 20px 30px 25px;
+    box-sizing: border-box;
+}
+
+/* Estilos de encabezado y texto dentro del propósito */
+.purpose-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.purpose-header h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Estilo del icono (píldora negra) */
+.purpose-header .icon {
+    margin-left: 10px;
+    background-color: #1a1a1a; /* Fondo negro */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purpose-header .icon img {
+    width: 18px; 
+    filter: invert(100%); /* Hace que el icono (si es negro) sea blanco */
+}
+
+/* ========================================= */
+/* 4. CTA (LLAMADA A LA ACCIÓN) - COLUMNA 3 / AMBAS FILAS */
+/* ========================================= */
+
+.cta-panel {
+    background-color: #1a1a1a; 
+    color: white;
+    border-radius: 12px;
+    padding: 30px 25px 0 25px; 
+    overflow: hidden; 
+    height: 100%; 
+    box-sizing: border-box; 
+    margin: 200px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.cta-login, .cta-register {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600; 
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s;
+}
+
+/* Botón de Inicio de Sesión (Verde) */
+.cta-login {
+    background-color: #4CAF50; /* Verde de la marca */
+    color: white;
+    border: none;
+}
+
+/* Botón de Registro (Contorno blanco) */
+.cta-register {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+.cta-panel p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.cta-image-container {
+    /* Contenedor de la imagen del usuario en la laptop */
+    margin-top: 10px; 
+}
+
+.cta-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Redondeo solo en la parte inferior para que coincida con el panel */
+    border-radius: 0 0 12px 12px;
+    object-fit: cover; 
+}
+
+.content-wrapper2 {
+  width: 2000px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  grid-template-columns: 10fr 20fr 15fr; 
+  gap: 30px;
+}
+
+.gestion-section{
+  width: 1000px;
+  height: 890px;
+}
+
+.Title{
+  margin: 100px;
+}
+
+/* GESTIÓN DE PRÉSTAMOS Y DEVOLUCIONES */
+.feature-panel {
+    background-color: white;
+    border-radius: 15px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    padding: 30px; 
+    overflow: hidden; 
+    font-family: Arial, sans-serif;
+    width: 900PX;
+    height: 600PX;
+    margin-right: 50px;
+    margin-left: 200px;
+}
+
+.feature-header-group {
+    
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.feature-title-box {
+    background-color: #1a1a1a; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px; 
+    margin-right: 15px;
+}
+
+.feature-title-box h1 {
+    font-size: 1.2em; 
+    font-weight: 700; 
+    margin: 0;
+    line-height: 1;
+}
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon img {
+    width: 35px;
+    height: auto;
+}
+
+
+.feature-description {
+    width: 100%; 
+    font-size: 1.1em;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 20px;
+}
+
+
+.feature-image-container {
+    margin: 0 -30px -30px -30px; 
+    border-radius: 0 0 15px 15px; 
+    overflow: hidden;
+    margin-top: 30px; 
+}
+
+.feature-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.content-wrapper3 {
+  width: 1500px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  grid-template-columns: 10fr 20fr 15fr; 
+  gap: 30px;
+}
+
+.exhibition-section{
+  width: 1000px;
+  height: 890px;
+  justify-content: center;
+}
+/* ========================================= */
+/* TÍTULO DE EXPOSICIONES VIRTUALES */
+/* ========================================= */
+
+.section-header {
+    display: flex;
+    align-items: center; /* Alinea el icono y el texto verticalmente */
+    width: max-content; /* El bloque toma solo el ancho de su contenido */
+    margin-left: 600px; 
+    margin-bottom: 10px; 
+}
+
+.section-header .header-icon {
+    margin-right: 10px;
+}
+
+.section-header .header-icon img {
+    width: 30px; 
+    height: auto;
+}
+
+.section-header h2 {
+    font-size: 2.2em; 
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0; 
+    line-height: 1;
+}
+
+.line{
+  justify-content: center;
+  align-items: center;
+}
+
+.exhibition-section.boton{
+  justify-self: end;
+}
+
+/* ========================================= */
+/* SECCIÓN FINAL: CTA Y FOOTER */
+/* ========================================= */
+
+.cta-footer-section {
+    width: 100%;
+    /* Fondo verde claro */
+    background-color: #e8f5e9; 
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.cta-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 100px 40px; 
+    position: relative;
+    overflow: hidden; 
+}
+
+.cta-text-group {
+    max-width: 50%; /* Limita el texto a la mitad izquierda de la página */
+    z-index: 10;
+    position: relative;
+}
+
+.cta-text-group h1 {
+    font-size: 3em;
+    font-weight: 800; 
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.cta-text-group p {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* --- Botón de Registro (Píldora con flecha) --- */
+.cta-register-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: white; /* Fondo blanco */
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 15px 25px;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.cta-register-button:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-register-button .arrow {
+    margin-left: 15px;
+    background-color: #1a1a1a; /* Flecha en círculo negro */
+    color: white;
+    font-size: 1.2em;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Elemento Decorativo (Espacio para el Bicho Grande) --- */
+.cta-decorative-element {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 500px; 
+    height: 500px;
+    /* Deberás agregar tu imagen de fondo aquí */
+    /* background-image: url('assets/bicho-grande-light.png'); */ 
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15; 
+    pointer-events: none; 
+}
+
+/* --- Pestaña de Contacto Flotante (Contáctanos) --- */
+.contact-tab {
+    position: absolute;
+    top: 0;
+    right: 0;
+    writing-mode: vertical-lr; /* Texto de arriba a abajo */
+    transform: translateX(100%) translateY(0) rotate(180deg); /* Posiciona fuera del viewport y rota */
+    
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px 10px;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: 0 0 8px 8px; 
+    cursor: pointer;
+}
+
+/* ========================================= */
+/* FOOTER (PIE DE PÁGINA NEGRO) */
+/* ========================================= */
+
+.main-footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px 40px;
+    font-size: 0.9em;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.footer-copyright {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo {
+    /* Espacio para el logo del footer (esquina inferior derecha) */
+    width: 30px;
+    height: 30px;
+    /* Deberás agregar tu imagen de fondo aquí */
+    /* background-image: url('assets/bicho-pequeno-white.png'); */ 
+    background-size: contain;
+    margin-right: 10px;
+}
+
+.copyright-text {
+    margin: 0;
+}
