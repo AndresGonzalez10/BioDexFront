@@ -1,6 +1,6 @@
 .landing-container {
   background-color: #45a049;
-  background-image: url("/assets/fondo.jpg"); 
+  background-image: url("/assets/fondo.png"); 
   background-size: cover;
   background-position: center;
   height: 100vh; 
@@ -44,7 +44,6 @@
 
 .navbar .nav-links a {
   color: white;
-  text-decoration: none;
   font-size: 18px;
   transition: color 0.3s ease;
 }
@@ -135,9 +134,13 @@
 
 
 .about-section{
-  width: 1000px;
-  height: 890px;
-}
+  background-size: cover;
+  background-position: center;
+  height: 820px; 
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif; 
+  }
 
 .top-conten{
  max-height: 400px;
@@ -149,11 +152,10 @@
   background-color: transparent; 
   border-radius: 12px; 
   overflow: hidden; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(6, 8, 161, 0.1); 
   width: 100%;
-  margin-top: 100px;
-  margin-left: 200px;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
 .menu-list {
@@ -208,14 +210,15 @@
   flex-wrap: wrap; 
   margin-bottom: 30px;
   position: relative;
+  width: 100%;
 }
 
 /* --- Contenedor de la Imagen (Izquierda) --- */
 .intro-image-container {
-  width: 35%; 
+  max-width: 300px; 
+  width: auto;
   overflow: hidden;
   border-radius: 8px;
-  border: 4px solid #007bff;
   padding: 4px; 
   box-sizing: border-box;
 }
@@ -229,7 +232,7 @@
 
 /* --- Contenido de Texto (Derecha) --- */
 .intro-content {
-  width: 65%; 
+  width: 300px; 
   padding-left: 25px;
   box-sizing: border-box;
 }
@@ -261,10 +264,9 @@
 
 
 .read-more {
-
-  width: 100%; 
+  width: 80%; 
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-start; 
   align-items: center;
   margin-top: 30px; 
   text-decoration: none;
@@ -285,8 +287,9 @@
     background-color: #f0f0f0; 
     border-radius: 30px; 
     transition: background-color 0.2s;
-    max-width: 300px; 
-    margin-left: 700px;
+    max-width: 200px; 
+    margin-left: 60px;
+    justify-content: end;
 }
 
 .read-more:hover {
@@ -307,18 +310,24 @@
 }
 
 .content-wrapper {
-  width: 2000px;
+  width: 1100px;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   grid-template-columns: 10fr 20fr 15fr; 
   gap: 30px;
 }
+.column-left{
+  width: 50%;
+  height: 50%;
+}
 
 .column-center{
-  margin-top: 100px;
-  margin-left: 500px;
-  margin-right: 200px;
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 0px;
+  width: 50%;
+  height: 50%;
 }
 
 /* ========================================= */
@@ -331,14 +340,14 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
     overflow: hidden;
-    margin: 200px;
-    max-width: 1200px;
-    width: 100%;
+    margin-top: 10px;
+    width: 60%;
+    height: 100%;
 }
 
 /* --- Parte Izquierda: Imagen de Mariposas --- */
 .specimen-image-container {
-    width: 65%; /* La imagen es la parte más ancha del panel */
+    width: 50%; /* La imagen es la parte más ancha del panel */
     height: auto;
     overflow: hidden;
 }
@@ -399,7 +408,8 @@
     overflow: hidden; 
     height: 100%; 
     box-sizing: border-box; 
-    margin: 200px;
+    margin-top: 10px;
+    margin-right: 6px;
 }
 
 .cta-buttons {
@@ -452,7 +462,7 @@
 }
 
 .content-wrapper2 {
-  width: 2000px;
+  width: 1000px;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
@@ -466,7 +476,9 @@
 }
 
 .Title{
-  margin: 100px;
+margin-left: 350PX;
+justify-content: center;
+align-items: center;
 }
 
 /* GESTIÓN DE PRÉSTAMOS Y DEVOLUCIONES */
@@ -477,10 +489,9 @@
     padding: 30px; 
     overflow: hidden; 
     font-family: Arial, sans-serif;
-    width: 900PX;
-    height: 600PX;
-    margin-right: 50px;
-    margin-left: 200px;
+    width: 50%;
+    height: 80%;
+    margin-left: 40px;
 }
 
 .feature-header-group {
@@ -488,11 +499,10 @@
     display: flex;
     flex-wrap: wrap; 
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .feature-title-box {
-    background-color: #1a1a1a; 
+    background-color: rgba(2, 15, 20, 1); 
     color: white;
     padding: 10px 15px;
     border-radius: 8px; 
@@ -541,12 +551,13 @@
     object-fit: cover;
 }
 .content-wrapper3 {
-  width: 1500px;
+  width: 100%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   grid-template-columns: 10fr 20fr 15fr; 
   gap: 30px;
+  margin-left: 100PX;
 }
 
 .exhibition-section{
@@ -562,7 +573,7 @@
     display: flex;
     align-items: center; /* Alinea el icono y el texto verticalmente */
     width: max-content; /* El bloque toma solo el ancho de su contenido */
-    margin-left: 600px; 
+    margin-left: 383px; 
     margin-bottom: 10px; 
 }
 
@@ -584,22 +595,50 @@
 }
 
 .line{
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  margin-left: 120px;
 }
 
+.line2{
+  display: flex;
+  justify-content: center;
+}
+
+.line p{
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.line3{
+display: flex;
+justify-content: space-between;
+}
+
+.boton{
+  color: #000;
+  text-decoration: none;
+  border: 2px solid #000;
+  border-radius: 10PX;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 10px;
+  padding-bottom: 10PX;
+}
+
+.line3 div{
+  margin-top: 150px;
+  margin-left: 20px;
+  background-color: white;
+}
 .exhibition-section.boton{
   justify-self: end;
 }
-
-/* ========================================= */
 /* SECCIÓN FINAL: CTA Y FOOTER */
-/* ========================================= */
-
 .cta-footer-section {
     width: 100%;
-    /* Fondo verde claro */
-    background-color: #e8f5e9; 
+    background-color: #e0fee3;
     position: relative;
     font-family: Arial, sans-serif;
 }
@@ -607,20 +646,23 @@
 .cta-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 100px 40px 100px 40px; 
+    padding: 100px 40px 100px 40px;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
+
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
 }
 
 .cta-text-group {
-    max-width: 50%; /* Limita el texto a la mitad izquierda de la página */
-    z-index: 10;
+    max-width: 50%;
     position: relative;
 }
 
 .cta-text-group h1 {
     font-size: 3em;
-    font-weight: 800; 
+    font-weight: 800;
     color: #1a1a1a;
     line-height: 1.2;
     margin-bottom: 20px;
@@ -633,12 +675,64 @@
     margin-bottom: 40px;
 }
 
-/* --- Botón de Registro (Píldora con flecha) --- */
+/* Contenedor del botón y el logo */
+.cta-footer-section {
+    width: 100%;
+    background-color: #e0fee3;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.cta-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 100px 40px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cta-text-group {
+    max-width: 50%;
+    position: relative;
+}
+
+.cta-text-group h1 {
+    font-size: 3em;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.cta-text-group p {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.cta-button-and-logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.endimg img {
+    max-width: 300px;
+    height: auto;
+    display: block;
+}
+
 .cta-register-button {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    background-color: white; /* Fondo blanco */
+    background-color: white;
     color: #1a1a1a;
     font-weight: 600;
     font-size: 1.1em;
@@ -654,7 +748,7 @@
 
 .cta-register-button .arrow {
     margin-left: 15px;
-    background-color: #1a1a1a; /* Flecha en círculo negro */
+    background-color: #1a1a1a;
     color: white;
     font-size: 1.2em;
     border-radius: 50%;
@@ -665,42 +759,41 @@
     justify-content: center;
 }
 
-/* --- Elemento Decorativo (Espacio para el Bicho Grande) --- */
+.endimg img {
+    max-width: 250px; 
+    height: auto;
+    display: block;
+}
+
 .cta-decorative-element {
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    width: 500px; 
+    width: 500px;
     height: 500px;
-    /* Deberás agregar tu imagen de fondo aquí */
-    /* background-image: url('assets/bicho-grande-light.png'); */ 
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.15; 
-    pointer-events: none; 
+    opacity: 0.15;
+    pointer-events: none;
 }
 
-/* --- Pestaña de Contacto Flotante (Contáctanos) --- */
 .contact-tab {
     position: absolute;
-    top: 0;
+    top: 30%; 
     right: 0;
-    writing-mode: vertical-lr; /* Texto de arriba a abajo */
-    transform: translateX(100%) translateY(0) rotate(180deg); /* Posiciona fuera del viewport y rota */
-    
+    transform: translate(0, -50%) rotate(180deg); 
+    writing-mode: vertical-lr;
+
     background-color: #1a1a1a;
     color: white;
     padding: 20px 10px;
     font-weight: 600;
     font-size: 1em;
-    border-radius: 0 0 8px 8px; 
+    border-radius: 0 0 8px 8px;
     cursor: pointer;
 }
-
-/* ========================================= */
 /* FOOTER (PIE DE PÁGINA NEGRO) */
-/* ========================================= */
 
 .main-footer {
     background-color: #1a1a1a;
@@ -727,11 +820,8 @@
 }
 
 .footer-logo {
-    /* Espacio para el logo del footer (esquina inferior derecha) */
     width: 30px;
     height: 30px;
-    /* Deberás agregar tu imagen de fondo aquí */
-    /* background-image: url('assets/bicho-pequeno-white.png'); */ 
     background-size: contain;
     margin-right: 10px;
 }
