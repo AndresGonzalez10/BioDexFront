@@ -1,0 +1,204 @@
+
+.registro-especimen-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--gris-fondo);
+  color: var(--negro);
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  border-radius: var(--radio);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--blanco);
+  padding-left: 15px;
+}
+
+.logo img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.menu a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 50px;
+  transition: background 0.2s;
+}
+
+.menu a:hover {
+  background-color: #ffffff22;
+}
+
+
+main {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+h1 {
+  margin: 0 0 30px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--negro);
+}
+
+.menu a.active {
+  background-color: var(--verde-claro);
+  color: var(--negro);
+}
+
+.profile-section {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-section a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.formulario {
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #F6F6F6;
+  border-radius: var(--radio);
+  font-size: 14px;
+  background-color: var(--gris-fondo);
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.formulario h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.acciones .btn {
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.acciones .cancelar {
+  background-color: #FFFFFF;
+  border: 2px solid #757575;
+  color: #757575;
+}
+
+.acciones .guardar {
+  background-color: var(--verde-claro);
+  color: var(--negro);
+  border: none;
+}
+
+.subir-foto {
+  background-color: #F6F6F6;
+  border-radius: var(--radio);
+  padding: 60px;
+  text-align: center;
+  font-size: 14px;
+  grid-column: span 1;
+  color: #757575;
+  font-weight: 600;
+}
+
+.subir-foto img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+input[type="file"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.subir-foto.principal {
+  grid-column: span 3;
+}

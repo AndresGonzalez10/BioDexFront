@@ -1,8 +1,15 @@
-
+:root {
+  --negro: #000000;
+  --azul-oscuro: #020F14;
+  --gris-fondo: #F6F6F6;
+  --blanco: #FFFFFF;
+  --verde-claro: #E2F9D1;
+  --radio: 10px;
+}
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Si importaste Roboto, úsala aquí */
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

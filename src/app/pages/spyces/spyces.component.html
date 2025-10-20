@@ -1,1 +1,175 @@
-<p>spyces works!</p>
+<div class="registro-especimen-container">
+<aside class="sidebar">
+  <nav class="menu">
+    <div class="logo">
+      <img src="assets/logo1.png" alt="BioDex Logo">
+      <div>Biodex</div>
+    </div>
+    <a href="#">Principal</a>
+    <a class="active" href="#">Colecciones</a>
+    <a class="Solicitudes" href="#">Solicitudes</a>
+    <a href="#">Exposiciones</a>
+  </nav>
+  <div class="profile-section">
+    <img src="assets/perfil.png" alt="User Profile" class="profile-image">
+    <a href="#">Mi perfil</a>
+  </div>
+</aside>
+
+<main>
+  <h1>Registro de especímenes</h1>
+  <div class="formulario">
+    <div class="form-header">
+      <h2>Formulario de registro</h2>
+      <div class="acciones">
+        <button type="button" class="btn cancelar">Cancelar</button>
+        <button type="submit" class="btn guardar">Guardar</button>
+      </div>
+    </div>
+    <form>
+      <div>
+        <label>Nombre</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Familia</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Género</label>
+        <input type="text">
+      </div>
+
+      <div>
+        <label>Especie</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Categoría</label>
+        <select><option></option></select>
+      </div>
+      <div>
+        <label>Fecha de colección</label>
+        <input type="text">
+      </div>
+
+
+      <div class="subir-foto principal">
+            <input type="file" id="fotoPrincipal" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl')">
+            <label for="fotoPrincipal" style="cursor: pointer;">
+              <img *ngIf="!imageUrl" src="assets/image 18.png" alt="Upload Icon">
+              <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              <p>Sube la foto<br>principal</p>
+            </label>
+          </div>
+
+      <div>
+        <label>Colector</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>País</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Estado</label>
+        <input type="text">
+      </div>
+
+      <div>
+        <label>Municipio</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Localidad</label>
+        <input type="text">
+      </div>
+      <br>
+      <div>
+        <label>Latitud</label>
+        <input type="text">
+      </div>
+
+      <div>
+        <label>Longitud</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Altitud</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Individuos</label>
+        <input type="number">
+      </div>
+
+      <div>
+        <label>Determinador</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Año de determinación</label>
+        <input type="number">
+      </div>
+      <div>
+        <label>Sexo</label>
+        <select><option>Selecciona el sexo</option></select>
+      </div>
+
+      <div>
+        <label>Tipo de vegetación</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Método de colecta</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Notas</label>
+        <input type="text">
+      </div>
+
+      <div>
+        <label>Nombre común</label>
+        <input type="text">
+      </div>
+      <br>
+
+      <div class="subir-foto">
+            <input type="file" id="foto1" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl1')">
+            <label for="foto1" style="cursor: pointer;">
+              <img *ngIf="!imageUrl1" src="assets/image 18.png" alt="Upload Icon">
+              <img *ngIf="imageUrl1" [src]="imageUrl1" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              <p>Sube una foto</p>
+            </label>
+          </div>
+      <div class="subir-foto">
+            <input type="file" id="foto2" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl2')">
+            <label for="foto2" style="cursor: pointer;">
+              <img *ngIf="!imageUrl2" src="assets/image 18.png" alt="Upload Icon">
+              <img *ngIf="imageUrl2" [src]="imageUrl2" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              <p>Sube una foto</p>
+            </label>
+          </div>
+      <div class="subir-foto">
+            <input type="file" id="foto3" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl3')">
+            <label for="foto3" style="cursor: pointer;">
+              <img *ngIf="!imageUrl3" src="assets/image 18.png" alt="Upload Icon">
+              <img *ngIf="imageUrl3" [src]="imageUrl3" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              <p>Sube una foto</p>
+            </label>
+          </div>
+      <div class="subir-foto">
+            <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
+            <label for="foto4" style="cursor: pointer;">
+              <img *ngIf="!imageUrl4" src="assets/image 18.png" alt="Upload Icon">
+              <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              <p>Sube una foto</p>
+            </label>
+          </div>
+
+
+    </form>
+  </div>
+</main>
+</div>
