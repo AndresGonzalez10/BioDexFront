@@ -15,6 +15,9 @@ export class SpeciesComponent {
   imageUrl2: string | ArrayBuffer | null = null;
   imageUrl3: string | ArrayBuffer | null = null;
   imageUrl4: string | ArrayBuffer | null = null;
+  imageUrl5: string | ArrayBuffer | null = null;
+  imageUrl6: string | ArrayBuffer | null = null;
+  
 
   onFileSelected(event: Event, imageVarName: string): void {
     const element = event.currentTarget as HTMLInputElement;
@@ -33,9 +36,13 @@ export class SpeciesComponent {
           this.imageUrl3 = reader.result;
         } else if (imageVarName === 'imageUrl4') {
           this.imageUrl4 = reader.result;
+        } else if (imageVarName === 'imageUrl5') {
+          this.imageUrl5 = reader.result;
+        } else if (imageVarName === 'imageUrl6') {
+          this.imageUrl6 = reader.result;
         }
       };
       reader.readAsDataURL(this.selectedFile);
-    }
-  }
+    }
+  }
 }

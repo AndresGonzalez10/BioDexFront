@@ -202,3 +202,9 @@ input[type="file"] {
 .subir-foto.principal {
   grid-column: span 3;
 }
+
+.campos{
+  cursor: pointer;
+  font-weight:bolder;
+  color: #757575;
+}

@@ -29,32 +29,33 @@
     <form>
       <div>
         <label>Nombre</label>
-        <input type="text">
+        <input type="text" placeholder="Nombre del especimen" class="campos">
+        
       </div>
       <div>
         <label>Familia</label>
-        <input type="text">
+        <input type="text" placeholder="Familia" class="campos">
       </div>
       <div>
         <label>Género</label>
-        <input type="text">
+        <input type="text" placeholder="Genero" class="campos">
       </div>
 
       <div>
         <label>Especie</label>
-        <input type="text">
+        <input type="text" placeholder="Especie" class="campos">
       </div>
       <div>
         <label>Categoría</label>
-        <input type ="text">
+        <input type="text" placeholder="Categoría" class="campos">
       </div>
       <div>
         <label>Fecha de colección</label>
-        <input type="text">
+        <input type="date" name="collectionDate" class="campos">
       </div>
 
 
-      <div class="subir-foto principal">
+     <div class="subir-foto principal">
             <input type="file" id="fotoPrincipal" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl')">
             <label for="fotoPrincipal" style="cursor: pointer;">
               <img *ngIf="!imageUrl" src="assets/image18.png" alt="Upload Icon">
@@ -65,78 +66,74 @@
 
       <div>
         <label>Colector</label>
-        <input type="text">
+        <input type="text" placeholder="Colector" class="campos">
       </div>
       <div>
         <label>País</label>
-        <input type="text">
+        <input type="text" placeholder="Pais" class="campos">
       </div>
       <div>
         <label>Estado</label>
-        <input type="text">
+        <input type="text" placeholder="Estado" class="campos">
       </div>
 
       <div>
         <label>Municipio</label>
-        <input type="text">
+        <input type="text" placeholder="Municipio" class="campos">
       </div>
       <div>
         <label>Localidad</label>
-        <input type="text">
+        <input type="text" placeholder="Localidad" class="campos">
       </div>
       <br>
       <div>
         <label>Latitud</label>
-        <input type="text">
+        <input type="text" placeholder="Grados" class="campos">
       </div>
-
       <div>
         <label>
           <br>
         </label>
-        <input type="text">
+        <input type="text" placeholder="Minutos" class="campos">
       </div>
-
       <div>
         <label>
           <br>
         </label>
-        <input type="text">
+        <input type="text" placeholder="Segundos" class="campos">
       </div>
-
-
       <div>
         <label>Longitud</label>
-        <input type="text">
+        <input type="text" placeholder="Grados" class="campos">
       </div>
       <div>
         <label>
           <br>
         </label>
-        <input type="text">
+        <input type="text" placeholder="Minutos" class="campos">
       </div>
       <div>
         <label>
           <br>
         </label>
-        <input type="text">
+        <input type="text" placeholder="Segundos" class="campos">
       </div>
       <div>
         <label>Altitud</label>
-        <input type="text">
+        <input type="text" placeholder="Radio" class="campos">
       </div>
       <div>
         <label>Individuos</label>
-        <input type="number">
+        <input type="number" placeholder="0" class="campos">
       </div>
 
       <div>
         <label>Determinador</label>
-        <input type="text">
+        <input type="text" placeholder="nmbre" class="campos">
       </div>
       <div>
         <label>Año de determinación</label>
-        <input type="number">
+        <input type="date" name="collectionDate" class="campos">
       </div>
       <div>
         <label>Sexo</label>
@@ -152,15 +149,15 @@
 
       <div>
         <label>Tipo de vegetación</label>
-        <input type="text">
+        <input type="text" placeholder="tipo" class="campos">
       </div>
       <div>
         <label>Método de colecta</label>
-        <input type="text">
+        <input type="text" placeholder="metodo" class="campos">
       </div>
       <div>
         <label>Notas</label>
-        <input type="text">
+        <input type="text" placeholder="notas" class="campos">
       </div>
 
 
@@ -199,18 +196,18 @@
             </label>
           </div>
       <div class="subir-foto">
-        <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
-        <label for="foto4" style="cursor: pointer;">
-          <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
-          <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        <input type="file" id="foto5" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl5')">
+        <label for="foto5" style="cursor: pointer;">
+          <img *ngIf="!imageUrl5" src="assets/image18.png" alt="Upload Icon">
+          <img *ngIf="imageUrl5" [src]="imageUrl5" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           <p>Sube una foto</p>
         </label>
       </div>
       <div class="subir-foto">
-        <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
-        <label for="foto4" style="cursor: pointer;">
-          <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
-          <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        <input type="file" id="foto6" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl6')">
+        <label for="foto6" style="cursor: pointer;">
+          <img *ngIf="!imageUrl6" src="assets/image18.png" alt="Upload Icon">
+          <img *ngIf="imageUrl6" [src]="imageUrl6" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
           <p>Sube una foto</p>
         </label>
       </div>
