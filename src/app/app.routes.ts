@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { SpycesComponent } from './pages/spyces/spyces.component';
+import { SpeciesComponent } from './pages/species/species.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
-  { path: 'spyces', component: SpycesComponent },
+  { path: 'species', component: SpeciesComponent },
   { path: '**', redirectTo: '' } 
 ];

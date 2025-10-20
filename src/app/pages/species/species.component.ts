@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
   selector: 'app-registro-especimen',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './spyces.component.html',
-  styleUrl: './spyces.component.css'
+  templateUrl: './species.component.html',
+  styleUrl: './species.component.css'
 })
-export class SpycesComponent {
+export class SpeciesComponent {
   selectedFile: File | null = null;
   imageUrl: string | ArrayBuffer | null = null;
   imageUrl1: string | ArrayBuffer | null = null;
