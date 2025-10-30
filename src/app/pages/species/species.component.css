@@ -7,34 +7,6 @@
   color: var(--negro);
 }
 
-.sidebar {
-  width: 250px;
-  background-color: var(--azul-oscuro);
-  color: var(--blanco);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.logo {
-  border-radius: var(--radio);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: var(--blanco);
-  padding-left: 15px;
-}
-
-.logo img {
-  width: 40px;
-  height: auto;
-  margin-right: 10px;
-}
-
 .menu {
   display: flex;
   flex-direction: column;
@@ -59,44 +31,6 @@ main {
   flex: 1;
   padding: 40px;
   overflow-y: auto;
-}
-h1 {
-  margin: 0 0 30px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-h2 {
-  margin: 0 0 20px;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--negro);
-}
-
-.menu a.active {
-  background-color: var(--verde-claro);
-  color: var(--negro);
-}
-
-.profile-section {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.profile-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.profile-section a {
-  color: var(--blanco);
-  text-decoration: none;
-  font-weight: 600;
 }
 
 .formulario {
