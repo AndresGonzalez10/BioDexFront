@@ -1,0 +1,6 @@
+.collections-view-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f9fa; 
+  color: #212529; 
+}
