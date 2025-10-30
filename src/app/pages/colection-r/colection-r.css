@@ -5,3 +5,30 @@
   color: #212529; 
 }
 
+main {
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 40px 60px; 
+}
+
+.header-registro {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.header-registro .back-link {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.header-registro h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
