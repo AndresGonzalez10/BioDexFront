@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-registro-especimen',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavBarComponent],
   templateUrl: './species.component.html',
   styleUrl: './species.component.css'
 })
+
 export class SpeciesComponent {
   selectedFile: File | null = null;
   imageUrl: string | ArrayBuffer | null = null;
