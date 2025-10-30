@@ -4,3 +4,74 @@
   background-color: #f8f9fa; 
   color: #212529; 
 }
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 60px;
+}
+
+.header-colecciones {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.header-colecciones .back-link {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.header-colecciones h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.search-bar-container img {
+  opacity: 0.6;
+}
+
+.search-bar-container input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 16px;
+  width: 100%;
+  color: #333;
+}
+
+.search-bar-container input::placeholder {
+  color: #999;
+}
+
+.sub-header-colecciones {
+  margin-bottom: 20px;
+}
+
+.sub-header-colecciones h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  padding-bottom: 40px;
+}
