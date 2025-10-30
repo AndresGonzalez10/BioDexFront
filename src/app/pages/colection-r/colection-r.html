@@ -1,10 +1,49 @@
 <div class="registro-coleccion-container">
-    <app-nav-bar></app-nav-bar>
+  <app-nav-bar></app-nav-bar>
 
-<main>
-    <h1>Registro de colecciones</h1>
-        <div class="formulario">
+  <main>
+    <div class="header-registro">
+      <h1>Registro de colección</h1>
+    </div>
 
+    <form class="formulario-container">
+      <h2>Formulario de colección</h2>
+      
+      <div class="seccion-formulario">
+        <h3>Información principal</h3>
+        
+        <div class="form-group">
+          <label for="nombre-coleccion">Nombre de la colección:</label>
+          <input type="text" id="nombre-coleccion" placeholder="Elige un título para la colección">
         </div>
-</main>
+        
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="4" placeholder="Añada una descripción de la colección"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <input type="text" id="categoria" placeholder="Añada una categoría">
+        </div>
+      </div>
+
+      <div class="seccion-formulario">
+        <h3>Portada de la colección</h3>
+        <div class="upload-box">
+          <label for="portada-file" class="upload-label">
+            <img src="/assets/imagenes.png" alt="Icono de imagen">
+            <span>Suba una foto</span>
+          </label>
+          <input type="file" id="portada-file" hidden>
+        </div>
+      </div>
+
+      <div class="acciones-formulario">
+        <button type="submit" class="btn-publicar">Publicar colección</button>
+        <button type="button" class="btn-cancelar">Cancelar</button>
+      </div>
+
+    </form>
+  </main>
 </div>

@@ -1,8 +1,7 @@
-
 .registro-coleccion-container {
   display: flex;
   height: 100vh;
-  overflow: hidden;
-  background-color: var(--gris-fondo);
-  color: var(--negro);
+  background-color: #f8f9fa; 
+  color: #212529; 
 }
+
