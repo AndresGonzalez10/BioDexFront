@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 
