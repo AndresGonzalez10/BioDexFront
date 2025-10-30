@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-coletcion-cart',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './coletcion-cart.html',
-  styleUrls: ['./coletcion-cart.css']
+  templateUrl: './colletcion-cart.html',
+  styleUrls: ['./colletcion-cart.css']
 })
 export class NavBarComponent {
 
