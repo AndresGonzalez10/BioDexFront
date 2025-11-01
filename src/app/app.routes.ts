@@ -3,11 +3,13 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { SpeciesComponent } from './pages/species/species.component';
 import { ColectionR } from './pages/colection-r/colection-r';
 import { Collections } from './pages/collections/collections';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
   { path: 'species', component: SpeciesComponent },
   { path: 'collectionr', component: ColectionR },
   { path: 'collections',component: Collections },
+  { path: 'login',component: Login},
   { path: '**', redirectTo: '' } 
 ];
