@@ -6,10 +6,8 @@
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   background-image: url(/assets/MARIPOSA.png);
-  background-size: cover;
   background-position: center;
 }
-
 .content-overlay {
   position: relative;
   z-index: 1;
