@@ -5,6 +5,7 @@ import { ColectionR } from './pages/colection-r/colection-r';
 import { Collections } from './pages/collections/collections';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
+import { Register2 } from './pages/register/register2/register2';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'collections',component: Collections },
   { path: 'login',component: Login},
   { path: 'register',component: Register},
+  { path: 'register2',component: Register2},
   { path: '**', redirectTo: '' } 
 ];
