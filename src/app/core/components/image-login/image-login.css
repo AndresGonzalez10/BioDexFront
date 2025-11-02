@@ -1,22 +1,13 @@
 .main-container {
   position: relative;
-  width: 50%;
-  height: 570px;
-  overflow: hidden; 
-}
-
-.background-image {
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-  url(/assets/MARIPOSA.png);
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-image: url(/assets/MARIPOSA.png);
   background-size: cover;
   background-position: center;
-  filter: brightness(0.8);
-  z-index: 0;
-  position: absolute;
 }
 
 .content-overlay {
