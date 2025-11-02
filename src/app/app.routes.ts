@@ -8,6 +8,7 @@ import { Register } from './pages/register/register';
 import { Register2 } from './pages/register/register2/register2'
 import { Mainview } from './pages/mainview/mainview';
 import { CollectionMain } from './pages/collection-main/collection-main';
+import { ExposMain } from './pages/expos-main/expos-main';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'register2',component: Register2},
   { path: 'mainview', component: Mainview},
   { path: 'collection', component: CollectionMain},
+  { path: 'expos', component: ExposMain},
   { path: '**', redirectTo: '' } 
 ];
