@@ -8,6 +8,11 @@
   padding: 20px;
 }
 
+.menubar a.active{
+  background-color: rgba(226, 249, 209, 1);
+  color: black;
+}
+
 .logo {
   border-radius: var(--radio);
   display: flex;

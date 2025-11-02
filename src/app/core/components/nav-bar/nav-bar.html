@@ -1,16 +1,34 @@
 <aside class="sidebar">
   <nav class="menubar">
     <div class="logo">
-      <img src="assets/logo1.png" alt="BioDex Logo">
+      <img src="assets/logo1.png" alt="BioDex Logo" />
       <div>Biodex</div>
     </div>
-    <a href="#">Principal</a>
-    <a class="active" href="#">Colecciones</a>
-    <a class="Solicitudes" href="#">Solicitudes</a>
-    <a href="#">Exposiciones</a>
+
+    <a
+      routerLink="/mainview"
+      routerLinkActive="active"
+    >
+      Principal
+    </a>
+
+    <a
+      routerLink="/collections"routerLinkActive="active"
+    >
+      Colecciones
+    </a>
+
+    <a routerLink="/solicitudes" routerLinkActive="active">
+      Solicitudes
+    </a>
+
+    <a routerLink="/exposiciones" routerLinkActive="active">
+      Exposiciones
+    </a>
   </nav>
+
   <div class="profile-section">
-    <img src="assets/perfil.png" alt="User Profile" class="profile-image">
-    <a href="#">Mi perfil</a>
+    <img src="assets/perfil.png" alt="User Profile" class="profile-image" />
+    <a routerLink="/perfil">Mi perfil</a>
   </div>
 </aside>

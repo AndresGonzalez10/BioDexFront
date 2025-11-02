@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.return{
+  margin-right: 140px;
+}
+
 .login-button,
 .register-button {
   padding: 6px 20px;
