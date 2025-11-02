@@ -1,0 +1,9 @@
+:host{
+    background-color: #000000;
+    display: block;
+    padding: 40px;
+    box-sizing:border-box;
+    width: 50%;
+    height: 570px;
+    margin: 0;
+}
