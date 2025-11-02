@@ -1,0 +1,12 @@
+:host {
+  background-color: rgba(0, 0, 0, 0.9);
+  display: block;
+  box-sizing: border-box;
+  width: 40%;
+  height: 100%;
+  padding: 40px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
