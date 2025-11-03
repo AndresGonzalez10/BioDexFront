@@ -1,0 +1,80 @@
+.mainexpo-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f9fa; 
+  color: #212529; 
+}
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 60px;
+}
+
+.header-principal {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.header-principal .back-link {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.header-principal h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  padding: 10px 15px;
+  width: 300px;
+  border: 1px solid #e0e0e0;
+}
+
+.search-bar svg {
+  color: #6c757d;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+.sub-header {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.expo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}

@@ -10,6 +10,8 @@ import { Mainview } from './pages/mainview/mainview';
 import { CollectionMain } from './pages/collection-main/collection-main';
 import { ExposMain } from './pages/expos-main/expos-main';
 import { RequetsMain } from './pages/requets-main/requets-main';
+import { MyExpos } from './pages/my-expos/my-expos';
+import { OtherExpos } from './pages/other-expos/other-expos';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
@@ -23,5 +25,7 @@ export const routes: Routes = [
   { path: 'collection', component: CollectionMain},
   { path: 'expos', component: ExposMain},
   { path: 'requets', component: RequetsMain},
+  { path: 'myexpos', component: MyExpos},
+  { path: 'otherexpos', component: OtherExpos},
   { path: '**', redirectTo: '' } 
 ];
