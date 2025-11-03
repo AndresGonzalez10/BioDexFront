@@ -9,6 +9,7 @@ import { Register2 } from './pages/register/register2/register2'
 import { Mainview } from './pages/mainview/mainview';
 import { CollectionMain } from './pages/collection-main/collection-main';
 import { ExposMain } from './pages/expos-main/expos-main';
+import { RequetsMain } from './pages/requets-main/requets-main';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'mainview', component: Mainview},
   { path: 'collection', component: CollectionMain},
   { path: 'expos', component: ExposMain},
+  { path: 'requets', component: RequetsMain},
   { path: '**', redirectTo: '' } 
 ];
