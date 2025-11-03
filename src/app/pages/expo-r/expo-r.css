@@ -96,6 +96,38 @@ main {
   border-top: 1px solid #eee;
 }
 
+.content-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-text {
+  background-color: #212529;
+  color: white;
+}
+
+.btn-add-image {
+  background-color: white;
+  color: #212529;
+  border: 2px solid #212529;
+}
+
 .btn-publicar,
 .btn-cancelar {
   padding: 12px 24px;
