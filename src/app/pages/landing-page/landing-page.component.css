@@ -26,7 +26,7 @@
 }
 
 .navbar .logo img {
-  width: 30px; /* Tamaño del icono */
+  width: 30px; 
   height: 30px;
   margin-right: 10px;
 }
@@ -49,11 +49,11 @@
 }
 
 .navbar .nav-links a:hover {
-  color: #a0d8b3; /* Un color de hover para los enlaces */
+  color: #a0d8b3;
 }
 
 .login-button {
-  background-color: #4CAF50; /* Color verde */
+  background-color: #4CAF50; 
   color: black;
   border: none;
   padding: 15px 30px;
@@ -70,12 +70,12 @@
 }
 
 .hero-content {
-  flex-grow: 1; /* Ocupa el espacio restante */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: flex-start; /* Alinea a la izquierda */
-  padding-left: 100px; /* Ajusta el margen izquierdo */
+  justify-content: center; 
+  align-items: flex-start; 
+  padding-left: 100px; 
 }
 
 .hero-content h1 {
@@ -147,7 +147,6 @@
  height: 100%;
 }
 
-/* MENÚ LATERAL - COLUMNA 1 */
 .side-menu {
   background-color: transparent; 
   border-radius: 12px; 
@@ -203,7 +202,6 @@
   background-color: #f5f5f5;
 }
 
-/* QUÉ ES BIODEX - COLUMNA 2 (SUPERIOR) */
 
 .biodex-intro {
   display: flex; 
@@ -213,7 +211,6 @@
   width: 100%;
 }
 
-/* --- Contenedor de la Imagen (Izquierda) --- */
 .intro-image-container {
   max-width: 300px; 
   width: auto;
@@ -230,7 +227,7 @@
   border-radius: 4px; 
 }
 
-/* --- Contenido de Texto (Derecha) --- */
+
 .intro-content {
   width: 300px; 
   padding-left: 25px;
@@ -330,9 +327,7 @@
   height: 50%;
 }
 
-/* ========================================= */
-/* 3. MARIPOSAS Y PROPÓSITO - COLUMNA 2 / FILA 2 */
-/* ========================================= */
+
 
 .specimen-purpose-panel {
     display: flex; 
@@ -345,9 +340,9 @@
     height: 100%;
 }
 
-/* --- Parte Izquierda: Imagen de Mariposas --- */
+
 .specimen-image-container {
-    width: 50%; /* La imagen es la parte más ancha del panel */
+    width: 50%;
     height: auto;
     overflow: hidden;
 }
@@ -355,18 +350,18 @@
 .specimen-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    object-fit: cover;
     display: block;
 }
 
-/* --- Parte Derecha: Contenido de Propósito --- */
+
 .purpose-content {
-    width: 35%; /* El texto ocupa el espacio restante */
+    width: 35%; 
     padding: 30px 20px 30px 25px;
     box-sizing: border-box;
 }
 
-/* Estilos de encabezado y texto dentro del propósito */
+
 .purpose-header {
     display: flex;
     align-items: center;
@@ -379,10 +374,9 @@
     margin: 0;
 }
 
-/* Estilo del icono (píldora negra) */
 .purpose-header .icon {
     margin-left: 10px;
-    background-color: #1a1a1a; /* Fondo negro */
+    background-color: #1a1a1a; 
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -393,12 +387,10 @@
 
 .purpose-header .icon img {
     width: 18px; 
-    filter: invert(100%); /* Hace que el icono (si es negro) sea blanco */
+    filter: invert(100%); 
 }
 
-/* ========================================= */
-/* 4. CTA (LLAMADA A LA ACCIÓN) - COLUMNA 3 / AMBAS FILAS */
-/* ========================================= */
+
 
 .cta-panel {
     background-color: #1a1a1a; 
@@ -427,14 +419,12 @@
     transition: background-color 0.2s;
 }
 
-/* Botón de Inicio de Sesión (Verde) */
 .cta-login {
-    background-color: #4CAF50; /* Verde de la marca */
+    background-color: #4CAF50; 
     color: white;
     border: none;
 }
 
-/* Botón de Registro (Contorno blanco) */
 .cta-register {
     background-color: transparent;
     color: white;
@@ -448,7 +438,6 @@
 }
 
 .cta-image-container {
-    /* Contenedor de la imagen del usuario en la laptop */
     margin-top: 10px; 
 }
 
@@ -456,7 +445,6 @@
     width: 100%;
     height: auto;
     display: block;
-    /* Redondeo solo en la parte inferior para que coincida con el panel */
     border-radius: 0 0 12px 12px;
     object-fit: cover; 
 }
@@ -481,7 +469,6 @@ justify-content: center;
 align-items: center;
 }
 
-/* GESTIÓN DE PRÉSTAMOS Y DEVOLUCIONES */
 .feature-panel {
     background-color: white;
     border-radius: 15px; 
@@ -505,8 +492,18 @@ align-items: center;
     background-color: rgba(2, 15, 20, 1); 
     color: white;
     padding: 10px 15px;
-    border-radius: 8px; 
+    border-radius: 50px; 
     margin-right: 15px;
+}
+
+.feature-title-box button {
+    background-color: rgba(2, 15, 20, 1); 
+    color: white;
+    border: 0px ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 80px;
+    font-weight: bolder;
 }
 
 .feature-title-box h1 {
@@ -565,14 +562,13 @@ align-items: center;
   height: 890px;
   justify-content: center;
 }
-/* ========================================= */
 /* TÍTULO DE EXPOSICIONES VIRTUALES */
-/* ========================================= */
+
 
 .section-header {
     display: flex;
-    align-items: center; /* Alinea el icono y el texto verticalmente */
-    width: max-content; /* El bloque toma solo el ancho de su contenido */
+    align-items: center; 
+    width: max-content; 
     margin-left: 383px; 
     margin-bottom: 10px; 
 }
@@ -784,13 +780,12 @@ justify-content: space-between;
     right: 0;
     transform: translate(0, -50%) rotate(180deg); 
     writing-mode: vertical-lr;
-
     background-color: #1a1a1a;
     color: white;
     padding: 20px 10px;
     font-weight: 600;
     font-size: 1em;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 8px 8px 0;
     cursor: pointer;
 }
 /* FOOTER (PIE DE PÁGINA NEGRO) */
