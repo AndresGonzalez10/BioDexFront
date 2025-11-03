@@ -3,15 +3,28 @@
 
   <main>
     <div class="header-registro">
-      <a href="/collections" class="back-link"><img src="/assets/flechaAtras.png" alt=""></a>
+      <a href="/collections" class="back-link"
+        ><img src="/assets/flechaAtras.png" alt=""
+      /></a>
       <h1>Registro Expocicion</h1>
     </div>
 
     <form class="formulario-container">
       <h2>Formulario de Expocicion</h2>
-      
-    
 
+      <h3>Informacion Pricipal</h3>
+      <div class="form-group">
+        <label for="titulo">Titulo de la exposicion</label>
+        <input type="text" id="titulo" placeholder="Elige un titulo para tu exposición"/>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" rows="5" placeholder="Añada una descripción del espécimen"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <input type="text" id="categoria" placeholder="Añada una categoría" />
+      </div>
     </form>
   </main>
 </div>
