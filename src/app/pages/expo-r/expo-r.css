@@ -86,3 +86,41 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+}
+
+.btn-publicar,
+.btn-cancelar {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-publicar {
+  background-color: #aeff7c;
+  color: #212529;
+}
+
+.btn-publicar:hover {
+  background-color: #c8e6b6;
+}
+
+.btn-cancelar{
+  background-color: rgb(255, 0, 0);  
+  color: white;
+}
+
+.btn-cancelar:hover{  
+  background-color: rgb(252, 64, 64);  
+}
