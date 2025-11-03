@@ -13,6 +13,7 @@ import { RequetsMain } from './pages/requets-main/requets-main';
 import { MyExpos } from './pages/my-expos/my-expos';
 import { OtherExpos } from './pages/other-expos/other-expos';
 import { ExpoR } from './pages/expo-r/expo-r';
+import { Exposition } from './pages/exposition/exposition';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
@@ -29,5 +30,6 @@ export const routes: Routes = [
   { path: 'myexpos', component: MyExpos},
   { path: 'otherexpos', component: OtherExpos},
   { path: 'expor', component: ExpoR},
+  { path: 'exposition', component: Exposition},
   { path: '**', redirectTo: '' } 
 ];
