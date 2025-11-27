@@ -5,8 +5,8 @@
     </div>
     <ul class="nav-links">
       <li><a href="/mainview">Inicio</a></li>
-      <li><a href="/">Sobre nosotros</a></li>
-      <li><a href="/">Contáctanos</a></li>
+      <li><a href="#SobreNosotros">Sobre nosotros</a></li>
+      <li><a href="#Contactanos">Contáctanos</a></li>
     </ul>
     <a href="/login"><button class="login-button">Iniciar sesión</button></a>
   </div>
@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div class="about-section">
+<div class="about-section" id="SobreNosotros">
   <div class="content-wrapper">
     <div class="column-left">
       <nav class="side-menu">
@@ -52,11 +52,12 @@
             Biodex es una plataforma web diseñada para la gestión de colecciones
             biológicas.
           </p>
-        </div>
-        <a href="#" class="read-more">
+          <a href="#seccion3" class="read-more">
           Conoce más...
           <span class="arrow"><img src="/assets/arrow.png" alt="" /></span>
         </a>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -69,7 +70,7 @@
 
       <div class="purpose-content">
         <div class="purpose-header">
-          <h2>Propósito</h2>
+          <button class="button-prop"><h2>Propósito</h2></button>
           <span class="icon">
             <img src="/assets/proposito.png" alt="" />
           </span>
@@ -99,7 +100,7 @@
   </div>
 </div>
 
-<div class="gestion-section">
+<div id="seccion3" class="gestion-section">
   <div class="Title">
     <h1>Gestión de Colecciones Biologicas</h1>
     <p>La gestion de colecciones es el corazon de BioDex</p>
@@ -157,17 +158,15 @@
   </div>
   <div class="line2">
     <span><img src="/assets/arana.png" alt="img" /></span>
-    <img src="/assets/imaagencentro.png" alt="img" />
+    <img class="imagencentral" src="/assets/imaagencentro.png" alt="img" />
+     <img class="libe" src="/assets/libelula.png" alt="img" />
   </div>
   <div class="line3">
-    <img src="/assets/libelula.png" alt="img" />
-    <div>
-      <a class="boton" href="/mainview">Explora Ahora...</a>
-    </div>
+      <a class="boton" href="/mainview">Explora Ahora...>></a>
   </div>
 </div>
 
-<div class="cta-footer-section">
+<div class="cta-footer-section" id="Contactanos">
   <div class="cta-content-wrapper">
     <div class="cta-text-group">
       <h1>Digitaliza tu colección hoy con Biodex!</h1>
