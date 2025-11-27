@@ -1,0 +1,50 @@
+.specimen-card {
+  width: 200px; /* Ancho fijo para la tarjeta */
+  background-color: white;
+  border-radius: 16px; /* Bordes más redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex; /* Habilitar flexbox */
+  flex-direction: column; /* Organizar elementos en columna */
+  align-items: center; /* Centrar horizontalmente */
+  padding: 15px; /* Padding interno */
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.specimen-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.specimen-card img {
+  width: 170px; /* Ancho fijo para la imagen */
+  height: 170px; /* Alto fijo para la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  border-radius: 12px; /* Bordes más redondeados para la imagen */
+  margin-bottom: 15px; /* Espacio debajo de la imagen */
+}
+
+.specimen-card h3 {
+  font-size: 18px; /* Tamaño de fuente para el título */
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  padding: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.specimen-card p {
+  font-size: 14px; /* Tamaño de fuente para la descripción */
+  color: #666;
+  margin-top: 5px;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limitar a 2 líneas */
+  -webkit-box-orient: vertical;
+}

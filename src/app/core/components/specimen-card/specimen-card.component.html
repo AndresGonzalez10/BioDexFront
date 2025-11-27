@@ -1,0 +1,6 @@
+<div class="specimen-card" (click)="navigateToDetails()">
+  <img *ngIf="specimen.mainPhoto" [src]="imageUrlBase + specimen.mainPhoto" alt="Specimen Image" class="specimen-image">
+  <img *ngIf="!specimen.mainPhoto" src="assets/placeholder.png" alt="Placeholder Image" class="specimen-image">
+  <h3>{{ specimen.commonName }}</h3>
+  <p>{{ specimen.description }}</p>
+</div>
