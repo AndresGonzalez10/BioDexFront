@@ -1,0 +1,106 @@
+<div class="specimens-view-container">
+  <app-nav-bar class="fixed-navbar"></app-nav-bar>
+  <main>
+    <div *ngIf="!specimenId">
+      <div class="header-specimens">
+        <h1>Especímenes</h1>
+      </div>
+
+      <div class="search-and-add-container">
+        <div class="search-bar-container">
+          <img src="https://icongr.am/clarity/search.svg?size=24&color=757575" alt="Buscar">
+          <input type="text" placeholder="Buscar" (input)="onSearchChange($event)">
+        </div>
+        <button class="add-specimen-button" (click)="goToAddSpecimen()">Agregar</button>
+      </div>
+
+    <br>
+      <div class="specimens-grid">
+        <app-specimen-card
+          *ngFor="let spec of filteredSpecimens"
+          [specimen]="spec"
+          [imageUrlBase]="imageUrlBase">
+        </app-specimen-card>
+      </div>
+    </div>
+
+    <div *ngIf="specimenId && specimen" class="specimen-detail-card">
+      <div class="detail-header">
+        <a routerLink="/specimens" class="back-link">
+          <img src="/assets/flechaAtras.png" alt="Volver">
+        </a>
+        <div class="title-section">
+          <h1>{{ specimen.commonName }}</h1>
+          <p class="subtitle">{{ specimen.taxonomy.genus }} {{ specimen.taxonomy.species }}</p>
+        </div>
+
+        <div class="action-buttons">
+          <button class="edit-button">Editar</button>
+          <button class="delete-button">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        <div class="top-section-details">
+          <div class="image-section">
+            <img *ngIf="specimen.mainPhoto; else placeholder"
+                 [src]="imageUrlBase + specimen.mainPhoto"
+                 alt="Specimen Image">
+            <ng-template #placeholder>
+              <img src="assets/placeholder.png" alt="Placeholder">
+            </ng-template>
+          </div>
+
+          <div class="info-section-top-right">
+            <div class="info-item"><label>Nombre</label><p>{{ specimen.commonName }}</p></div>
+            <div class="info-item"><label>Familia</label><p>{{ specimen.taxonomy.family }}</p></div>
+            <div class="info-item"><label>Género</label><p>{{ specimen.taxonomy.genus }}</p></div>
+            <div class="info-item"><label>Especie</label><p>{{ specimen.taxonomy.species }}</p></div>
+            <div class="info-item"><label>Categoría</label><p>{{ specimen.taxonomy.category }}</p></div>
+            <div class="info-item"><label>Colector</label><p>{{ specimen.collector }}</p></div>
+          </div>
+        </div>
+
+        <div class="bottom-section-details">
+          <div class="info-item"><label>Fecha de colección</label>
+            <p><img src="https://icongr.am/clarity/calendar.svg?size=16&color=757575" alt="cal">
+              {{ specimen.collectionDate | date }}
+            </p>
+          </div>
+
+          <h3>Colectado en</h3>
+          <div class="info-grid">
+            <div class="info-item"><label>País</label><p>{{ specimen.location.country }}</p></div>
+            <div class="info-item"><label>Estado</label><p>{{ specimen.location.state }}</p></div>
+            <div class="info-item"><label>Municipio</label><p>{{ specimen.location.locality }}</p></div>
+          </div>
+
+          <h3>Ubicación</h3>
+          <div class="info-grid">
+            <div class="info-item"><label>Latitud</label><p>{{ specimen.location.latitude_degrees }}° {{ specimen.location.latitude_minutes }}' {{ specimen.location.latitude_seconds }}"</p></div>
+            <div class="info-item"><label>Longitud</label><p>{{ specimen.location.longitude_degrees }}° {{ specimen.location.longitude_minutes }}' {{ specimen.location.longitude_seconds }}"</p></div>
+            <div class="info-item"><label>Altitud</label><p>{{ specimen.location.altitude }}</p></div>
+          </div>
+
+          <h3>Otros datos</h3>
+          <div class="info-grid">
+            <div class="info-item"><label>Individuos</label><p>{{ specimen.individualsCount }}</p></div>
+            <div class="info-item"><label>Año de determinación</label><p>{{ specimen.determinationYear }}</p></div>
+            <div class="info-item"><label>Determinador</label><p>{{ specimen.determinador }}</p></div>
+            <div class="info-item"><label>Sexo</label><p>{{ specimen.sex }}</p></div>
+            <div class="info-item"><label>Tipo vegetación</label><p>{{ specimen.vegetationType }}</p></div>
+            <div class="info-item"><label>Método colecta</label><p>{{ specimen.collectionMethod }}</p></div>
+          </div>
+
+          <h3>Notas</h3>
+          <p class="notes-text">{{ specimen.notes }}</p>
+
+          <h3>Imágenes adicionales</h3>
+          <div class="additional-images-grid">
+            <img *ngFor="let img of specimen.images" [src]="imageUrlBase + img.fileUrl" alt="Imagen adicional">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
