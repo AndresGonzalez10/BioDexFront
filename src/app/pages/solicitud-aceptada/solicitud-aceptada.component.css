@@ -1,0 +1,105 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; 
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw; 
+  background-color: #f8f9fa;
+  color: #212529;
+  overflow: hidden; 
+}
+
+
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  padding: 40px 60px;
+  background-color: #f8f9fa;
+  min-width: 0; 
+  width: 100%; 
+}
+
+.solicitudes-content-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+  width: 100%; 
+}
+
+
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-arrow {
+  font-size: 24px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.my-requests-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.request-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.request-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 30px;
+  background-color: #F6F6F6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-family: 'Montserrat', sans-serif,;
+  justify-content: space-between;
+  
+}
+
+.request-item:last-child {
+  margin-bottom: 0;
+}
+
+.species-name {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.request-date {
+  margin-right: 350px;
+  text-align: left;
+  
+}
+
+.species-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
