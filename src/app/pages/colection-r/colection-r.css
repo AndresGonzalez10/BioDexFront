@@ -6,9 +6,9 @@
 }
 
 main {
-  flex: 1; 
-  overflow-y: auto; 
-  padding: 40px 60px; 
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 60px;
 }
 
 .header-registro {
