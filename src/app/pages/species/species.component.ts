@@ -1,20 +1,50 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Component} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-registro-especimen',
+  standalone: true,
+  imports: [CommonModule, NavBarComponent],
+  templateUrl: './species.component.html',
+  styleUrl: './species.component.css'
 })
-export class SpeciesService {
-  private apiUrl = 'http://localhost:8060/specimens';
 
-  constructor(private http: HttpClient) { }
+export class SpeciesComponent {
+  selectedFile: File | null = null;
+  imageUrl: string | ArrayBuffer | null = null;
+  imageUrl1: string | ArrayBuffer | null = null;
+  imageUrl2: string | ArrayBuffer | null = null;
+  imageUrl3: string | ArrayBuffer | null = null;
+  imageUrl4: string | ArrayBuffer | null = null;
+  imageUrl5: string | ArrayBuffer | null = null;
+  imageUrl6: string | ArrayBuffer | null = null;
+  
 
-  uploadSpecimen(specimenData: any): Observable<string> {
-    return this.http.post(this.apiUrl, specimenData, { responseType: 'text' });
-  }
-
-  checkConnection(): Observable<string> {
-    return this.http.get(this.apiUrl, { responseType: 'text' });
+  onFileSelected(event: Event, imageVarName: string): void {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList && fileList.length > 0) {
+      this.selectedFile = fileList[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (imageVarName === 'imageUrl') {
+          this.imageUrl = reader.result;
+        } else if (imageVarName === 'imageUrl1') {
+          this.imageUrl1 = reader.result;
+        } else if (imageVarName === 'imageUrl2') {
+          this.imageUrl2 = reader.result;
+        } else if (imageVarName === 'imageUrl3') {
+          this.imageUrl3 = reader.result;
+        } else if (imageVarName === 'imageUrl4') {
+          this.imageUrl4 = reader.result;
+        } else if (imageVarName === 'imageUrl5') {
+          this.imageUrl5 = reader.result;
+        } else if (imageVarName === 'imageUrl6') {
+          this.imageUrl6 = reader.result;
+        }
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 }
