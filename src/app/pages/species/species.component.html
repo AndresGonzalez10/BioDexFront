@@ -1,45 +1,50 @@
 <div class="registro-especimen-container">
 <app-nav-bar></app-nav-bar>
-
 <main>
+  
   <h1>Registro de especímenes</h1>
   <div class="formulario">
-    <div class="form-header">
-      <h2>Formulario de registro</h2>
-      <div class="acciones">
-        <button type="button" class="btn cancelar">Cancelar</button>
-        <button type="submit" class="btn guardar">Guardar</button>
-      </div>
-    </div>
-    <form>
-      <div>
-        <label>Nombre</label>
-        <input type="text" placeholder="Nombre del especimen" class="campos">
+      <form (ngSubmit)="onSubmit()" #speciesForm="ngForm">
+        <div class="form-header">
+          <h2>Formulario de registro</h2>
+          </div>
+          <br>
+           <div class="form-header">
+          <div class="acciones">
+            <button type="button" class="btn cancelar">Cancelar</button>
+            <button type="submit" class="btn guardar">Guardar</button>
+          </div>
+        </div>
         
-      </div>
-      <div>
-        <label>Familia</label>
-        <input type="text" placeholder="Familia" class="campos">
-      </div>
-      <div>
-        <label>Género</label>
-        <input type="text" placeholder="Genero" class="campos">
-      </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Nombre del especimen" class="form-control" [(ngModel)]="nombreComun" name="nombreComun">
+          
+        </div>
+        <div class="form-group">
+          <label for="familia">Familia</label>
+          <input type="text" id="familia" placeholder="Familia" class="form-control" [(ngModel)]="familia" name="familia">
+        </div>
 
-      <div>
-        <label>Especie</label>
-        <input type="text" placeholder="Especie" class="campos">
-      </div>
-      <div>
-        <label>Categoría</label>
-        <input type="text" placeholder="Categoría" class="campos">
-      </div>
-      <div>
-        <label>Fecha de colección</label>
-        <input type="date" name="collectionDate" class="campos">
-      </div>
-
-
+        <div class="form-group">
+          <label for="genero">Género</label>
+          <input type="text" id="genero" placeholder="Genero" class="form-control" [(ngModel)]="genero" name="genero">
+        </div>
+    
+        <div class="form-group">
+          <label for="especie">Especie</label>
+          <input type="text" id="especie" placeholder="Especie" class="form-control" [(ngModel)]="especie" name="especie">
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <input type="text" id="categoria" placeholder="Categoría" class="form-control" [(ngModel)]="categoria" name="categoria">
+        </div>
+        <div class="form-group">
+          <label for="fechaColeccion">Fecha de colección</label>
+          <input type="date" id="fechaColeccion" class="form-control" [(ngModel)]="fechaColeccion" name="fechaColeccion">
+        </div>
+    
+    
      <div class="subir-foto principal">
             <input type="file" id="fotoPrincipal" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl')">
             <label for="fotoPrincipal" style="cursor: pointer;">
@@ -48,157 +53,156 @@
               <p>Sube la foto<br>principal</p>
             </label>
           </div>
-
-      <div>
-        <label>Colector</label>
-        <input type="text" placeholder="Colector" class="campos">
-      </div>
-      <div>
-        <label>País</label>
-        <input type="text" placeholder="Pais" class="campos">
-      </div>
-      <div>
-        <label>Estado</label>
-        <input type="text" placeholder="Estado" class="campos">
-      </div>
-
-      <div>
-        <label>Municipio</label>
-        <input type="text" placeholder="Municipio" class="campos">
-      </div>
-      <div>
-        <label>Localidad</label>
-        <input type="text" placeholder="Localidad" class="campos">
-      </div>
-      <br>
-      <div>
-        <label>Latitud</label>
-        <input type="text" placeholder="Grados" class="campos">
-      </div>
-      <div>
-        <label>
-          <br>
-        </label>
-        <input type="text" placeholder="Minutos" class="campos">
-      </div>
-      <div>
-        <label>
-          <br>
-        </label>
-        <input type="text" placeholder="Segundos" class="campos">
-      </div>
-      <div>
-        <label>Longitud</label>
-        <input type="text" placeholder="Grados" class="campos">
-      </div>
-      <div>
-        <label>
-          <br>
-        </label>
-        <input type="text" placeholder="Minutos" class="campos">
-      </div>
-      <div>
-        <label>
-          <br>
-        </label>
-        <input type="text" placeholder="Segundos" class="campos">
-      </div>
-      <div>
-        <label>Altitud</label>
-        <input type="text" placeholder="Radio" class="campos">
-      </div>
-      <div>
-        <label>Individuos</label>
-        <input type="number" placeholder="0" class="campos">
-      </div>
-
-      <div>
-        <label>Determinador</label>
-        <input type="text" placeholder="nmbre" class="campos">
-      </div>
-      <div>
-        <label>Año de determinación</label>
-        <input type="date" name="collectionDate" class="campos">
-      </div>
-      <div>
-        <label>Sexo</label>
-        <select>
-          <option>
-          Masculino
-        </option>
-          <option>
-            Femenino
+    
+        <div class="form-group">
+          <label for="colector">Colector</label>
+          <input type="text" id="colector" placeholder="Colector" class="form-control" [(ngModel)]="colector" name="colector">
+        </div>
+        <div class="form-group">
+          <label for="pais">País</label>
+          <input type="text" id="pais" placeholder="Pais" class="form-control" [(ngModel)]="pais" name="pais">
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" placeholder="Estado" class="form-control" [(ngModel)]="estado" name="estado">
+        </div>
+    
+        <div class="form-group">
+          <label for="municipio">Municipio</label>
+          <input type="text" id="municipio" placeholder="Municipio" class="form-control" [(ngModel)]="municipio" name="municipio">
+        </div>
+        <div class="form-group">
+          <label for="localidad">Localidad</label>
+          <input type="text" id="localidad" placeholder="Localidad" class="form-control" [(ngModel)]="localidad" name="localidad">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="latitudGrados">Latitud</label>
+          <input type="text" id="latitudGrados" placeholder="Grados" class="form-control" [(ngModel)]="latitudGrados" name="latitudGrados">
+        </div>
+        <div class="form-group">
+          <label for="latitudMinutos">
+            <br>
+          </label>
+          <input type="text" id="latitudMinutos" placeholder="Minutos" class="form-control" [(ngModel)]="latitudMinutos" name="latitudMinutos">
+        </div>
+        <div class="form-group">
+          <label for="latitudSegundos">
+            <br>
+          </label>
+          <input type="text" id="latitudSegundos" placeholder="Segundos" class="form-control" [(ngModel)]="latitudSegundos" name="latitudSegundos">
+        </div>
+        <div class="form-group">
+          <label for="longitudGrados">Longitud</label>
+          <input type="text" id="longitudGrados" placeholder="Grados" class="form-control" [(ngModel)]="longitudGrados" name="longitudGrados">
+        </div>
+        <div class="form-group">
+          <label for="longitudMinutos">
+            <br>
+          </label>
+          <input type="text" id="longitudMinutos" placeholder="Minutos" class="form-control" [(ngModel)]="longitudMinutos" name="longitudMinutos">
+        </div>
+        <div class="form-group">
+          <label for="longitudSegundos">
+            <br>
+          </label>
+          <input type="text" id="longitudSegundos" placeholder="Segundos" class="form-control" [(ngModel)]="longitudSegundos" name="longitudSegundos">
+        </div>
+        <div class="form-group">
+          <label for="altitud">Altitud</label>
+          <input type="text" id="altitud" placeholder="Radio" class="form-control" [(ngModel)]="altitud" name="altitud">
+        </div>
+        <div class="form-group">
+          <label for="individuos">Individuos</label>
+          <input type="number" id="individuos" placeholder="0" class="form-control" [(ngModel)]="cantidadIndividuos" name="cantidadIndividuos">
+        </div>
+    
+        <div class="form-group">
+          <label for="determinador">Determinador</label>
+          <input type="text" id="determinador" placeholder="nmbre" class="form-control" [(ngModel)]="determinador" name="determinador">
+        </div>
+        <div class="form-group">
+          <label for="anioDeterminacion">Año de determinación</label>
+          <input type="number" id="anioDeterminacion" class="form-control" [(ngModel)]="anioDeterminacion" name="anioDeterminacion">
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select id="sexo" [(ngModel)]="sexo" name="sexo" class="form-control">
+            <option>
+            Masculino
           </option>
-        </select>
-      </div>
+            <option>
+              Femenino
+            </option>
+          </select>
+        </div>
+    
+        <div class="form-group">
+          <label for="tipoVegetacion">Tipo de vegetación</label>
+          <input type="text" id="tipoVegetacion" placeholder="tipo" class="form-control" [(ngModel)]="tipoVegetacion" name="tipoVegetacion">
+        </div>
+        <div class="form-group">
+          <label for="metodoColecta">Método de colecta</label>
+          <input type="text" id="metodoColecta" placeholder="metodo" class="form-control" [(ngModel)]="metodoColecta" name="metodoColecta">
+        </div>
+        <div class="form-group">
+          <label for="notas">Notas</label>
+          <input type="text" id="notas" placeholder="notas" class="form-control" [(ngModel)]="notas" name="notas">
+        </div>
+    
+    
+        <br>
+    
+        <div class="subir-foto">
+              <input type="file" id="foto1" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl1')">
+              <label for="foto1" style="cursor: pointer;">
+                <img *ngIf="!imageUrl1" src="assets/image18.png" alt="Upload Icon">
+                <img *ngIf="imageUrl1" [src]="imageUrl1" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                <p>Sube una foto</p>
+              </label>
+            </div>
+        <div class="subir-foto">
+              <input type="file" id="foto2" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl2')">
+              <label for="foto2" style="cursor: pointer;">
+                <img *ngIf="!imageUrl2" src="assets/image18.png" alt="Upload Icon">
+                <img *ngIf="imageUrl2" [src]="imageUrl2" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                <p>Sube una foto</p>
+              </label>
+            </div>
+        <div class="subir-foto">
+              <input type="file" id="foto3" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl3')">
+              <label for="foto3" style="cursor: pointer;">
+                <img *ngIf="!imageUrl3" src="assets/image18.png" alt="Upload Icon">
+                <img *ngIf="imageUrl3" [src]="imageUrl3" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                <p>Sube una foto</p>
+              </label>
+            </div>
+        <div class="subir-foto">
+              <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
+              <label for="foto4" style="cursor: pointer;">
+                <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
+                <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                <p>Sube una foto</p>
+              </label>
+            </div>
+        <div class="subir-foto">
+          <input type="file" id="foto5" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl5')">
+          <label for="foto5" style="cursor: pointer;">
+            <img *ngIf="!imageUrl5" src="assets/image18.png" alt="Upload Icon">
+            <img *ngIf="imageUrl5" [src]="imageUrl5" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <p>Sube una foto</p>
+          </label>
+        </div>
+        <div class="subir-foto">
+          <input type="file" id="foto6" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl6')">
+          <label for="foto6" style="cursor: pointer;">
+            <img *ngIf="!imageUrl6" src="assets/image18.png" alt="Upload Icon">
+            <img *ngIf="imageUrl6" [src]="imageUrl6" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <p>Sube una foto</p>
+          </label>
+        </div>
 
-      <div>
-        <label>Tipo de vegetación</label>
-        <input type="text" placeholder="tipo" class="campos">
-      </div>
-      <div>
-        <label>Método de colecta</label>
-        <input type="text" placeholder="metodo" class="campos">
-      </div>
-      <div>
-        <label>Notas</label>
-        <input type="text" placeholder="notas" class="campos">
-      </div>
 
-
-      <br>
-
-      <div class="subir-foto">
-            <input type="file" id="foto1" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl1')">
-            <label for="foto1" style="cursor: pointer;">
-              <img *ngIf="!imageUrl1" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl1" [src]="imageUrl1" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
-            </label>
-          </div>
-      <div class="subir-foto">
-            <input type="file" id="foto2" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl2')">
-            <label for="foto2" style="cursor: pointer;">
-              <img *ngIf="!imageUrl2" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl2" [src]="imageUrl2" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
-            </label>
-          </div>
-      <div class="subir-foto">
-            <input type="file" id="foto3" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl3')">
-            <label for="foto3" style="cursor: pointer;">
-              <img *ngIf="!imageUrl3" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl3" [src]="imageUrl3" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
-            </label>
-          </div>
-      <div class="subir-foto">
-            <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
-            <label for="foto4" style="cursor: pointer;">
-              <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
-            </label>
-          </div>
-      <div class="subir-foto">
-        <input type="file" id="foto5" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl5')">
-        <label for="foto5" style="cursor: pointer;">
-          <img *ngIf="!imageUrl5" src="assets/image18.png" alt="Upload Icon">
-          <img *ngIf="imageUrl5" [src]="imageUrl5" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-          <p>Sube una foto</p>
-        </label>
-      </div>
-      <div class="subir-foto">
-        <input type="file" id="foto6" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl6')">
-        <label for="foto6" style="cursor: pointer;">
-          <img *ngIf="!imageUrl6" src="assets/image18.png" alt="Upload Icon">
-          <img *ngIf="imageUrl6" [src]="imageUrl6" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-          <p>Sube una foto</p>
-        </label>
-      </div>
-
-
-    </form>
-  </div>
+      </form>
+    </div>
 </main>
-</div>
