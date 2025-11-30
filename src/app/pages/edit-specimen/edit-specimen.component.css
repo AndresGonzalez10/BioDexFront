@@ -107,7 +107,7 @@ main {
 .edit-button, .delete-button {
   padding: 8px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
 }
