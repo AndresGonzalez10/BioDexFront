@@ -222,11 +222,6 @@ main {
   font-size: 0.9em;
   max-width: 100%;
 }
-.request-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* Espacio opcional encima del botón */
-}
 
 .additional-images-grid {
   display: grid;
@@ -256,90 +251,34 @@ main {
   }
 }
 
-.specimens-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 30px;
-  padding-bottom: 40px;
-}
-
-.search-and-add-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+/* Estilos para los inputs y selects dentro de info-item */
+.info-item input[type="text"],
+.info-item input[type="number"],
+.info-item input[type="date"],
+.info-item select,
+.info-item textarea {
   width: 100%;
-}
-
-.search-bar-container {
-  display: flex;
-  align-items: center;
+  padding: 8px 10px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 8px 15px;
-  flex: 1;
-  background-color: #fff;
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: #333;
+  margin-top: 5px;
+  max-width: 250px;
 }
 
-.search-bar-container img {
-  margin-right: 10px;
+.info-item textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 
-.search-bar-container input {
-  border: none;
+.info-item input:focus,
+.info-item select:focus,
+.info-item textarea:focus {
+  border-color: #007bff;
   outline: none;
-  flex: 1;
-  font-size: 16px;
 }
 
-.add-specimen-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
-.add-specimen-button:hover {
-  background-color: #45a049;
-}
-
-.search-bar-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 8px 15px;
-  flex: 1;
-  max-width: 400px;
-  background-color: #fff;
-}
-
-.search-bar-container img {
-  margin-right: 10px;
-}
-
-.search-bar-container input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 16px;
-}
-
-.add-specimen-button {
-  background-color: #E2F9D1;
-  color: rgb(0, 0, 0);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
-.add-specimen-button:hover {
-  background-color: #E2F9D1;
+.info-item.full-width {
+  grid-column: 1 / -1; /* Ocupa todo el ancho en un grid */
 }

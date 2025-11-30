@@ -178,6 +178,24 @@ export class SpeciesComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('mainPhoto', this.selectedFile, this.selectedFile.name);
     }
+    if (this.selectedFile1) {
+      formData.append('additionalPhoto1', this.selectedFile1, this.selectedFile1.name);
+    }
+    if (this.selectedFile2) {
+      formData.append('additionalPhoto2', this.selectedFile2, this.selectedFile2.name);
+    }
+    if (this.selectedFile3) {
+      formData.append('additionalPhoto3', this.selectedFile3, this.selectedFile3.name);
+    }
+    if (this.selectedFile4) {
+      formData.append('additionalPhoto4', this.selectedFile4, this.selectedFile4.name);
+    }
+    if (this.selectedFile5) {
+      formData.append('additionalPhoto5', this.selectedFile5, this.selectedFile5.name);
+    }
+    if (this.selectedFile6) {
+      formData.append('additionalPhoto6', this.selectedFile6, this.selectedFile6.name);
+    }
     formData.append('collector', this.colector);
     formData.append('individualsCount', this.cantidadIndividuos.toString());
     formData.append('idCollection', this.collectionId || ''); 

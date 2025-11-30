@@ -21,6 +21,9 @@ import { SolicitudAceptadaComponent } from './pages/solicitud-aceptada/solicitud
 import { SolicitudRechazadaComponent } from './pages/solicitud-rechazada/solicitud-rechazada.component';
 import { SolicitudPendienteComponent } from './pages/solicitud-pendiente/solicitud-pendiente.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { SolicitudFormsComponent } from './pages/solicitud-forms/solicitud-forms';
+import {SolicitudSpecimenComponent} from './pages/solicitud-specimen/solicitud-specimen.component';
+import { EditSpecimenComponent } from './pages/edit-specimen/edit-specimen.component';
 
 
 export const routes: Routes = [
@@ -45,6 +48,11 @@ export const routes: Routes = [
   { path: 'solicitud-rechazada', component: SolicitudRechazadaComponent},
   { path: 'solicitud-pendiente', component: SolicitudPendienteComponent},
   { path: 'perfil', component: PerfilComponent},
+  { path: 'solicitud-forms', component: SolicitudFormsComponent},
+  { path: 'solicitud-specimen', component: SolicitudSpecimenComponent},
+  { path: 'edit-specimen/:id', component: EditSpecimenComponent},
+
+
 
   { path: 'specimens/:id', component: SpecimenComponent },
   { path: 'specimens/collection/:collectionId', component: SpecimenComponent },

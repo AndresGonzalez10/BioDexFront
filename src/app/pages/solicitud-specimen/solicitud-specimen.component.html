@@ -1,0 +1,75 @@
+<div class="container">
+  <app-nav-bar></app-nav-bar>
+
+  <main>
+    <div class="header">
+      <button class="back-button" (click)="volver()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <h1>Solicitudes</h1>
+    </div>
+
+    <div class="solicitud-container">
+      <h2>Solicitud</h2>
+
+      <div class="solicitud-content">
+        <div class="solicitud-info">
+          <div class="info-group">
+            <label>Especie solicitada</label>
+            <div class="info-value">{{ solicitud.especieSolicitada }}</div>
+          </div>
+
+          <div class="info-group">
+            <label>Tipo de solicitud</label>
+            <div class="info-value">{{ solicitud.tipoSolicitud }}</div>
+          </div>
+
+          <div class="info-group">
+            <label>Solicitado por</label>
+            <div class="info-value">{{ solicitud.solicitadoPor }}</div>
+          </div>
+
+          <div class="info-group">
+            <label>Institución de origen</label>
+            <div class="info-value">{{ solicitud.institucion }}</div>
+          </div>
+
+          <div class="info-group description-group">
+            <label>Descripción</label>
+            <div class="info-description">{{ solicitud.descripcion }}</div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-aceptar" (click)="aceptarSolicitud()">
+              Aceptar Solicitud
+            </button>
+            <button class="btn-rechazar" (click)="rechazarSolicitud()">
+              Rechazar
+            </button>
+          </div>
+        </div>
+
+        <div class="solicitud-sidebar">
+          <div class="image-container">
+            <img 
+              [src]="solicitud.imagenUrl" 
+              [alt]="solicitud.especieSolicitada" 
+              class="species-image"
+            />
+          </div>
+
+          <button class="btn-ver-perfil" (click)="verPerfil()">
+            Ver perfil de usuario
+          </button>
+
+          <div class="fecha-group">
+            <label>Fecha de solicitud</label>
+            <div class="fecha-value">{{ solicitud.fechaSolicitud }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

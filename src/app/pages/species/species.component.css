@@ -136,6 +136,34 @@ input[type="file"] {
   grid-column: span 3;
 }
 
+.additional-images-container {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.additional-images-container .subir-foto {
+  padding: 30px;
+  height: 150px; /* Ajusta la altura según sea necesario */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.additional-images-container .subir-foto img {
+  max-width: 80px; /* Tamaño reducido para las imágenes */
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.additional-images-container .subir-foto p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
 .campos{
   cursor: pointer;
   font-weight:bolder;

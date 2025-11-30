@@ -32,6 +32,14 @@ export class SpecimenService {
   uploadSpecimen(specimenData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/specimens`, specimenData, { responseType: 'text' });
   }
+
+  deleteSpecimen(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/specimens/${id}`);
+  }
+
+  updateSpecimen(id: number, specimenData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/specimens/${id}`, specimenData);
+  }
 }
 
 export interface Specimen {

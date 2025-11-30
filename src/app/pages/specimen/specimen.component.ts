@@ -48,7 +48,6 @@ export class SpecimenComponent implements OnInit {
       this.specimenService.getSpecimen(this.specimenId).subscribe({
         next: (data: any) => {
           this.specimen = data;
-          console.log('Espécimen individual cargado:', data);
         },
         error: (error: any) => {
           console.error(' Error al cargar el espécimen individual:', error);
@@ -98,5 +97,45 @@ export class SpecimenComponent implements OnInit {
 
   goToAddSpecimen(): void {
     this.router.navigate(['/add-specimen', this.collectionId]);
+  }
+
+  goToRequestForm(): void {
+    if (this.specimen) {
+      const specimenToPass = { ...this.specimen };
+      if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
+        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; // Append 'g' to make it '.jpg'
+      }
+      this.router.navigate(['/solicitud-forms'], { state: { specimenData: specimenToPass } });
+    } else {
+      console.warn('No specimen data available to pass to the request form.');
+      this.router.navigate(['/solicitud-forms']); // Navigate anyway, but without data
+    }
+  }
+
+  deleteSpecimen(): void {
+    if (this.specimen && confirm('¿Estás seguro de que quieres eliminar este espécimen?')) {
+      this.specimenService.deleteSpecimen(this.specimen.id).subscribe({
+        next: () => {
+          console.log('Espécimen eliminado con éxito.');
+          this.router.navigate(['/specimens']); // Navegar de vuelta a la lista de especímenes
+        },
+        error: (error: any) => {
+          console.error('Error al eliminar el espécimen:', error);
+          alert('Error al eliminar el espécimen. Por favor, inténtalo de nuevo.');
+        }
+      });
+    }
+  }
+
+  goToEditSpecimen(): void {
+    if (this.specimen) {
+      const specimenToPass = { ...this.specimen };
+      if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
+        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; // Append 'g' to make it '.jpg'
+      }
+      this.router.navigate(['/edit-specimen', this.specimen.id], { state: { specimenData: specimenToPass } });
+    } else {
+      console.warn('No specimen data available to pass to the edit form.');
+    }
   }
 }

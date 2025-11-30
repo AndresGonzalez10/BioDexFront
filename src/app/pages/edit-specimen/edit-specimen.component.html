@@ -1,0 +1,173 @@
+
+
+<div class="specimens-view-container">
+  <app-nav-bar class="fixed-navbar"></app-nav-bar>
+  <main>
+    <div *ngIf="specimen" class="specimen-detail-card">
+      <form (ngSubmit)="onSubmit()" #editSpecimenForm="ngForm">
+        <div class="detail-header">
+          <a routerLink="/specimens" class="back-link">
+            <img src="/assets/flechaAtras.png" alt="Volver">
+          </a>
+          <div class="title-section">
+            <h1>{{ specimen.commonName }}</h1>
+            <p class="subtitle">{{ specimen.taxonomy.genus }} {{ specimen.taxonomy.species }}</p>
+          </div>
+
+          <div class="action-buttons">
+            <button type="button" class="edit-button" (click)="goBack()">Cancelar</button>
+            <button type="submit" class="delete-button">Guardar</button>
+          </div>
+        </div>
+
+        <div class="detail-body">
+<div class="detail-body">
+  <div class="top-section-details">
+    <div class="image-section">
+      <img *ngIf="specimen.mainPhoto; else placeholder"
+           [src]="imageUrlBase + specimen.mainPhoto"
+           alt="Specimen Image">
+      <ng-template #placeholder>
+        <img src="assets/placeholder.png" alt="Placeholder">
+      </ng-template>
+
+    </div>
+
+    <div class="info-section-top-right">
+      <div class="info-item">
+        <label for="commonName">Nombre Común</label>
+        <input type="text" id="commonName" placeholder="Nombre del especimen" class="form-control" [(ngModel)]="specimen.commonName" name="commonName" required>
+      </div>
+      <div class="info-item">
+        <label for="scientificName">Nombre Científico</label>
+        <input type="text" id="scientificName" placeholder="Nombre científico" class="form-control" [(ngModel)]="specimen.scientificName" name="scientificName" required>
+      </div>
+      <div class="info-item">
+        <label for="family">Familia</label>
+        <input type="text" id="family" placeholder="Familia" class="form-control" [(ngModel)]="specimen.taxonomy.family" name="family">
+      </div>
+      <div class="info-item">
+        <label for="genus">Género</label>
+        <input type="text" id="genus" placeholder="Género" class="form-control" [(ngModel)]="specimen.taxonomy.genus" name="genus">
+      </div>
+      <div class="info-item">
+        <label for="speciesTaxonomy">Especie</label>
+        <input type="text" id="speciesTaxonomy" placeholder="Especie" class="form-control" [(ngModel)]="specimen.taxonomy.species" name="speciesTaxonomy">
+      </div>
+      <div class="info-item">
+        <label for="category">Categoría</label>
+        <input type="text" id="category" placeholder="Categoría" class="form-control" [(ngModel)]="specimen.taxonomy.category" name="category">
+      </div>
+      <div class="info-item">
+        <label for="collector">Colector</label>
+        <input type="text" id="collector" placeholder="Colector" class="form-control" [(ngModel)]="specimen.collector" name="collector">
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-section-details">
+    <div class="info-item">
+      <label for="collectionDate">Fecha de colección</label>
+      <p><img src="https://icongr.am/clarity/calendar.svg?size=16&color=757575" alt="cal"></p>
+      <input type="date" id="collectionDate" class="form-control" [(ngModel)]="specimen.collectionDate" name="collectionDate">
+    </div>
+
+    <h3>Colectado en</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <label for="country">País</label>
+        <input type="text" id="country" placeholder="País" class="form-control" [(ngModel)]="specimen.location.country" name="country">
+      </div>
+      <div class="info-item">
+        <label for="state">Estado</label>
+        <input type="text" id="state" placeholder="Estado" class="form-control" [(ngModel)]="specimen.location.state" name="state">
+      </div>
+      <div class="info-item">
+        <label for="locality">Municipio/Localidad</label>
+        <input type="text" id="locality" placeholder="Municipio o Localidad" class="form-control" [(ngModel)]="specimen.location.locality" name="locality">
+      </div>
+    </div>
+
+    <h3>Ubicación</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <label for="latitudeDegrees">Latitud (Grados)</label>
+        <input type="number" id="latitudeDegrees" placeholder="Grados" class="form-control" [(ngModel)]="specimen.location.latitude_degrees" name="latitudeDegrees">
+      </div>
+      <div class="info-item">
+        <label for="latitudeMinutes">Latitud (Minutos)</label>
+        <input type="number" id="latitudeMinutes" placeholder="Minutos" class="form-control" [(ngModel)]="specimen.location.latitude_minutes" name="latitudeMinutes">
+      </div>
+      <div class="info-item">
+        <label for="latitudeSeconds">Latitud (Segundos)</label>
+        <input type="number" id="latitudeSeconds" placeholder="Segundos" class="form-control" [(ngModel)]="specimen.location.latitude_seconds" name="latitudeSeconds">
+      </div>
+      <div class="info-item">
+        <label for="longitudeDegrees">Longitud (Grados)</label>
+        <input type="number" id="longitudeDegrees" placeholder="Grados" class="form-control" [(ngModel)]="specimen.location.longitude_degrees" name="longitudeDegrees">
+      </div>
+      <div class="info-item">
+        <label for="longitudeMinutes">Longitud (Minutos)</label>
+        <input type="number" id="longitudeMinutes" placeholder="Minutos" class="form-control" [(ngModel)]="specimen.location.longitude_minutes" name="longitudeMinutes">
+      </div>
+      <div class="info-item">
+        <label for="longitudeSeconds">Longitud (Segundos)</label>
+        <input type="number" id="longitudeSeconds" placeholder="Segundos" class="form-control" [(ngModel)]="specimen.location.longitude_seconds" name="longitudeSeconds">
+      </div>
+      <div class="info-item">
+        <label for="altitude">Altitud</label>
+        <input type="number" id="altitude" placeholder="Altitud" class="form-control" [(ngModel)]="specimen.location.altitude" name="altitude">
+      </div>
+    </div>
+
+    <h3>Otros datos</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <label for="individualsCount">Individuos</label>
+        <input type="number" id="individualsCount" placeholder="0" class="form-control" [(ngModel)]="specimen.individualsCount" name="individualsCount">
+      </div>
+      <div class="info-item">
+        <label for="determinationYear">Año de determinación</label>
+        <input type="number" id="determinationYear" class="form-control" [(ngModel)]="specimen.determinationYear" name="determinationYear">
+      </div>
+      <div class="info-item">
+        <label for="determinador">Determinador</label>
+        <input type="text" id="determinador" placeholder="Nombre del determinador" class="form-control" [(ngModel)]="specimen.determinador" name="determinador">
+      </div>
+      <div class="info-item">
+        <label for="sex">Sexo</label>
+        <select id="sex" [(ngModel)]="specimen.sex" name="sex" class="form-control">
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Indeterminado">Indeterminado</option>
+        </select>
+      </div>
+      <div class="info-item">
+        <label for="vegetationType">Tipo vegetación</label>
+        <input type="text" id="vegetationType" placeholder="Tipo de vegetación" class="form-control" [(ngModel)]="specimen.vegetationType" name="vegetationType">
+      </div>
+      <div class="info-item">
+        <label for="collectionMethod">Método colecta</label>
+        <input type="text" id="collectionMethod" placeholder="Método de colecta" class="form-control" [(ngModel)]="specimen.collectionMethod" name="collectionMethod">
+      </div>
+    </div>
+
+    <h3>Notas</h3>
+    <div class="info-item full-width">
+      <label for="notes">Notas</label>
+      <textarea id="notes" placeholder="Notas adicionales" class="form-control" [(ngModel)]="specimen.notes" name="notes"></textarea>
+    </div>
+
+
+  </div>
+</div>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="!specimen" class="loading-message">
+      Cargando espécimen o no se encontró el espécimen.
+    </div>
+  </main>
+</div>
+

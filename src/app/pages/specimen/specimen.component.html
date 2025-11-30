@@ -35,8 +35,8 @@
         </div>
 
         <div class="action-buttons">
-          <button class="edit-button">Editar</button>
-          <button class="delete-button">Eliminar</button>
+          <button class="edit-button" (click)="goToEditSpecimen()">Editar</button>
+          <button class="delete-button" (click)="deleteSpecimen()">Eliminar</button>
         </div>
       </div>
 
@@ -97,7 +97,27 @@
 
           <h3>Imágenes adicionales</h3>
           <div class="additional-images-grid">
-            <img *ngFor="let img of specimen.images" [src]="imageUrlBase + img.fileUrl" alt="Imagen adicional">
+            <ng-container *ngIf="specimen.additionalPhoto1">
+              <img [src]="imageUrlBase + specimen.additionalPhoto1" alt="Imagen adicional 1">
+            </ng-container>
+            <ng-container *ngIf="specimen.additionalPhoto2">
+              <img [src]="imageUrlBase + specimen.additionalPhoto2" alt="Imagen adicional 2">
+            </ng-container>
+            <ng-container *ngIf="specimen.additionalPhoto3">
+              <img [src]="imageUrlBase + specimen.additionalPhoto3" alt="Imagen adicional 3">
+            </ng-container>
+            <ng-container *ngIf="specimen.additionalPhoto4">
+              <img [src]="imageUrlBase + specimen.additionalPhoto4" alt="Imagen adicional 4">
+            </ng-container>
+            <ng-container *ngIf="specimen.additionalPhoto5">
+              <img [src]="imageUrlBase + specimen.additionalPhoto5" alt="Imagen adicional 5">
+            </ng-container>
+            <ng-container *ngIf="specimen.additionalPhoto6">
+              <img [src]="imageUrlBase + specimen.additionalPhoto6" alt="Imagen adicional 6">
+            </ng-container>
+          </div>
+          <div class="request-button-container">
+            <button class="edit-button" (click)="goToRequestForm()">Solicitar</button>
           </div>
         </div>
       </div>
