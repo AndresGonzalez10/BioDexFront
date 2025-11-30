@@ -11,7 +11,10 @@
           <img src="https://icongr.am/clarity/search.svg?size=24&color=757575" alt="Buscar">
           <input type="text" placeholder="Buscar" (input)="onSearchChange($event)">
         </div>
-        <button class="add-specimen-button" (click)="goToAddSpecimen()">Agregar</button>
+        <div class="buttons-container">
+          <button class="add-specimen-button" (click)="goToAddSpecimen()">Agregar</button>
+          <button class="delete-collection-button" (click)="deleteCollection()">Eliminar Colección</button>
+        </div>
       </div>
 
     <br>

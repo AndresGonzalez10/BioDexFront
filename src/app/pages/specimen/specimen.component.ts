@@ -103,12 +103,12 @@ export class SpecimenComponent implements OnInit {
     if (this.specimen) {
       const specimenToPass = { ...this.specimen };
       if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
-        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; // Append 'g' to make it '.jpg'
+        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; 
       }
       this.router.navigate(['/solicitud-forms'], { state: { specimenData: specimenToPass } });
     } else {
       console.warn('No specimen data available to pass to the request form.');
-      this.router.navigate(['/solicitud-forms']); // Navigate anyway, but without data
+      this.router.navigate(['/solicitud-forms']); 
     }
   }
 
@@ -117,7 +117,7 @@ export class SpecimenComponent implements OnInit {
       this.specimenService.deleteSpecimen(this.specimen.id).subscribe({
         next: () => {
           console.log('Espécimen eliminado con éxito.');
-          this.router.navigate(['/specimens']); // Navegar de vuelta a la lista de especímenes
+          this.router.navigate(['/specimens']); 
         },
         error: (error: any) => {
           console.error('Error al eliminar el espécimen:', error);
@@ -131,11 +131,26 @@ export class SpecimenComponent implements OnInit {
     if (this.specimen) {
       const specimenToPass = { ...this.specimen };
       if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
-        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; // Append 'g' to make it '.jpg'
+        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; 
       }
       this.router.navigate(['/edit-specimen', this.specimen.id], { state: { specimenData: specimenToPass } });
     } else {
       console.warn('No specimen data available to pass to the edit form.');
+    }
+  }
+
+  deleteCollection(): void {
+    if (this.collectionId && confirm('¿Estás seguro de que quieres eliminar esta colección y todos sus especímenes?')) {
+      this.specimenService.deleteCollection(Number(this.collectionId)).subscribe({
+        next: () => {
+          console.log('Colección eliminada con éxito.');
+          this.router.navigate(['/my-collection']); // Navegar a la lista de mis colecciones
+        },
+        error: (error: any) => {
+          console.error('Error al eliminar la colección:', error);
+          alert('Error al eliminar la colección. Por favor, inténtalo de nuevo.');
+        }
+      });
     }
   }
 }

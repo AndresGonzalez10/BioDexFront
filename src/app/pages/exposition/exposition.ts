@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ProfileCart } from '../../core/components/profile-cart/profile-cart';
@@ -39,7 +39,8 @@ export class Exposition implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,22 @@ export class Exposition implements OnInit {
       this.exhibition = response;
     } catch (error) {
       console.error('Error al obtener los detalles de la exposición:', error);
+    }
+  }
+
+  deleteExposition(): void {
+    if (this.exhibition && confirm('¿Estás seguro de que quieres eliminar esta exposición?')) {
+      console.log('Intentando eliminar exposición con ID:', this.exhibition.id);
+      this.http.delete(`${this.API_BASE_URL}/exhibitions/${this.exhibition.id}`).subscribe({
+        next: () => {
+          console.log('Exposición eliminada con éxito.');
+          this.router.navigate(['/myexpos']);
+        },
+        error: (error: any) => {
+          console.error('Error al eliminar la exposición:', error);
+          alert('Error al eliminar la exposición. Por favor, inténtalo de nuevo.');
+        }
+      });
     }
   }
 }

@@ -146,7 +146,7 @@ input[type="file"] {
 
 .additional-images-container .subir-foto {
   padding: 30px;
-  height: 150px; /* Ajusta la altura según sea necesario */
+  height: 150px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,7 +154,7 @@ input[type="file"] {
 }
 
 .additional-images-container .subir-foto img {
-  max-width: 80px; /* Tamaño reducido para las imágenes */
+  max-width: 80px; 
   max-height: 80px;
   object-fit: contain;
 }

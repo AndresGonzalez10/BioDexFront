@@ -107,7 +107,7 @@ main {
 .edit-button, .delete-button {
   padding: 8px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
 }
@@ -225,7 +225,7 @@ main {
 .request-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Espacio opcional encima del botón */
+  margin-top: 20px; 
 }
 
 .additional-images-grid {
@@ -266,45 +266,15 @@ main {
 .search-and-add-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;
 }
 
-.search-bar-container {
+.buttons-container {
   display: flex;
+  gap: 10px; 
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 8px 15px;
-  flex: 1;
-  background-color: #fff;
-}
-
-.search-bar-container img {
-  margin-right: 10px;
-}
-
-.search-bar-container input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 16px;
-}
-
-.add-specimen-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
-.add-specimen-button:hover {
-  background-color: #45a049;
+  margin-left: auto;
 }
 
 .search-bar-container {
@@ -342,4 +312,19 @@ main {
 
 .add-specimen-button:hover {
   background-color: #E2F9D1;
+}
+
+.delete-collection-button {
+  background-color: #D60000; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.delete-collection-button:hover {
+  background-color: #b00000;
 }

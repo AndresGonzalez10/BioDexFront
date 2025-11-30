@@ -251,7 +251,6 @@ main {
   }
 }
 
-/* Estilos para los inputs y selects dentro de info-item */
 .info-item input[type="text"],
 .info-item input[type="number"],
 .info-item input[type="date"],
@@ -280,5 +279,5 @@ main {
 }
 
 .info-item.full-width {
-  grid-column: 1 / -1; /* Ocupa todo el ancho en un grid */
+  grid-column: 1 / -1; 
 }

@@ -21,7 +21,7 @@ interface RenewExhibitionData {
     description: string;
     category: string;
     createdAt: string;
-    coverImageUrl?: string; // Añadido para la imagen de portada
+    coverImageUrl?: string; 
 }
 
 interface RenewExhibitionContent {
@@ -40,7 +40,7 @@ interface ContentField {
     imageUrl: string | null;
     imageDescription: string | null;
     isNew: boolean;
-    selectedFile?: File | null; // Añadido para manejar la subida de imágenes de contenido
+    selectedFile?: File | null;
 }
 
 @Component({
@@ -91,7 +91,7 @@ export class ExpoR {
 
         const payload: RenewExhibitionData = {
             ...this.exhibitionData,
-            idManager: this.exhibitionData.idManager as number, // Usar el valor del formulario
+            idManager: this.exhibitionData.idManager as number, 
             createdAt: new Date().toISOString().split('T')[0],
         } as RenewExhibitionData;
 
@@ -120,7 +120,7 @@ export class ExpoR {
             } catch (error) {
                 console.error('Error al subir la imagen de contenido:', error);
                 alert('❌ Error al subir una imagen de contenido. La exposición se registrará sin esta imagen.');
-                return; // No registrar este bloque si la imagen no se sube
+                return; 
             }
         }
 
@@ -128,7 +128,7 @@ export class ExpoR {
             idExhibition: exhibitionId,
             contentType: content.contentType,
             textContent: content.contentType === 'TEXT' ? content.textContent : null,
-            imageUrl: imageUrlToSave, // Usar la URL subida
+            imageUrl: imageUrlToSave, 
             imageDescription: content.imageDescription,
             displayOrder: content.id, 
         } as RenewExhibitionContent;
@@ -209,7 +209,7 @@ export class ExpoR {
         }
         
         const contentPromises = this.dynamicContent
-            .filter(c => c.textContent || c.selectedFile) // Filtrar por texto o archivo seleccionado
+            .filter(c => c.textContent || c.selectedFile) 
             .map(content => this.registrarBloqueContenido(exhibitionId, content));
 
         await Promise.all(contentPromises);
@@ -220,7 +220,7 @@ export class ExpoR {
 
     resetForm() {
         this.exhibitionData = { title: '', description: '', category: '' };
-        this.selectedCoverImage = null; // Limpiar la imagen de portada seleccionada
+        this.selectedCoverImage = null; 
         this.dynamicContent = [];
         this.nextContentId = 1;
         this.anadirContenido('TEXT');

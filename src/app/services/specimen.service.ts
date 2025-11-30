@@ -40,6 +40,10 @@ export class SpecimenService {
   updateSpecimen(id: number, specimenData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/specimens/${id}`, specimenData);
   }
+
+  deleteCollection(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/collections/${id}`);
+  }
 }
 
 export interface Specimen {
