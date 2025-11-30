@@ -156,3 +156,55 @@ main {
 .btn-cancelar:hover{  
   background-color: rgb(252, 64, 64);  
 }
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 15px; 
+  border: none;
+  border-radius: 15px; 
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px; 
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.hidden-file-input {
+  display: none; 
+}
+
+.btn-upload-file {
+  width: 100%;
+  height: 200px;
+  display: flex !important;          
+  align-items: center !important;     
+  justify-content: center !important; 
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  font-weight: bolder;
+  cursor: pointer;
+  color: #121313;
+  font-size: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+
+  
+}
+.file-upload-wrapper label[for="coverImage"] {
+  font-weight: bold !important;
+  color: #b0b2b3 !important;
+  font-size: 18px !important;
+}
+
+.btn-upload-file:hover {
+  background-color: #f0f0f0; 
+  border-color: #c6c6c6;
+}

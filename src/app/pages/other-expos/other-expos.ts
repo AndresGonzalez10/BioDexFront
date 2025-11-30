@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
-import { ExpoCart } from '../../core/components/expo-cart/expo-cart';
+import { ExpoCartComponent } from '../../core/components/expo-cart/expo-cart.component';
 
 @Component({
   selector: 'app-other-expos',
-  imports: [NavBarComponent, ExpoCart],
+  imports: [NavBarComponent, ExpoCartComponent],
   templateUrl: './other-expos.html',
   styleUrl: './other-expos.css'
 })

@@ -9,7 +9,7 @@
       <h1>Registro Expocicion</h1>
     </div>
 
-    <form class="formulario-container">
+    <form class="formulario-container" >
       <h2>Formulario de Expocicion</h2>
 
       <h3>Informacion Pricipal</h3>
@@ -19,56 +19,100 @@
           type="text"
           id="titulo"
           placeholder="Elige un titulo para tu exposición"
+          [(ngModel)]="exhibitionData.title"
+          name="title"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group">  
         <label for="descripcion">Descripción</label>
         <textarea
           id="descripcion"
           rows="5"
           placeholder="Añada una descripción del espécimen"
+          [(ngModel)]="exhibitionData.description"
+          name="description"
         ></textarea>
       </div>
       <div class="form-group">
         <label for="categoria">Categoría</label>
-        <input type="text" placeholder="Añada una categoría" />
+        <input
+          type="text"
+          placeholder="Añada una categoría"
+          [(ngModel)]="exhibitionData.category"
+          name="category"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="idManager">ID del Gestor</label>
+        <input
+          type="number"
+          id="idManager"
+          placeholder="Ingrese el ID del gestor"
+          [(ngModel)]="exhibitionData.idManager"
+          name="idManager"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="coverImage">Imagen de Portada</label>
+        <div class="file-upload-wrapper">
+          <input
+            type="file"
+            id="coverImage"
+            (change)="onCoverImageSelected($event)"
+            name="coverImage"
+            class="hidden-file-input"
+          />
+          <label for="coverImage" class="btn-upload-file">Seleccionar Imagen de Portada</label>
+        </div>
       </div>
 
       <h3>Contenido de la exposición</h3>
-      <div class="form-group">
-        <label for="texto-contenido">Texto</label>
-        <textarea
-          id="texto-contenido"
-          rows="5"
-          placeholder="Añade un texto"
-        ></textarea>
-      </div>
+      <div *ngFor="let contentBlock of dynamicContent; let i = index" class="content-block">
+        <div *ngIf="contentBlock.contentType === 'TEXT'" class="form-group">
+          <label for="texto-contenido-{{i}}">Texto</label>
+          <textarea
+            id="texto-contenido-{{i}}"
+            rows="5"
+            placeholder="Añade un texto"
+            [(ngModel)]="contentBlock.textContent"
+            name="textContent-{{i}}"
+          ></textarea>
+          <button type="button" (click)="removerContenido(contentBlock.id)" class="btn-delete">Eliminar</button>
+        </div>
 
-      <div class="form-group">
-        <label>Imagen</label>
-        <input
-          type="text"
-          class="file-uploader"
-          placeholder="Suba una imagen"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="desc-imagen">Descripción de la imagen</label>
-        <input
-          type="text"
-          id="desc-imagen"
-          placeholder="Añada una breve descripción"
-        />
+        <div *ngIf="contentBlock.contentType === 'IMAGE'" class="form-group">
+          <label for="imagen-{{i}}">Imagen</label>
+        <div class="file-upload-wrapper">
+            <input
+              type="file"
+              id="imagen-{{i}}"
+              class="hidden-file-input"
+              (change)="onContentImageSelected($event, contentBlock)"
+              name="imageUrl-{{i}}"
+            />
+            <label for="imagen-{{i}}" class="btn-upload-file">Seleccionar Imagen</label>
+          </div>
+          <label for="desc-imagen-{{i}}">Descripción de la imagen</label>
+          <input
+            type="text"
+            id="desc-imagen-{{i}}"
+            placeholder="Añada una breve descripción"
+            [(ngModel)]="contentBlock.imageDescription"
+            name="imageDescription-{{i}}"
+          />
+          <button type="button" (click)="removerContenido(contentBlock.id)" class="btn-delete">Eliminar</button>
+        </div>
       </div>
 
       <div class="content-buttons">
-        <button type="button" class="btn-add btn-add-text"><img src="/assets/plussBlanco.png" alt="">Añadir texto</button>
-        <button type="button" class="btn-add btn-add-image"><img src="/assets/plussNegro.png" alt="">Añadir imagen</button>
+        <button type="button" class="btn-add btn-add-text" (click)="anadirContenido('TEXT')"><img src="/assets/plussBlanco.png" alt="">Añadir texto</button>
+        <button type="button" class="btn-add btn-add-image" (click)="anadirContenido('IMAGE')"><img src="/assets/plussNegro.png" alt="">Añadir imagen</button>
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="btn-publicar">Publicar Expocicion</button>
+        <button type="submit" class="btn-publicar" (click)="publicarExposicion()">Publicar Expocicion</button>
         <button type="button" class="btn-cancelar">Cancelar</button>
       </div>
     </form>

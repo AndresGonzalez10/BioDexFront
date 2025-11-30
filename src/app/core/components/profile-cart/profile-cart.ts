@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-profile-cart',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './profile-cart.css'
 })
 export class ProfileCart {
+  @Input() category: string = '';
 
 }

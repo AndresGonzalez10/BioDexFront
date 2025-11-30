@@ -1,37 +1,37 @@
 <div class="mainexposition-container">
     <app-nav-bar></app-nav-bar>
 
-    <main>
+    <main *ngIf="exhibition">
         <div class="header-principal">
           <a href="/expos" class="back-link"><img src="/assets/flechaAtras.png" alt=""></a>
-          <h1>Nombre de la Expocicion</h1>
+          <h1>Mis exposiciones</h1>
         </div>
 
         <div class="card-grid">
             <div class="expocart-container">
-             <img class="imagenm" src="/assets/mariposa3.png" alt="">
-             <app-profile-cart></app-profile-cart>
+             <img class="imagenm" [src]="exhibition.coverImageUrl ? (API_BASE_URL + exhibition.coverImageUrl) : '/assets/mariposa3.png'" alt="Imagen de portada de la exposición">
+             <app-profile-cart [category]="exhibition.category"></app-profile-cart>
             </div>
         </div>
 
         <div class="content-details-container">
-        <p class="text-block1">
-          La Papilio machaon es una mariposa diurna de la familia Papilionidae,
-          ampliamente distribuida en Europa, Asia y América del Norte. Es
-          reconocida por su elegante forma y colores vibrantes, siendo una de las
-          especies más vistosas del hemisferio norte.
-        </p>
-        <p class="text-block">
-          Esta especie habita en praderas, campos cultivados, zonas montañosas y
-          jardines. Se adapta bien a climas templados y puede encontrarse desde
-          el nivel del mar hasta altitudes superiores a los 2,000 metros. En
-          regiones cálidas puede tener hasta cuatro generaciones al año.
-        </p>
+          <p class="text-block1">
+            {{ exhibition.description }}
+          </p>
 
-        <div class="image-block">
-          <img src="/assets/papilo.png" alt="Papilio machaon" class="content-image"/>
-          <span class="caption">Cara dorsal, recién salida de su crisálida, Francia</span>
+
+          <div *ngFor="let contentBlock of exhibition.content" class="dynamic-content-block">
+            <div *ngIf="contentBlock.contentType === 'TEXT'">
+              <p class="text-block">{{ contentBlock.textContent }}</p>
+            </div>
+            <div *ngIf="contentBlock.contentType === 'IMAGE'" class="image-alignment-container">
+              <img [src]="API_BASE_URL + contentBlock.imageUrl" alt="Imagen de contenido" class="content-image">
+              <p class="image-description">{{ contentBlock.imageDescription }}</p>
+            </div>
+          </div>
         </div>
-      </div>
     </main>
+    <div *ngIf="!exhibition">
+      <p>Cargando exposición o no se encontró la exposición.</p>
+    </div>
 </div>

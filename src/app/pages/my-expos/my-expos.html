@@ -20,7 +20,7 @@
       <h2 class="sub-header">Gestiona tus exposiciones</h2>
 
       <div class="expo-grid">
-        <app-expo-cart></app-expo-cart>
+        <app-expo-cart *ngFor="let expo of exhibitions" [id]="expo.id" [title]="expo.title" [coverImageUrl]="expo.coverImageUrl"></app-expo-cart>
       </div>
     </div>
   </main>

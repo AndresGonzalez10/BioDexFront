@@ -39,7 +39,7 @@ export const routes: Routes = [
   { path: 'myexpos', component: MyExpos},
   { path: 'otherexpos', component: OtherExpos},
   { path: 'expor', component: ExpoR},
-  { path: 'exposition', component: Exposition},
+  { path: 'exposition/:id', component: Exposition},
   { path: 'solicitud', component: SolicitudModuleComponent},
   { path: 'solicitud-aceptada', component: SolicitudAceptadaComponent},
   { path: 'solicitud-rechazada', component: SolicitudRechazadaComponent},
