@@ -1,6 +1,7 @@
 <div class="specimens-view-container">
   <app-nav-bar class="fixed-navbar"></app-nav-bar>
   <main>
+    
     <div *ngIf="!specimenId">
       <div class="header-specimens">
         <h1>Especímenes</h1>
@@ -17,13 +18,12 @@
         </div>
       </div>
 
-    <br>
+      <br>
       <div class="specimens-grid">
         <app-specimen-card
           *ngFor="let spec of filteredSpecimens"
-          [specimen]="spec"
-          [imageUrlBase]="imageUrlBase">
-        </app-specimen-card>
+          [specimen]="spec">
+          </app-specimen-card>
       </div>
     </div>
 
@@ -45,12 +45,14 @@
 
       <div class="detail-body">
         <div class="top-section-details">
+          
           <div class="image-section">
             <img *ngIf="specimen.mainPhoto; else placeholder"
-                 [src]="imageUrlBase + specimen.mainPhoto"
-                 alt="Specimen Image">
+                 [src]="specimen.mainPhoto"
+                 alt="Foto Principal del Especimen">
+            
             <ng-template #placeholder>
-              <img src="assets/placeholder.png" alt="Placeholder">
+              <img src="assets/placeholder.png" alt="Sin imagen disponible">
             </ng-template>
           </div>
 
@@ -78,11 +80,11 @@
             <div class="info-item"><label>Municipio</label><p>{{ specimen.location.locality }}</p></div>
           </div>
 
-          <h3>Ubicación</h3>
+          <h3>Ubicación Geográfica</h3>
           <div class="info-grid">
             <div class="info-item"><label>Latitud</label><p>{{ specimen.location.latitude_degrees }}° {{ specimen.location.latitude_minutes }}' {{ specimen.location.latitude_seconds }}"</p></div>
             <div class="info-item"><label>Longitud</label><p>{{ specimen.location.longitude_degrees }}° {{ specimen.location.longitude_minutes }}' {{ specimen.location.longitude_seconds }}"</p></div>
-            <div class="info-item"><label>Altitud</label><p>{{ specimen.location.altitude }}</p></div>
+            <div class="info-item"><label>Altitud</label><p>{{ specimen.location.altitude }} msnm</p></div>
           </div>
 
           <h3>Otros datos</h3>
@@ -101,24 +103,25 @@
           <h3>Imágenes adicionales</h3>
           <div class="additional-images-grid">
             <ng-container *ngIf="specimen.additionalPhoto1">
-              <img [src]="imageUrlBase + specimen.additionalPhoto1" alt="Imagen adicional 1">
+              <img [src]="specimen.additionalPhoto1" alt="Imagen adicional 1">
             </ng-container>
             <ng-container *ngIf="specimen.additionalPhoto2">
-              <img [src]="imageUrlBase + specimen.additionalPhoto2" alt="Imagen adicional 2">
+              <img [src]="specimen.additionalPhoto2" alt="Imagen adicional 2">
             </ng-container>
             <ng-container *ngIf="specimen.additionalPhoto3">
-              <img [src]="imageUrlBase + specimen.additionalPhoto3" alt="Imagen adicional 3">
+              <img [src]="specimen.additionalPhoto3" alt="Imagen adicional 3">
             </ng-container>
             <ng-container *ngIf="specimen.additionalPhoto4">
-              <img [src]="imageUrlBase + specimen.additionalPhoto4" alt="Imagen adicional 4">
+              <img [src]="specimen.additionalPhoto4" alt="Imagen adicional 4">
             </ng-container>
             <ng-container *ngIf="specimen.additionalPhoto5">
-              <img [src]="imageUrlBase + specimen.additionalPhoto5" alt="Imagen adicional 5">
+              <img [src]="specimen.additionalPhoto5" alt="Imagen adicional 5">
             </ng-container>
             <ng-container *ngIf="specimen.additionalPhoto6">
-              <img [src]="imageUrlBase + specimen.additionalPhoto6" alt="Imagen adicional 6">
+              <img [src]="specimen.additionalPhoto6" alt="Imagen adicional 6">
             </ng-container>
           </div>
+          
           <div class="request-button-container">
             <button class="edit-button" (click)="goToRequestForm()">Solicitar</button>
           </div>

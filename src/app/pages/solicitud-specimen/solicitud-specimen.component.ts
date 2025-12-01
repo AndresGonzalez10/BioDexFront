@@ -29,11 +29,9 @@ export class SolicitudSpecimenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Aquí puedes cargar los datos de la solicitud desde un servicio
-    // usando el ID de la ruta si es necesario
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      // this.cargarSolicitud(id);
     }
   }
 

@@ -6,6 +6,73 @@ import { SpecimenCardComponent } from '../../core/components/specimen-card/speci
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 
+interface Specimen {
+  id: number;
+  commonName: string;
+  scientificName: string;
+  collectionDate: string;
+  mainPhoto: string | null;
+  collector: string;
+  locationName: string;  
+  individualsCount: number;
+  determinationYear: number;
+  determinador: string;
+  sex: string;
+  vegetationType: string;
+  collectionMethod: string;
+  notes: string | null;
+  additionalPhoto1?: string;
+  additionalPhoto2?: string;
+  additionalPhoto3?: string;
+  additionalPhoto4?: string;
+  additionalPhoto5?: string;
+  additionalPhoto6?: string;
+}
+
+interface TaxonomyType {
+  family: string;
+  genus: string;
+  species: string;
+  category: string;
+}
+
+interface LocationType {
+  country: string;
+  state: string;
+  municipality: string;
+  locality: string;
+  latitude_degrees: number;
+  latitude_minutes: number;
+  latitude_seconds: number;
+  longitude_degrees: number;
+  longitude_minutes: number;
+  longitude_seconds: number;
+  altitude: number;
+}
+
+interface Specimen {
+  id: number;
+  commonName: string;
+  collectionDate: string;
+  mainPhoto: string | null;
+  collector: string;
+  individualsCount: number;
+  determinationYear: number;
+  determinador: string;
+  sex: string;
+  vegetationType: string;
+  collectionMethod: string;
+  notes: string | null;
+  taxonomy: TaxonomyType;
+  location: LocationType; 
+  additionalPhoto1?: string;
+  additionalPhoto2?: string;
+  additionalPhoto3?: string;
+  additionalPhoto4?: string;
+  additionalPhoto5?: string;
+  additionalPhoto6?: string;
+}
+
 @Component({
   selector: 'app-specimen',
   standalone: true,
@@ -25,8 +92,8 @@ export class SpecimenComponent implements OnInit {
   searchTerm: string = '';
   collectionId: string | null = null;
   specimenId: string | null = null;
-  specimen: any;
-  imageUrlBase: string = 'http://localhost:8060/';
+  
+  specimen: Specimen | null = null; 
 
   constructor(
     private specimenService: SpecimenService,
@@ -48,9 +115,10 @@ export class SpecimenComponent implements OnInit {
       this.specimenService.getSpecimen(this.specimenId).subscribe({
         next: (data: any) => {
           this.specimen = data;
+          console.log("Espécimen cargado:", this.specimen);
         },
         error: (error: any) => {
-          console.error(' Error al cargar el espécimen individual:', error);
+          console.error('Error al cargar espécimen:', error);
           this.specimen = null;
         }
       });
@@ -59,10 +127,9 @@ export class SpecimenComponent implements OnInit {
         next: (data: any[]) => {
           this.specimens = data;
           this.filteredSpecimens = data;
-          console.log('Especímenes cargados por colección:', data);
         },
         error: (error: any) => {
-          console.error('Error al cargar especímenes por colección:', error);
+          console.error('Error al cargar por colección:', error);
         }
       });
     } else {
@@ -70,10 +137,9 @@ export class SpecimenComponent implements OnInit {
         next: (data: any[]) => {
           this.specimens = data;
           this.filteredSpecimens = data;
-          console.log('Todos los especímenes cargados:', data);
         },
         error: (error: any) => {
-          console.error('Error al cargar todos los especímenes:', error);
+          console.error('Error al cargar todos:', error);
         }
       });
     }
@@ -88,7 +154,7 @@ export class SpecimenComponent implements OnInit {
   filterSpecimens(): void {
     if (this.searchTerm) {
       this.filteredSpecimens = this.specimens.filter(specimen =>
-        specimen.name.toLowerCase().includes(this.searchTerm)
+        specimen.commonName.toLowerCase().includes(this.searchTerm) 
       );
     } else {
       this.filteredSpecimens = this.specimens;
@@ -101,13 +167,8 @@ export class SpecimenComponent implements OnInit {
 
   goToRequestForm(): void {
     if (this.specimen) {
-      const specimenToPass = { ...this.specimen };
-      if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
-        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; 
-      }
-      this.router.navigate(['/solicitud-forms'], { state: { specimenData: specimenToPass } });
+      this.router.navigate(['/solicitud-forms'], { state: { specimenData: this.specimen } });
     } else {
-      console.warn('No specimen data available to pass to the request form.');
       this.router.navigate(['/solicitud-forms']); 
     }
   }
@@ -116,12 +177,12 @@ export class SpecimenComponent implements OnInit {
     if (this.specimen && confirm('¿Estás seguro de que quieres eliminar este espécimen?')) {
       this.specimenService.deleteSpecimen(this.specimen.id).subscribe({
         next: () => {
-          console.log('Espécimen eliminado con éxito.');
+          console.log('Espécimen eliminado.');
           this.router.navigate(['/specimens']); 
         },
         error: (error: any) => {
-          console.error('Error al eliminar el espécimen:', error);
-          alert('Error al eliminar el espécimen. Por favor, inténtalo de nuevo.');
+          console.error('Error al eliminar:', error);
+          alert('Error al eliminar.');
         }
       });
     }
@@ -129,26 +190,20 @@ export class SpecimenComponent implements OnInit {
 
   goToEditSpecimen(): void {
     if (this.specimen) {
-      const specimenToPass = { ...this.specimen };
-      if (specimenToPass.mainPhoto && specimenToPass.mainPhoto.endsWith('.jp')) {
-        specimenToPass.mainPhoto = specimenToPass.mainPhoto + 'g'; 
-      }
-      this.router.navigate(['/edit-specimen', this.specimen.id], { state: { specimenData: specimenToPass } });
-    } else {
-      console.warn('No specimen data available to pass to the edit form.');
+      this.router.navigate(['/edit-specimen', this.specimen.id], { state: { specimenData: this.specimen } });
     }
   }
 
   deleteCollection(): void {
-    if (this.collectionId && confirm('¿Estás seguro de que quieres eliminar esta colección y todos sus especímenes?')) {
+    if (this.collectionId && confirm('¿Eliminar colección y todo su contenido?')) {
       this.specimenService.deleteCollection(Number(this.collectionId)).subscribe({
         next: () => {
-          console.log('Colección eliminada con éxito.');
-          this.router.navigate(['/my-collection']); // Navegar a la lista de mis colecciones
+          console.log('Colección eliminada.');
+          this.router.navigate(['/my-collection']);
         },
         error: (error: any) => {
-          console.error('Error al eliminar la colección:', error);
-          alert('Error al eliminar la colección. Por favor, inténtalo de nuevo.');
+          console.error('Error al eliminar colección:', error);
+          alert('Error al eliminar colección.');
         }
       });
     }

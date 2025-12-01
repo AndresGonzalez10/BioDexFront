@@ -6,15 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SpeciesService {
+  
   private apiUrl = 'http://localhost:8060/specimens';
 
   constructor(private http: HttpClient) { }
 
-  uploadSpecimen(specimenData: any): Observable<string> {
-    return this.http.post(this.apiUrl, specimenData, { responseType: 'text' });
+
+  uploadSpecimen(specimenData: any): Observable<any> {
+    return this.http.post(this.apiUrl, specimenData);
   }
 
-  checkConnection(): Observable<string> {
-    return this.http.get(this.apiUrl, { responseType: 'text' });
+  checkConnection(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 }

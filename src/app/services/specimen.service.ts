@@ -11,6 +11,7 @@ export class SpecimenService {
 
   constructor(private http: HttpClient) { }
 
+  // ... (Tus gets siguen igual) ...
   getSpecimen(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/specimens/${id}`);
   }
@@ -29,8 +30,11 @@ export class SpecimenService {
     return this.http.get<any>(`${this.apiUrl}/specimens`);
   }
 
+  // ✅ CAMBIO PRINCIPAL:
+  // 1. Recibe 'any' (el objeto JSON con URLs).
+  // 2. Ya no fuerza responseType: 'text', espera JSON.
   uploadSpecimen(specimenData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/specimens`, specimenData, { responseType: 'text' });
+    return this.http.post(`${this.apiUrl}/specimens`, specimenData);
   }
 
   deleteSpecimen(id: number): Observable<any> {
@@ -46,12 +50,13 @@ export class SpecimenService {
   }
 }
 
+// ✅ INTERFACES ACTUALIZADAS PARA COINCIDIR CON BACKEND
 export interface Specimen {
   id: number;
   idCollection: number;
   commonName: string;
   collectionDate: string;
-  mainPhoto: string;
+  mainPhoto: string | null; // Puede ser null
   collector: string;
   individualsCount: number;
   determinationYear: number;
@@ -59,15 +64,16 @@ export interface Specimen {
   sex: string;
   vegetationType: string;
   collectionMethod: string;
-  notes: string;
+  notes: string | null;
   scientificName: string;
-  images: SpecimenImage[];
-}
-
-export interface SpecimenImage {
-  id: number;
-  idSpecimen: number;
-  imageUrl: string;
+  
+  // Aplanamos las fotos como en el backend
+  additionalPhoto1?: string;
+  additionalPhoto2?: string;
+  additionalPhoto3?: string;
+  additionalPhoto4?: string;
+  additionalPhoto5?: string;
+  additionalPhoto6?: string;
 }
 
 export interface CollectionResponse {
