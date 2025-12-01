@@ -1,10 +1,38 @@
 <div class="form-content">
   <h1 class="form-title">Ya casi acabamos</h1>
 
-  <input type="text" class="form-input" placeholder="Descripcion del perfil" />
-  <input type="text" class="form-input" placeholder="Sube una foto"/>
+  <!-- Mensajes de Estado -->
+  @if (errorMessage) {
+    <p style="color: red; text-align: center;">{{ errorMessage }}</p>
+  }
+  @if (successMessage) {
+    <p style="color: green; text-align: center;">{{ successMessage }}</p>
+  }
 
-  <button class="submit-button">Registrarse</button>
+  <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Descripcion del perfil" 
+    [(ngModel)]="description" 
+    name="description" 
+  />
+  
+  <!-- CAMBIO AQUÍ: Indicamos visualmente que es opcional -->
+  <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Sube una foto (URL) - Opcional"
+    [(ngModel)]="photo"
+    name="photo"
+  />
 
-  <a href="/login" class="login-link">¿Ya tiene una cuenta?</a>
+  <button class="submit-button" (click)="onRegister()" [disabled]="registering">
+    @if(registering) {
+      Registrando...
+    } @else {
+      Registrarse
+    }
+  </button>
+
+  <a routerLink="/login" class="login-link">¿Ya tiene una cuenta?</a>
 </div>

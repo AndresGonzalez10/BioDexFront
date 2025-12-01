@@ -1,13 +1,48 @@
 <div class="form-content">
   <h1 class="form-title">Bienvenido a Biodex</h1>
 
-  <input type="text" class="form-input" placeholder="Nombre" />
-  <input type="text" class="form-input" placeholder="Apellidos" />
-  <input type="text" class="form-input" placeholder="Institución" />
-  <input type="email" class="form-input" placeholder="Correo electronico" />
-  <input type="password" class="form-input" placeholder="Contraseña" />
+  <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Nombre" 
+    [(ngModel)]="name" 
+    name="name" 
+  />
+  
+  <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Apellidos" 
+    [(ngModel)]="lastName" 
+    name="lastName" 
+  />
+  
+  <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Institución" 
+    [(ngModel)]="institution" 
+    name="institution" 
+  />
+  
+  <input 
+    type="email" 
+    class="form-input" 
+    placeholder="Correo electronico" 
+    [(ngModel)]="email" 
+    name="email" 
+  />
+  
+  <input 
+    type="password" 
+    class="form-input" 
+    placeholder="Contraseña" 
+    [(ngModel)]="password" 
+    name="password" 
+  />
 
-  <a href="/register2"><button class="submit-button">Siguiente</button></a>
+  <!-- Botón que ejecuta la función para ir al siguiente paso -->
+  <button class="submit-button" (click)="goToNextStep()">Siguiente</button>
 
-  <a href="/login" class="login-link">¿Ya tiene una cuenta?</a>
+  <a routerLink="/login" class="login-link">¿Ya tiene una cuenta?</a>
 </div>
