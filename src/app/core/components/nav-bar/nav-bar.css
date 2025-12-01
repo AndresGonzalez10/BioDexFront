@@ -6,7 +6,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  height: 680 px;
+  max-height: 680px;
+  height: 100%;
 }
 
 .menubar a.active{

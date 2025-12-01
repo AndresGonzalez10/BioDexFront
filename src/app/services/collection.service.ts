@@ -6,17 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CollectionService {
-  private apiUrl = 'http://localhost:8060/collections';
+  private apiUrl = 'http://localhost:8060/collections'; 
 
   constructor(private http: HttpClient) { }
 
-
-  createCollection(formData: FormData): Observable<any> {
-    return this.http.post(this.apiUrl, formData);
+  createCollection(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 
-  updateCollection(id: number, formData: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, formData);
+  updateCollection(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 
   getAllCollections(): Observable<any[]> {
@@ -24,7 +23,7 @@ export class CollectionService {
   }
 
   getAllCollectionsWithSpecimens(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUrl); 
   }
 
   getCollectionById(id: number): Observable<any> {

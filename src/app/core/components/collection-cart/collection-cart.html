@@ -1,6 +1,11 @@
 <div class="collection-card" (click)="onCollectionClick()">
   <div class="card-image-container">
-    <img *ngIf="collection.imageUrl" [src]="'http://localhost:8060' + collection.imageUrl" alt="Imagen de la colección" class="card-image">
+    
+    <img *ngIf="collection.imageUrl" 
+         [src]="collection.imageUrl" 
+         alt="Imagen de la colección" 
+         class="card-image">
+         
     <div *ngIf="!collection.imageUrl" class="placeholder-image">
         <img src="assets/placeholder.png" alt="No hay imagen">
     </div>

@@ -4,14 +4,13 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-// Definición de Interfaces basadas en tu backend (Ktor/Kotlin)
 
 export interface UserRegister {
   name: string;
   lastName: string;
   email: string;
   password: string;
-  role: 'MANAGER' | 'RESEARCHER'; // Tu enum es MANAGER, RESEARCHER
+  role: 'MANAGER' | 'RESEARCHER'; 
   institution: string;
   description: string;
   photo: string;
@@ -42,9 +41,8 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8060/auth'; // Puerto de tu API
+  private apiUrl = 'http://localhost:8060/auth'; 
   
-  // Señales para manejar el estado global de la autenticación
   currentUser = signal<UserResponse | null>(null);
   isAuthenticated = signal<boolean>(false);
   
@@ -55,7 +53,6 @@ export class AuthService {
     this.loadUserFromLocalStorage();
   }
 
-  // Carga el estado del usuario al iniciar la aplicación
   private loadUserFromLocalStorage(): void {
     const token = localStorage.getItem('authToken');
     const userJson = localStorage.getItem('currentUser');
@@ -65,8 +62,6 @@ export class AuthService {
         const user: UserResponse = JSON.parse(userJson);
         this.currentUser.set(user);
         this.isAuthenticated.set(true);
-        // Opcional: Podrías intentar obtener el perfil para validar el token si fuera necesario, 
-        // pero por simplicidad, confiamos en lo que está en localStorage.
       } catch (e) {
         console.error("Error al parsear usuario de localStorage:", e);
         this.logout();
@@ -74,7 +69,6 @@ export class AuthService {
     }
   }
 
-  // Guarda el estado del usuario y el token
   private saveAuthData(response: LoginResponse): void {
     localStorage.setItem('authToken', response.token);
     localStorage.setItem('currentUser', JSON.stringify(response.user));
@@ -82,14 +76,12 @@ export class AuthService {
     this.isAuthenticated.set(true);
   }
 
-  // --- Métodos de la API ---
 
   register(data: UserRegister): Observable<UserResponse> {
     const url = `${this.apiUrl}/register`;
     return this.http.post<UserResponse>(url, data).pipe(
       catchError(error => {
         console.error('Error en registro:', error);
-        // Extraer el mensaje de error del backend si está disponible
         const errorMessage = error.error?.error || 'Error desconocido al registrar.';
         return throwError(() => new Error(errorMessage));
       })
@@ -100,7 +92,7 @@ export class AuthService {
     const url = `${this.apiUrl}/login`;
     return this.http.post<LoginResponse>(url, data).pipe(
       tap(response => {
-        this.saveAuthData(response); // Guardar token y usuario
+        this.saveAuthData(response); 
       }),
       catchError(error => {
         console.error('Error en inicio de sesión:', error);
@@ -110,14 +102,13 @@ export class AuthService {
     );
   }
 
-  // --- Utilidades de Autenticación ---
 
   logout(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('currentUser');
     this.currentUser.set(null);
     this.isAuthenticated.set(false);
-    this.router.navigate(['/login']); // Redirigir al login
+    this.router.navigate(['/login']); 
   }
 
   getToken(): string | null {

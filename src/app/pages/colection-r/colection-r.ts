@@ -19,9 +19,9 @@ export class CollectionCreateComponent implements OnInit {
   isSubmitting = false;
 
   constructor(
-    private fb: FormBuilder, 
-    private http: HttpClient, 
-    private collectionService: CollectionService, 
+    private fb: FormBuilder,
+    private http: HttpClient, // Necesario para la subida directa de la imagen
+    private collectionService: CollectionService,
     private router: Router
   ) { }
 
@@ -30,11 +30,12 @@ export class CollectionCreateComponent implements OnInit {
       nombreColeccion: ['', Validators.required],
       descripcion: ['', Validators.required],
       categoria: ['', Validators.required],
-      portadaFile: [null],
+      portadaFile: [null], // Aquí guardamos el objeto File
       portadaFileName: ['']
     });
   }
 
+  // --- LÓGICA DE SELECCIÓN DE ARCHIVO (IGUAL QUE ANTES) ---
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
     if (file) {
@@ -49,92 +50,90 @@ export class CollectionCreateComponent implements OnInit {
         return;
       }
 
+      // Guardamos el archivo en el formulario
       this.collectionForm.patchValue({ portadaFile: file });
       this.collectionForm.get('portadaFileName')?.setValue(file.name);
 
+      // Previsualización
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
       };
       reader.readAsDataURL(file);
-
-      console.log('Archivo seleccionado:', {
-        name: file.name,
-        size: file.size,
-        type: file.type
-      });
     }
   }
 
   removeImage(): void {
-    this.collectionForm.patchValue({ 
+    this.collectionForm.patchValue({
       portadaFile: null,
       portadaFileName: ''
     });
     this.imagePreview = null;
   }
 
+  // --- LÓGICA DE ENVÍO (MODIFICADA) ---
   onSubmit(): void {
     if (this.collectionForm.invalid) {
-      console.log('Formulario no válido');
-      Object.keys(this.collectionForm.controls).forEach(key => {
-        const control = this.collectionForm.get(key);
-        if (control?.invalid) {
-          console.log(`Campo inválido: ${key}`, control.errors);
-        }
-      });
+      this.collectionForm.markAllAsTouched();
       return;
     }
 
     this.isSubmitting = true;
+    const file = this.collectionForm.get('portadaFile')?.value;
 
+    // ESCENARIO 1: El usuario seleccionó una imagen
+    if (file) {
+      this.uploadImageFirst(file);
+    } 
+    // ESCENARIO 2: No hay imagen, guardamos directo (si tu lógica lo permite)
+    else {
+      this.saveCollectionToBackend(null);
+    }
+  }
+
+  // PASO 1: Subir imagen a Cloudinary (vía tu Backend Ktor)
+  private uploadImageFirst(file: File): void {
     const formData = new FormData();
-    formData.append('idManager', '1'); 
-    formData.append('name', this.collectionForm.value.nombreColeccion);
-    formData.append('description', this.collectionForm.value.descripcion);
-    formData.append('category', this.collectionForm.value.categoria);
+    formData.append('file', file);
 
-    const portadaFile = this.collectionForm.get('portadaFile')?.value;
-    if (portadaFile) {
-      formData.append('image', portadaFile, portadaFile.name);
-      console.log('📁Imagen adjuntada:', portadaFile.name, `(${portadaFile.size} bytes)`);
-    } else {
-      console.log(' No se seleccionó imagen');
-    }
+    const uploadUrl = 'http://localhost:8060/upload?folder=collections';
 
-   
-    console.log('Enviando FormData:');
-    for (let pair of formData.entries()) {
-      if (pair[1] instanceof File) {
-        const file = pair[1] as File;
-        console.log(`  ${pair[0]}: [File] ${file.name} (${file.size} bytes, ${file.type})`);
-      } else {
-        console.log(`  ${pair[0]}: ${pair[1]}`);
-      }
-    }
-
-    this.collectionService.createCollection(formData).subscribe({
+    this.http.post<any>(uploadUrl, formData).subscribe({
       next: (response) => {
-        console.log('Colección creada con éxito:', response);
+        console.log('Imagen subida exitosamente:', response.url);
+        
+        this.saveCollectionToBackend(response.url);
+      },
+      error: (error) => {
+        console.error('Error al subir la imagen:', error);
+        alert('Error al subir la imagen al servidor.');
+        this.isSubmitting = false;
+      }
+    });
+  }
+
+  private saveCollectionToBackend(imageUrl: string | null): void {
+    
+    const collectionData = {
+      idManager: 1, 
+      name: this.collectionForm.value.nombreColeccion,
+      description: this.collectionForm.value.descripcion,
+      category: this.collectionForm.value.categoria,
+      imageUrl: imageUrl || '' 
+    };
+
+    console.log('Enviando datos al backend:', collectionData);
+
+    this.collectionService.createCollection(collectionData).subscribe({
+      next: (response) => {
+        console.log('Colección creada:', response);
         alert('Colección creada con éxito');
         this.isSubmitting = false;
         this.router.navigate(['/collections']);
       },
       error: (error) => {
-        console.error('Error al crear la colección:', error);
-        console.error('   Status:', error.status);
-        console.error('   Error completo:', error.error);
-        
-        let errorMessage = 'Error al crear la colección';
-        if (error.error?.message) {
-          errorMessage += ': ' + error.error.message;
-        } else if (typeof error.error === 'string') {
-          errorMessage += ': ' + error.error;
-        } else if (error.message) {
-          errorMessage += ': ' + error.message;
-        }
-        
-        alert(errorMessage);
+        console.error('Error al crear colección:', error);
+        alert('Error al guardar la colección. Revisa la consola.');
         this.isSubmitting = false;
       }
     });
