@@ -10,7 +10,9 @@
 
         <div class="card-grid">
             <div class="expocart-container">
-             <img class="imagenm" [src]="exhibition.coverImageUrl ? (API_BASE_URL + exhibition.coverImageUrl) : '/assets/mariposa3.png'" alt="Imagen de portada de la exposición">
+             <img class="imagenm" 
+                  [src]="exhibition.coverImageUrl ? exhibition.coverImageUrl : '/assets/mariposa3.png'" 
+                  alt="Imagen de portada de la exposición">
              <app-profile-cart [category]="exhibition.category"></app-profile-cart>
             </div>
         </div>
@@ -25,8 +27,13 @@
             <div *ngIf="contentBlock.contentType === 'TEXT'">
               <p class="text-block">{{ contentBlock.textContent }}</p>
             </div>
+            
             <div *ngIf="contentBlock.contentType === 'IMAGE'" class="image-alignment-container">
-              <img [src]="API_BASE_URL + contentBlock.imageUrl" alt="Imagen de contenido" class="content-image">
+              <img *ngIf="contentBlock.imageUrl" 
+                   [src]="contentBlock.imageUrl" 
+                   alt="Imagen de contenido" 
+                   class="content-image">
+              
               <p class="image-description">{{ contentBlock.imageDescription }}</p>
             </div>
           </div>

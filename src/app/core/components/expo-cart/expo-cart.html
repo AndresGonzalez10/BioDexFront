@@ -1,12 +1,18 @@
 <div class="collection-card">
   <a [routerLink]="['/exposition', id]">
     <div class="card-image-container">
-      <img [src]="fullCoverImageUrl" alt="{{ title }}" class="card-image" *ngIf="fullCoverImageUrl; else noImage">
+      
+      <img [src]="coverImageUrl" 
+           alt="{{ title }}" 
+           class="card-image" 
+           *ngIf="coverImageUrl; else noImage">
+      
       <ng-template #noImage>
         <div class="placeholder-image">
           <img src="assets/placeholder.png" alt="No Image">
         </div>
       </ng-template>
+    
     </div>
     <p class="collection-name">{{ title }}</p>
   </a>
