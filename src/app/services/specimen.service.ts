@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,8 @@ import { map } from 'rxjs/operators';
 export class SpecimenService {
   private apiUrl = 'http://localhost:8060'; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  // ... (Tus gets siguen igual) ...
   getSpecimen(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/specimens/${id}`);
   }
@@ -26,13 +26,22 @@ export class SpecimenService {
     );
   }
 
+  getSpecimensByUserId(userId: number): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      return new Observable<any[]>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/specimens/user/${userId}`, { headers });
+  }
+
   checkConnection(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/specimens`);
   }
 
-  // ✅ CAMBIO PRINCIPAL:
-  // 1. Recibe 'any' (el objeto JSON con URLs).
-  // 2. Ya no fuerza responseType: 'text', espera JSON.
   uploadSpecimen(specimenData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/specimens`, specimenData);
   }
@@ -45,18 +54,15 @@ export class SpecimenService {
     return this.http.put(`${this.apiUrl}/specimens/${id}`, specimenData);
   }
 
-  deleteCollection(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/collections/${id}`);
-  }
+
 }
 
-// ✅ INTERFACES ACTUALIZADAS PARA COINCIDIR CON BACKEND
 export interface Specimen {
   id: number;
   idCollection: number;
   commonName: string;
   collectionDate: string;
-  mainPhoto: string | null; // Puede ser null
+  mainPhoto: string | null;
   collector: string;
   individualsCount: number;
   determinationYear: number;
@@ -67,7 +73,6 @@ export interface Specimen {
   notes: string | null;
   scientificName: string;
   
-  // Aplanamos las fotos como en el backend
   additionalPhoto1?: string;
   additionalPhoto2?: string;
   additionalPhoto3?: string;

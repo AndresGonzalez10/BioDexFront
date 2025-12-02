@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../core/services/auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,21 @@ import { Observable } from 'rxjs';
 export class CollectionService {
   private apiUrl = 'http://localhost:8060/collections'; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  getCollectionsByUserId(userId: number): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      // Manejar el caso donde no hay token, quizás redirigir al login o lanzar un error
+      return new Observable<any[]>(); // O throwError
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any[]>(`${this.apiUrl}/manager/${userId}`, { headers });
+  }
 
   createCollection(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);

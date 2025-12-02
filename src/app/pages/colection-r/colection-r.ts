@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CollectionService } from '../../services/collection.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-collection-create',
@@ -22,7 +23,8 @@ export class CollectionCreateComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient, // Necesario para la subida directa de la imagen
     private collectionService: CollectionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -113,9 +115,15 @@ export class CollectionCreateComponent implements OnInit {
   }
 
   private saveCollectionToBackend(imageUrl: string | null): void {
-    
+    const currentUser = this.authService.currentUser();
+    if (!currentUser || !currentUser.id) {
+      alert('No se pudo obtener el ID del usuario actual. Por favor, inicia sesión de nuevo.');
+      this.isSubmitting = false;
+      return;
+    }
+
     const collectionData = {
-      idManager: 1, 
+      idManager: currentUser.id, 
       name: this.collectionForm.value.nombreColeccion,
       description: this.collectionForm.value.descripcion,
       category: this.collectionForm.value.categoria,

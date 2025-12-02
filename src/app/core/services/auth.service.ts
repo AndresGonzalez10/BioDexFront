@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ManagerIdService } from './manager-id.service';
 
 
 export interface UserRegister {
@@ -48,7 +49,8 @@ export class AuthService {
   
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private managerIdService: ManagerIdService
   ) {
     this.loadUserFromLocalStorage();
   }
@@ -62,6 +64,7 @@ export class AuthService {
         const user: UserResponse = JSON.parse(userJson);
         this.currentUser.set(user);
         this.isAuthenticated.set(true);
+        this.managerIdService.setManagerId(user.id);
       } catch (e) {
         console.error("Error al parsear usuario de localStorage:", e);
         this.logout();

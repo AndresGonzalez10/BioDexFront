@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SpecimenService } from '../../services/specimen.service';
+import { CollectionService } from '../../services/collection.service';
 import { CommonModule } from '@angular/common';
 import { SpecimenCardComponent } from '../../core/components/specimen-card/specimen-card.component';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
+import { AuthService } from '../../core/services/auth.service';
 
 interface Specimen {
   id: number;
@@ -98,7 +100,9 @@ export class SpecimenComponent implements OnInit {
   constructor(
     private specimenService: SpecimenService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private collectionService: CollectionService
   ) { }
 
   ngOnInit(): void {
@@ -111,6 +115,8 @@ export class SpecimenComponent implements OnInit {
 
   loadData(): void {
     console.log('loadData() called');
+    const currentUser = this.authService.currentUser();
+
     if (this.specimenId) {
       this.specimenService.getSpecimen(this.specimenId).subscribe({
         next: (data: any) => {
@@ -130,6 +136,16 @@ export class SpecimenComponent implements OnInit {
         },
         error: (error: any) => {
           console.error('Error al cargar por colección:', error);
+        }
+      });
+    } else if (currentUser && currentUser.id) {
+      this.specimenService.getSpecimensByUserId(currentUser.id).subscribe({
+        next: (data: any[]) => {
+          this.specimens = data;
+          this.filteredSpecimens = data;
+        },
+        error: (error: any) => {
+          console.error('Error al cargar especímenes del usuario:', error);
         }
       });
     } else {
@@ -196,7 +212,7 @@ export class SpecimenComponent implements OnInit {
 
   deleteCollection(): void {
     if (this.collectionId && confirm('¿Eliminar colección y todo su contenido?')) {
-      this.specimenService.deleteCollection(Number(this.collectionId)).subscribe({
+      this.collectionService.deleteCollection(Number(this.collectionId)).subscribe({
         next: () => {
           console.log('Colección eliminada.');
           this.router.navigate(['/my-collection']);

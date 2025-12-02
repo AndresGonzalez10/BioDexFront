@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ManagerIdService } from '../../core/services/manager-id.service';
+import { AuthService } from '../../core/services/auth.service';
 
 // --- INTERFACES ---
 interface RenewExhibitionData {
@@ -55,8 +55,7 @@ export class ExpoR {
     private nextContentId = 1;
     private readonly API_BASE_URL = 'http://localhost:8060'; 
 
-    constructor(private http: HttpClient, private managerIdService: ManagerIdService) {
-        this.exhibitionData.idManager = this.managerIdService.getManagerId();
+    constructor(private http: HttpClient, private authService: AuthService) {
         this.anadirContenido('TEXT');
     }
 
@@ -119,6 +118,13 @@ export class ExpoR {
         }
 
         try {
+            const currentUser = this.authService.currentUser();
+            if (!currentUser || !currentUser.id) {
+                alert('No se pudo obtener el ID del usuario actual. Por favor, inicia sesión de nuevo.');
+                return;
+            }
+            this.exhibitionData.idManager = currentUser.id;
+
             let finalCoverUrl = '';
             if (this.selectedCoverImage) {
                 finalCoverUrl = await this.uploadImageToCloudinary(this.selectedCoverImage, 'exhibitions');
@@ -183,7 +189,7 @@ export class ExpoR {
     }
 
     resetForm() {
-        this.exhibitionData = { title: '', description: '', category: '', idManager: this.managerIdService.getManagerId() };
+        this.exhibitionData = { title: '', description: '', category: '', idManager: 0 };
         this.selectedCoverImage = null;
         this.dynamicContent = [];
         this.nextContentId = 1;

@@ -9,12 +9,12 @@
 
       <div class="profile-card">
         <div class="profile-info">
-          <h1 class="profile-name">Cesar Yair Toledo Villarreal</h1>
-          <p class="profile-email">ctoledovillarreal&#64;gmail.com</p>
+          <h1 class="profile-name">{{ usuario.nombre }}</h1>
+          <p class="profile-email">{{ usuario.email }}</p>
           
           <div class="profile-detail">
             <span class="detail-label">Perfil:</span>
-            <span class="detail-value">Biólogo</span>
+            <span class="detail-value">{{ usuario.rol }}</span>
           </div>
           
           <div class="profile-detail">

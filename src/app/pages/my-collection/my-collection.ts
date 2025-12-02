@@ -4,6 +4,7 @@ import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component
 import { CollectionService } from '../../services/collection.service';
 import { Router } from '@angular/router';
 import { CollectionCartComponent } from '../../core/components/collection-cart/collection-cart.component';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-my-collection',
@@ -17,7 +18,8 @@ export class MyCollectionComponent implements OnInit {
 
   constructor(
     private collectionService: CollectionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -25,16 +27,22 @@ export class MyCollectionComponent implements OnInit {
   }
 
   loadCollections(): void {
-    this.collectionService.getAllCollectionsWithSpecimens().subscribe({
-      next: (data: any[]) => {
-        console.log('✅ Colecciones cargadas:', data);
-        this.collections = data;
-        console.log('✅ Colecciones cargadas (con imageUrl):', this.collections);
-      },
-      error: (error: any) => {
-        console.error('❌ Error al cargar colecciones:', error);
-      }
-    });
+    const currentUser = this.authService.currentUser();
+    if (currentUser && currentUser.id) {
+      this.collectionService.getCollectionsByUserId(currentUser.id).subscribe({
+        next: (data: any[]) => {
+          console.log('✅ Colecciones cargadas:', data);
+          this.collections = data;
+          console.log('✅ Colecciones cargadas (con imageUrl):', this.collections);
+        },
+        error: (error: any) => {
+          console.error('❌ Error al cargar colecciones:', error);
+        }
+      });
+    } else {
+      console.log('Usuario no autenticado o ID de usuario no disponible.');
+      this.collections = [];
+    }
   }
 
   onCollectionSelected(collectionId: string): void {

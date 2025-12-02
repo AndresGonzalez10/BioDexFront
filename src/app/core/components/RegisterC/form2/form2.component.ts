@@ -78,7 +78,7 @@ export class Form2Component {
         sessionStorage.removeItem('registerData');
         
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/mainview']);
         }, 2000);
       },
       error: (error) => {

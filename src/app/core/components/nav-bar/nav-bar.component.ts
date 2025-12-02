@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,4 +12,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./nav-bar.css']
 })
 export class NavBarComponent {
+  authService = inject(AuthService);
+  isAuthenticated = this.authService.isAuthenticated;
 }

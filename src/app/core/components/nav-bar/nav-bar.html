@@ -12,22 +12,24 @@
       Principal
     </a>
 
-    <a
-      routerLink="/collection"routerLinkActive="active"
-    >
-      Colecciones
-    </a>
+    <ng-container *ngIf="isAuthenticated()">
+      <a
+        routerLink="/collection"routerLinkActive="active"
+      >
+        Colecciones
+      </a>
 
-    <a routerLink="/requets" routerLinkActive="active">
-      Solicitudes
-    </a>
+      <a routerLink="/requets" routerLinkActive="active">
+        Solicitudes
+      </a>
 
-    <a routerLink="/expos" routerLinkActive="active">
-      Exposiciones
-    </a>
+      <a routerLink="/expos" routerLinkActive="active">
+        Exposiciones
+      </a>
+    </ng-container>
   </nav>
 
-  <div class="profile-section">
+  <div class="profile-section" *ngIf="isAuthenticated()">
     <img src="assets/perfil.png" alt="User Profile" class="profile-image" />
     <a routerLink="/perfil">Mi perfil</a>
   </div>

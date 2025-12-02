@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 import { ExpoCartComponent } from '../../core/components/expo-cart/expo-cart.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { ManagerIdService } from '../../core/services/manager-id.service';
+import { ExpoService } from '../../services/expo.service';
+import { AuthService } from '../../core/services/auth.service';
 
 interface Exhibition {
   id: string;
@@ -14,29 +14,33 @@ interface Exhibition {
 @Component({
   selector: 'app-my-expos',
   standalone: true,
-  imports: [NavBarComponent, ExpoCartComponent, HttpClientModule, CommonModule],
+  imports: [NavBarComponent, ExpoCartComponent, CommonModule],
   templateUrl: './my-expos.html',
   styleUrl: './my-expos.css'
 })
 export class MyExpos implements OnInit {
   exhibitions: Exhibition[] = [];
-  private API_BASE_URL = 'http://localhost:8060'; 
-  constructor(private http: HttpClient, private managerIdService: ManagerIdService) { }
+
+  constructor(private expoService: ExpoService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadMyExhibitions();
   }
 
   loadMyExhibitions(): void {
-    const idManager = this.managerIdService.getManagerId();
-    this.http.get<Exhibition[]>(`${this.API_BASE_URL}/exhibitions/manager/${idManager}`)      .subscribe({
+    const currentUser = this.authService.currentUser();
+    if (currentUser && currentUser.id) {
+      this.expoService.getExposByUserId(currentUser.id).subscribe({
         next: (data) => {
           this.exhibitions = data;
-          console.log('Exposiciones cargadas:', this.exhibitions);
         },
         error: (error) => {
           console.error('Error al cargar las exposiciones:', error);
         }
       });
+    } else {
+      console.log('Usuario no autenticado o ID de usuario no disponible.');
+      this.exhibitions = [];
+    }
   }
 }
