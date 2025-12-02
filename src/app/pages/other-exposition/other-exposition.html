@@ -1,0 +1,44 @@
+<div class="mainexposition-container">
+    <app-nav-bar></app-nav-bar>
+
+    <main *ngIf="exhibition">
+        <div class="header-principal">
+          <a href="/expos" class="back-link"><img src="/assets/flechaAtras.png" alt=""></a>
+          <h1>Exposicion del specimen</h1>
+        </div>
+
+        <div class="card-grid">
+            <div class="expocart-container">
+             <img class="imagenm" 
+                  [src]="exhibition.coverImageUrl ? exhibition.coverImageUrl : '/assets/mariposa3.png'" 
+                  alt="Imagen de portada de la exposición">
+             <app-profile-cart [category]="exhibition.category"></app-profile-cart>
+            </div>
+        </div>
+
+        <div class="content-details-container">
+          <p class="text-block1">
+            {{ exhibition.description }}
+          </p>
+
+
+          <div *ngFor="let contentBlock of exhibition.content" class="dynamic-content-block">
+            <div *ngIf="contentBlock.contentType === 'TEXT'">
+              <p class="text-block">{{ contentBlock.textContent }}</p>
+            </div>
+            
+            <div *ngIf="contentBlock.contentType === 'IMAGE'" class="image-alignment-container">
+              <img *ngIf="contentBlock.imageUrl" 
+                   [src]="contentBlock.imageUrl" 
+                   alt="Imagen de contenido" 
+                   class="content-image">
+              
+              <p class="image-description">{{ contentBlock.imageDescription }}</p>
+            </div>
+          </div>
+        </div>
+    </main>
+    <div *ngIf="!exhibition">
+      <p>Cargando exposición o no se encontró la exposición.</p>
+    </div>
+</div>

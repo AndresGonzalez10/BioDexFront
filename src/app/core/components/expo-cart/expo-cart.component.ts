@@ -13,6 +13,7 @@ export class ExpoCartComponent {
   @Input() title: string = '';
   @Input() coverImageUrl: string = '';
   @Input() id: string = '';
+  @Input() baseRoute: string = '/exposition';
 
   private readonly API_BASE_URL = 'http://localhost:8060'; // Asegúrate de que esta URL sea correcta
 

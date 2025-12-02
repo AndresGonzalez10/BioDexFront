@@ -25,6 +25,7 @@ import { SolicitudFormsComponent } from './pages/solicitud-forms/solicitud-forms
 import {SolicitudSpecimenComponent} from './pages/solicitud-specimen/solicitud-specimen.component';
 import { EditSpecimenComponent } from './pages/edit-specimen/edit-specimen.component';
 import { OtherSpecimenComponent } from './pages/other-specimen/other-specimen.component';
+import { OtherExposition } from './pages/other-exposition/other-exposition';
 
 
 export const routes: Routes = [
@@ -44,6 +45,7 @@ export const routes: Routes = [
   { path: 'otherexpos', component: OtherExpos},
   { path: 'expor', component: ExpoR},
   { path: 'exposition/:id', component: Exposition},
+  { path: 'other-exposition/:id', component: OtherExposition},
   { path: 'solicitud', component: SolicitudModuleComponent},
   { path: 'solicitud-aceptada', component: SolicitudAceptadaComponent},
   { path: 'solicitud-rechazada', component: SolicitudRechazadaComponent},
@@ -52,8 +54,6 @@ export const routes: Routes = [
   { path: 'solicitud-forms', component: SolicitudFormsComponent},
   { path: 'solicitud-specimen', component: SolicitudSpecimenComponent},
   { path: 'edit-specimen/:id', component: EditSpecimenComponent},
-
-
 
   { path: 'specimens/:id', component: SpecimenComponent },
   { path: 'specimens/collection/:collectionId', component: SpecimenComponent },

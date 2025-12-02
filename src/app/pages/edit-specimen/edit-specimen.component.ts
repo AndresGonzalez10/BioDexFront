@@ -56,28 +56,38 @@ export class EditSpecimenComponent implements OnInit {
 
   onSubmit() {
     if (this.specimen && this.specimenId) {
-      const formData = new FormData();
+      const updatedSpecimen: any = { ...this.specimen };
 
-      for (const key in this.specimen) {
-        if (Object.prototype.hasOwnProperty.call(this.specimen, key) &&
-            typeof this.specimen[key] !== 'object' &&
-            key !== 'id' && key !== 'idCollection') { 
-          formData.append(key, this.specimen[key]);
+      // Extraer idLocation y idTaxonomy si existen
+      if (updatedSpecimen.location && typeof updatedSpecimen.location === 'object' && updatedSpecimen.location.id) {
+        updatedSpecimen.idLocation = updatedSpecimen.location.id;
+        delete updatedSpecimen.location; // Eliminar el objeto completo
+      }
+      if (updatedSpecimen.taxonomy && typeof updatedSpecimen.taxonomy === 'object' && updatedSpecimen.taxonomy.id) {
+        updatedSpecimen.idTaxonomy = updatedSpecimen.taxonomy.id;
+        delete updatedSpecimen.taxonomy; // Eliminar el objeto completo
+      }
+
+      // Asegurarse de que collectionDate sea una cadena en formato 'YYYY-MM-DD'
+      if (updatedSpecimen.collectionDate instanceof Date) {
+        updatedSpecimen.collectionDate = updatedSpecimen.collectionDate.toISOString().split('T')[0];
+      } else if (typeof updatedSpecimen.collectionDate === 'string' && updatedSpecimen.collectionDate.includes('T')) {
+        updatedSpecimen.collectionDate = updatedSpecimen.collectionDate.split('T')[0];
+      }
+
+      // Eliminar propiedades que no deben enviarse o que el backend no espera
+      delete updatedSpecimen.id; // El ID ya está en la URL
+      delete updatedSpecimen.idCollection; // Si idCollection no se actualiza directamente
+      // Eliminar propiedades de fotos adicionales si son nulas o vacías y no se deben enviar
+      for (let i = 1; i <= 6; i++) {
+        const photoKey = `additionalPhoto${i}`;
+        if (updatedSpecimen[photoKey] === null || updatedSpecimen[photoKey] === '') {
+          delete updatedSpecimen[photoKey];
         }
       }
 
-      if (this.specimen.taxonomy) {
-        formData.append('taxonomy', JSON.stringify(this.specimen.taxonomy));
-      }
-      if (this.specimen.location) {
-        formData.append('location', JSON.stringify(this.specimen.location));
-      }
-      if (this.specimen.mainPhoto) {
-        formData.append('mainPhoto', this.specimen.mainPhoto);
-      }
-
-      console.log('Updating specimen with FormData:', formData);
-      this.specimenService.updateSpecimen(this.specimen.id, formData).subscribe({
+      console.log('Updating specimen with JSON:', updatedSpecimen);
+      this.specimenService.updateSpecimen(this.specimen.id, updatedSpecimen).subscribe({
         next: () => {
           console.log('Specimen updated successfully!');
           this.router.navigate(['/specimens', this.specimen.id]);

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'; // Importante HttpClient
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 import { lastValueFrom } from 'rxjs'; // Importante para convertir Observables a Promesas
+import { TaxonomyService } from '../../services/taxonomy.service';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-registro-especimen',
@@ -21,21 +23,36 @@ export class SpeciesComponent implements OnInit, OnDestroy {
   specieForm: FormGroup;
   
   // Variables de datos (usadas en tu HTML con ngModel)
-  nombreComun: string = 'Mariposa';
+  nombreComun: string = '';
   fechaColeccion: Date = new Date();
-  colector: string = 'Dr. Juan Pérez';
+  colector: string = '';
   cantidadIndividuos: number = 1;
   idCollection: number = 1;
-  idTaxonomy: number = 1;
-  idLocation: number = 1;
   anioDeterminacion: number = 2023;
-  determinador: string = 'Dr. Smith';
+  determinador: string = '';
   sexo: string = 'No especificado';
-  tipoVegetacion: string = 'Bosque';
-  metodoColecta: string = 'Red entomológica';
-  notas: string = 'Ninguna';
-  
-  // Variables de estado
+  tipoVegetacion: string = '';
+  metodoColecta: string = '';
+  notas: string = '';
+
+  // Variables para Taxonomía
+  familia: string = '';
+  genero: string = '';
+  especie: string = '';
+  categoria: string = '';
+
+  // Variables para Ubicación
+  pais: string = '';
+  estado: string = '';
+  municipio: string = '';
+  localidad: string = '';
+  latitudGrados: number = 0;
+  latitudMinutos: number = 0;
+  latitudSegundos: number = 0;
+  longitudGrados: number = 0;
+  longitudMinutos: number = 0;
+  longitudSegundos: number = 0;
+  altitud: number = 0;
   apiConnected: boolean = false;
   connectionMessage: string = '';
   showMessage: boolean = false;
@@ -51,13 +68,6 @@ export class SpeciesComponent implements OnInit, OnDestroy {
   selectedFile5: File | null = null; imageUrl5: string | ArrayBuffer | null = null;
   selectedFile6: File | null = null; imageUrl6: string | ArrayBuffer | null = null;
 
-  // Variables extras que tenías (aunque no se usen en el submit actual, las dejo)
-  altitud: string = ''; longitudMinutos: string = ''; longitudSegundos: string = '';
-  latitudSegundos: string = ''; longitudGrados: string = ''; latitudGrados: string = '';
-  latitudMinutos: string = ''; municipio: string = ''; localidad: string = '';
-  pais: string = ''; estado: string = ''; especie: string = '';
-  categoria: string = ''; familia: string = ''; genero: string = '';
-
   // URL Base para subir a Cloudinary
   private readonly API_BASE_URL = 'http://localhost:8060';
 
@@ -67,7 +77,9 @@ export class SpeciesComponent implements OnInit, OnDestroy {
     private router: Router,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
-    private http: HttpClient // Inyectamos HTTP para la subida de fotos
+    private http: HttpClient, // Inyectamos HTTP para la subida de fotos
+    private taxonomyService: TaxonomyService,
+    private locationService: LocationService
   ) {
     // Inicializamos el form group aunque uses ngModel en el HTML (según tu código anterior)
     this.specieForm = this.fb.group({
@@ -141,6 +153,58 @@ export class SpeciesComponent implements OnInit, OnDestroy {
     }
   }
 
+  async getOrCreateTaxonomyId(): Promise<number> {
+    try {
+      const taxonomy = await lastValueFrom(this.taxonomyService.getTaxonomyByAttributes(
+        this.familia, this.genero, this.especie, this.categoria
+      ));
+      return taxonomy.id;
+    } catch (error: any) {
+      if (error.status === 404) {
+        // No existe, crear nueva taxonomía
+        const newTaxonomy = await lastValueFrom(this.taxonomyService.createTaxonomy({
+          family: this.familia,
+          genus: this.genero,
+          species: this.especie,
+          category: this.categoria
+        }));
+        return newTaxonomy.id;
+      }
+      throw error; // Re-lanzar otros errores
+    }
+  }
+
+  async getOrCreateLocationId(): Promise<number> {
+    try {
+      const location = await lastValueFrom(this.locationService.getLocationByAttributes(
+        this.pais, this.estado, this.municipio, this.localidad,
+        this.latitudGrados, this.latitudMinutos, this.latitudSegundos,
+        this.longitudGrados, this.longitudMinutos, this.longitudSegundos,
+        this.altitud
+      ));
+      return location.id;
+    } catch (error: any) {
+      if (error.status === 404) {
+        // No existe, crear nueva ubicación
+        const newLocation = await lastValueFrom(this.locationService.createLocation({
+          country: this.pais,
+          state: this.estado,
+          municipality: this.municipio,
+          locality: this.localidad,
+          latitude_degrees: this.latitudGrados,
+          latitude_minutes: this.latitudMinutos,
+          latitude_seconds: this.latitudSegundos,
+          longitude_degrees: this.longitudGrados,
+          longitude_minutes: this.longitudMinutos,
+          longitude_seconds: this.longitudSegundos,
+          altitude: this.altitud
+        }));
+        return newLocation.id;
+      }
+      throw error; // Re-lanzar otros errores
+    }
+  }
+
   async onSubmit() {
     this.isSubmitting = true;
 
@@ -165,12 +229,16 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       // 3. Armar el JSON (CreateSpecimenRequest)
       const formattedDate = this.fechaColeccion ? new Date(this.fechaColeccion).toISOString().split('T')[0] : '';
 
+      // Obtener o crear IDs de Taxonomía y Ubicación
+      const taxonomyId = await this.getOrCreateTaxonomyId();
+      const locationId = await this.getOrCreateLocationId();
+
       const payload = {
         // Datos
         idCollection: Number(this.idCollection),
         commonName: this.nombreComun,
-        idTaxonomy: Number(this.idTaxonomy),
-        idLocation: Number(this.idLocation),
+        idTaxonomy: taxonomyId,
+        idLocation: locationId,
         collectionDate: formattedDate,
         collector: this.colector,
         individualsCount: Number(this.cantidadIndividuos),

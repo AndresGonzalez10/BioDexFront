@@ -46,7 +46,7 @@
     
     
      <div class="subir-foto principal">
-            <input type="file" id="fotoPrincipal" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl')">
+            <input type="file" id="fotoPrincipal" style="display: none;" (change)="onFileSelected($event, 'imageUrl')">
             <label for="fotoPrincipal" style="cursor: pointer;">
               <img *ngIf="!imageUrl" src="assets/image18.png" alt="Upload Icon">
               <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -155,7 +155,7 @@
     
         <div class="additional-images-container">
           <div class="subir-foto">
-                <input type="file" id="foto1" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl1')">
+                <input type="file" id="foto1" style="display: none;" (change)="onFileSelected($event, 'imageUrl1')">
                 <label for="foto1" style="cursor: pointer;">
                   <img *ngIf="!imageUrl1" src="assets/image18.png" alt="Upload Icon">
                   <img *ngIf="imageUrl1" [src]="imageUrl1" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -163,7 +163,7 @@
                 </label>
               </div>
           <div class="subir-foto">
-                <input type="file" id="foto2" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl2')">
+                <input type="file" id="foto2" style="display: none;" (change)="onFileSelected($event, 'imageUrl2')">
                 <label for="foto2" style="cursor: pointer;">
                   <img *ngIf="!imageUrl2" src="assets/image18.png" alt="Upload Icon">
                   <img *ngIf="imageUrl2" [src]="imageUrl2" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -171,7 +171,7 @@
                 </label>
               </div>
           <div class="subir-foto">
-                <input type="file" id="foto3" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl3')">
+                <input type="file" id="foto3" style="display: none;" (change)="onFileSelected($event, 'imageUrl3')">
                 <label for="foto3" style="cursor: pointer;">
                   <img *ngIf="!imageUrl3" src="assets/image18.png" alt="Upload Icon">
                   <img *ngIf="imageUrl3" [src]="imageUrl3" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -179,7 +179,7 @@
                 </label>
               </div>
           <div class="subir-foto">
-                <input type="file" id="foto4" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl4')">
+                <input type="file" id="foto4" style="display: none;" (change)="onFileSelected($event, 'imageUrl4')">
                 <label for="foto4" style="cursor: pointer;">
                   <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
                   <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -187,7 +187,7 @@
                 </label>
               </div>
           <div class="subir-foto">
-            <input type="file" id="foto5" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl5')">
+            <input type="file" id="foto5" style="display: none;" (change)="onFileSelected($event, 'imageUrl5')">
             <label for="foto5" style="cursor: pointer;">
               <img *ngIf="!imageUrl5" src="assets/image18.png" alt="Upload Icon">
               <img *ngIf="imageUrl5" [src]="imageUrl5" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
@@ -195,7 +195,7 @@
             </label>
           </div>
           <div class="subir-foto">
-            <input type="file" id="foto6" style="display: none;" accept="image/*" (change)="onFileSelected($event, 'imageUrl6')">
+            <input type="file" id="foto6" style="display: none;" (change)="onFileSelected($event, 'imageUrl6')">
             <label for="foto6" style="cursor: pointer;">
               <img *ngIf="!imageUrl6" src="assets/image18.png" alt="Upload Icon">
               <img *ngIf="imageUrl6" [src]="imageUrl6" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
