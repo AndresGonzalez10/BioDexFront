@@ -72,6 +72,7 @@ textarea {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  grid-column: span 3;
 }
 
 .formulario h2 {
@@ -83,6 +84,8 @@ textarea {
 .acciones {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  grid-column: span 3;
 }
 
 .acciones .btn {
