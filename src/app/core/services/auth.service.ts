@@ -33,6 +33,14 @@ export interface UserResponse {
   photo: string;
 }
 
+export interface UserUpdate {
+  name?: string;
+  lastName?: string;
+  institution?: string;
+  description?: string;
+  photo?: string;
+}
+
 export interface LoginResponse {
   token: string;
   user: UserResponse;
@@ -43,6 +51,7 @@ export interface LoginResponse {
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8060/auth'; 
+  private usersApiUrl = 'http://localhost:8060/users'; // Nuevo endpoint para usuarios
   
   currentUser = signal<UserResponse | null>(null);
   isAuthenticated = signal<boolean>(false);
@@ -79,6 +88,14 @@ export class AuthService {
     this.isAuthenticated.set(true);
   }
 
+  private updateUserDataInLocalStorage(updatedUser: UserResponse): void {
+    const currentUser = this.currentUser();
+    if (currentUser && currentUser.id === updatedUser.id) {
+      const newUser = { ...currentUser, ...updatedUser };
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+      this.currentUser.set(newUser);
+    }
+  }
 
   register(data: UserRegister): Observable<UserResponse> {
     const url = `${this.apiUrl}/register`;
@@ -105,6 +122,28 @@ export class AuthService {
     );
   }
 
+  updateProfile(userId: number, userData: UserUpdate): Observable<UserResponse> {
+    const url = `${this.apiUrl}/me/${userId}`;
+const token = this.getToken();
+if (!token) {
+  return throwError(() => new Error('No authentication token found.'));
+}
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<UserResponse>(url, userData, { headers }).pipe(
+      tap(updatedUser => {
+        this.updateUserDataInLocalStorage(updatedUser);
+      }),
+      catchError(error => {
+        console.error('Error updating profile:', error);
+        const errorMessage = error.error?.error || 'Error desconocido al actualizar el perfil.';
+        return throwError(() => new Error(errorMessage));
+      })
+    );
+  }
 
   logout(): void {
     localStorage.removeItem('authToken');

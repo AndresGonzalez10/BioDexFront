@@ -9,33 +9,55 @@
 
       <div class="profile-card">
         <div class="profile-info">
-          <h1 class="profile-name">{{ usuario.nombre }}</h1>
-          <p class="profile-email">{{ usuario.email }}</p>
-          
-          <div class="profile-detail">
-            <span class="detail-label">Perfil:</span>
-            <span class="detail-value">{{ usuario.rol }}</span>
-          </div>
-          
-          <div class="profile-detail">
-            <span class="detail-label">Institución:</span>
-            <span class="detail-value">Universidad Politécnica de Chiapas</span>
-          </div>
-          
-          <div class="profile-detail">
-            <span class="detail-label">Fecha de registro:</span>
-            <span class="detail-value">25/10/2023</span>
-          </div>
-          
-          <div class="profile-description">
-            <span class="detail-label">Descripción:</span>
-            <p class="description-text">Encargado de colección entomológica del ECOSUR</p>
-          </div>
+          <ng-container *ngIf="!isEditMode">
+            <h1 class="profile-name">{{ usuario.nombre }} {{ usuario.apellido }}</h1>
+            <p class="profile-email">{{ usuario.email }}</p>
+            
+            <div class="profile-detail">
+              <span class="detail-label">Perfil:</span>
+              <span class="detail-value">{{ usuario.rol }}</span>
+            </div>
+            
+            <div class="profile-detail">
+              <span class="detail-label">Institución:</span>
+              <span class="detail-value">{{ usuario.institucion }}</span>
+            </div>
+            
+            <div class="profile-description">
+              <span class="detail-label">Descripción:</span>
+              <p class="description-text">{{ usuario.descripcion }}</p>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="isEditMode">
+            <form (ngSubmit)="saveProfile()">
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" [(ngModel)]="editForm.nombre" name="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" [(ngModel)]="editForm.apellido" name="apellido" required>
+              </div>
+              <div class="form-group">
+                <label for="institucion">Institución:</label>
+                <input type="text" id="institucion" [(ngModel)]="editForm.institucion" name="institucion">
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" [(ngModel)]="editForm.descripcion" name="descripcion"></textarea>
+              </div>
+              <button type="submit" class="save-button">Guardar</button>
+              <button type="button" class="cancel-button" (click)="toggleEditMode()">Cancelar</button>
+            </form>
+          </ng-container>
         </div>
         
         <div class="profile-image-section">
-          <img src=" /assets/perfil.png" alt="Profile" class="profile-image">
-          <button class="edit-button">Editar perfil</button>
+          <img src="{{ usuario.foto }}" alt="Profile" class="profile-image">
+          <button class="edit-button" (click)="toggleEditMode()">
+            {{ isEditMode ? 'Ver Perfil' : 'Editar perfil' }}
+          </button>
         </div>
       </div>
     </div>

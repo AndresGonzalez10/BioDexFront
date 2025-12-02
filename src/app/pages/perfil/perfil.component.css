@@ -142,6 +142,74 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para el formulario de edición */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #E2F9D1; /* Color similar al detail-label */
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #444; /* Borde más oscuro */
+  border-radius: 8px;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #d0d0d0; /* Texto claro */
+  font-size: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  border-color: #E2F9D1; /* Resaltar al enfocar */
+  box-shadow: 0 0 0 3px rgba(226, 249, 209, 0.3);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical; /* Permitir redimensionar verticalmente */
+  min-height: 100px;
+}
+
+.save-button,
+.cancel-button {
+  background-color: #d4f4dd; /* Color similar al edit-button */
+  color: #000000;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 15px; /* Espacio entre botones */
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background-color: #E2F9D1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-button {
+  background-color: #6c757d; /* Un color más neutro para cancelar */
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
 * {
   box-sizing: border-box;
 }
