@@ -7,7 +7,7 @@ import { AuthService } from '../core/services/auth.service';
   providedIn: 'root'
 })
 export class RequestService {
-  private apiUrl = 'http://localhost:8060'; // Asume la misma URL base de la API
+  private apiUrl = 'http://34.202.158.56:8080'; // Asume la misma URL base de la API
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

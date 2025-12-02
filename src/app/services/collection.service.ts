@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CollectionService {
-  private apiUrl = 'http://localhost:8060/collections'; 
+  private apiUrl = 'http://34.202.158.56:8080/collections'; 
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

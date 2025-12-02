@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SpeciesService {
   
-  private apiUrl = 'http://localhost:8060/specimens';
+  private apiUrl = 'http://34.202.158.56:8080';
 
   constructor(private http: HttpClient) { }
 

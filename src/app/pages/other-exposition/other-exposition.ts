@@ -39,7 +39,7 @@ interface Exhibition {
 export class OtherExposition implements OnInit {
   exhibition: Exhibition | undefined;
   
-  public readonly API_BASE_URL = 'http://localhost:8060';
+  public readonly API_BASE_URL = 'http://34.202.158.56:8080';
 
   constructor(
     private route: ActivatedRoute,

@@ -8,7 +8,7 @@ import { AuthService } from '../core/services/auth.service';
   providedIn: 'root'
 })
 export class SpecimenService {
-  private apiUrl = 'http://localhost:8060'; 
+  private apiUrl = 'http://34.202.158.56:8080'; 
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
