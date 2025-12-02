@@ -121,6 +121,8 @@ export class SpecimenComponent implements OnInit {
       this.specimenService.getSpecimen(this.specimenId).subscribe({
         next: (data: any) => {
           this.specimen = data;
+          console.log("Datos completos del espécimen cargado:", data);
+          this.collectionId = data.idCollection ? String(data.idCollection) : null; // Asegurarse de que collectionId esté disponible
           console.log("Espécimen cargado:", this.specimen);
         },
         error: (error: any) => {
@@ -194,7 +196,7 @@ export class SpecimenComponent implements OnInit {
       this.specimenService.deleteSpecimen(this.specimen.id).subscribe({
         next: () => {
           console.log('Espécimen eliminado.');
-          this.router.navigate(['/specimens']); 
+          this.router.navigate(['/specimens/collection', this.collectionId]);
         },
         error: (error: any) => {
           console.error('Error al eliminar:', error);
@@ -226,6 +228,6 @@ export class SpecimenComponent implements OnInit {
   }
 
   onSpecimenSelected(specimenId: string): void {
-    this.router.navigate(['/specimens', specimenId]);
+    this.router.navigate(['/specimens', specimenId], { state: { collectionId: this.collectionId } });
   }
 }

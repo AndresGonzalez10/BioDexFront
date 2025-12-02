@@ -33,4 +33,13 @@ export class LocationService {
   createLocation(locationData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, locationData);
   }
+
+  getLocationById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
+  // Método para actualizar una ubicación existente
+  updateLocation(id: number, locationData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, locationData);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
 import { CollectionService } from '../../services/collection.service';
 import { Router } from '@angular/router';
@@ -9,12 +10,13 @@ import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-collection-r',
   standalone: true,
-  imports: [CommonModule, NavBarComponent, CollectionCartComponent],
+  imports: [CommonModule, FormsModule, NavBarComponent, CollectionCartComponent],
   templateUrl: './collections.html',
   styleUrl: './collections.css'
 })
 export class CollectionR implements OnInit {
   collections: any[] = [];
+  searchTerm: string = '';
 
   constructor(
     private collectionService: CollectionService,
@@ -29,20 +31,36 @@ export class CollectionR implements OnInit {
   loadCollections(): void {
     const currentUser = this.authService.currentUser();
     if (currentUser && currentUser.id) {
-      this.collectionService.getOtherUsersCollections(currentUser.id).subscribe({
-        next: (data: any[]) => {
-          console.log('✅ Colecciones cargadas:', data);
-          this.collections = data;
-          console.log('✅ Colecciones cargadas (con imageUrl):', this.collections);
-        },
-        error: (error: any) => {
-          console.error('❌ Error al cargar colecciones:', error);
-        }
-      });
+      if (this.searchTerm) {
+        this.collectionService.searchCollections(this.searchTerm).subscribe({
+          next: (data: any[]) => {
+            console.log('✅ Colecciones filtradas cargadas:', data);
+            this.collections = data;
+          },
+          error: (error: any) => {
+            console.error('❌ Error al cargar colecciones filtradas:', error);
+          }
+        });
+      } else {
+        this.collectionService.getOtherUsersCollections(currentUser.id).subscribe({
+          next: (data: any[]) => {
+            console.log('✅ Colecciones cargadas:', data);
+            this.collections = data;
+            console.log('✅ Colecciones cargadas (con imageUrl):', this.collections);
+          },
+          error: (error: any) => {
+            console.error('❌ Error al cargar colecciones:', error);
+          }
+        });
+      }
     } else {
       console.log('Usuario no autenticado o ID de usuario no disponible.');
       this.collections = [];
     }
+  }
+
+  searchCollections(): void {
+    this.loadCollections();
   }
 
   onCollectionSelected(collectionId: string): void {

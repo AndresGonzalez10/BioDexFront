@@ -23,4 +23,8 @@ export class TaxonomyService {
   createTaxonomy(taxonomyData: { family: string, genus: string, species: string, category: string }): Observable<any> {
     return this.http.post<any>(this.apiUrl, taxonomyData);
   }
+
+  getTaxonomyById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
 }

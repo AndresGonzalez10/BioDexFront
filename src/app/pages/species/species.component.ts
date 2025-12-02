@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'; // Importante HttpClient
 import { NavBarComponent } from '../../core/components/nav-bar/nav-bar.component';
-import { lastValueFrom } from 'rxjs'; // Importante para convertir Observables a Promesas
+import { lastValueFrom, Observable } from 'rxjs'; // Importante para convertir Observables a Promesas
 import { TaxonomyService } from '../../services/taxonomy.service';
 import { LocationService } from '../../services/location.service';
 
@@ -58,6 +58,9 @@ export class SpeciesComponent implements OnInit, OnDestroy {
   showMessage: boolean = false;
   collectionId: string | null = null;
   isSubmitting: boolean = false;
+  specimenId: string | null = null;
+  isEditMode: boolean = false;
+  idLocation: number | null = null;
 
   // Variables de Imágenes (Mantenemos tu estructura)
   selectedFile: File | null = null;  imageUrl: string | ArrayBuffer | null = null;
@@ -94,6 +97,12 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       if (this.collectionId) {
         this.idCollection = Number(this.collectionId);
       }
+
+      this.specimenId = params.get('specimenId');
+      if (this.specimenId) {
+        this.isEditMode = true;
+        this.loadSpecimenForEdit(this.specimenId);
+      }
     });
     this.checkApiConnection();
   }
@@ -111,6 +120,61 @@ export class SpeciesComponent implements OnInit, OnDestroy {
         this.connectionMessage = 'Error de conexión.';
       }
     });
+  }
+
+  async loadSpecimenForEdit(id: string): Promise<void> {
+    try {
+      const specimen = await lastValueFrom(this.specimenService.getSpecimen(id));
+      
+      // Rellenar campos de datos generales
+      this.nombreComun = specimen.commonName;
+      this.fechaColeccion = new Date(specimen.collectionDate);
+      this.colector = specimen.collector;
+      this.cantidadIndividuos = specimen.individualsCount;
+      this.anioDeterminacion = specimen.determinationYear;
+      this.determinador = specimen.determinador;
+      this.sexo = specimen.sex;
+      this.tipoVegetacion = specimen.vegetationType;
+      this.metodoColecta = specimen.collectionMethod;
+      this.notas = specimen.notes;
+      this.idCollection = specimen.idCollection;
+
+      // Rellenar campos de taxonomía
+      const taxonomy = await lastValueFrom(this.taxonomyService.getTaxonomyById(specimen.idTaxonomy));
+      this.familia = taxonomy.family;
+      this.genero = taxonomy.genus;
+      this.especie = taxonomy.species;
+      this.categoria = taxonomy.category;
+
+      // Rellenar campos de ubicación
+      const location = await lastValueFrom(this.locationService.getLocationById(specimen.idLocation));
+      this.idLocation = specimen.idLocation; // Asignar el id de la ubicación
+      this.pais = location.country;
+      this.estado = location.state;
+      this.municipio = location.municipality;
+      this.localidad = location.locality;
+      this.latitudGrados = location.latitude_degrees;
+      this.latitudMinutos = location.latitude_minutes;
+      this.latitudSegundos = location.latitude_seconds;
+      this.longitudGrados = location.longitude_degrees;
+      this.longitudMinutos = location.longitude_minutes;
+      this.longitudSegundos = location.longitude_seconds;
+      this.altitud = location.altitude;
+
+      // Cargar imágenes existentes (si las hay)
+      if (specimen.mainPhoto) this.imageUrl = specimen.mainPhoto;
+      if (specimen.additionalPhoto1) this.imageUrl1 = specimen.additionalPhoto1;
+      if (specimen.additionalPhoto2) this.imageUrl2 = specimen.additionalPhoto2;
+      if (specimen.additionalPhoto3) this.imageUrl3 = specimen.additionalPhoto3;
+      if (specimen.additionalPhoto4) this.imageUrl4 = specimen.additionalPhoto4;
+      if (specimen.additionalPhoto5) this.imageUrl5 = specimen.additionalPhoto5;
+      if (specimen.additionalPhoto6) this.imageUrl6 = specimen.additionalPhoto6;
+
+    } catch (error) {
+      console.error('Error al cargar el espécimen para edición:', error);
+      alert('Error al cargar los datos del espécimen.');
+      this.router.navigate(['/specimens/collection', this.collectionId]); // Redirigir si falla la carga
+    }
   }
 
   // Lógica de selección de archivos (Igual que antes)
@@ -175,6 +239,28 @@ export class SpeciesComponent implements OnInit, OnDestroy {
   }
 
   async getOrCreateLocationId(): Promise<number> {
+    // Si estamos en modo edición y ya tenemos un idLocation, actualizamos la ubicación existente
+    if (this.isEditMode && this.idLocation) {
+      const updatedLocationData = {
+        country: this.pais,
+        state: this.estado,
+        municipality: this.municipio,
+        locality: this.localidad,
+        latitude_degrees: this.latitudGrados,
+        latitude_minutes: this.latitudMinutos,
+        latitude_seconds: this.latitudSegundos,
+        longitude_degrees: this.longitudGrados,
+        longitude_minutes: this.longitudMinutos,
+        longitude_seconds: this.longitudSegundos,
+        altitude: this.altitud
+      };
+      console.log('Modo edición: Actualizando ubicación con ID:', this.idLocation, 'Datos:', updatedLocationData);
+      await lastValueFrom(this.locationService.updateLocation(this.idLocation, updatedLocationData));
+      console.log('Ubicación actualizada correctamente.');
+      return this.idLocation;
+    }
+
+    // Si no estamos en modo edición o no hay idLocation, procedemos con la lógica de crear/obtener
     try {
       const location = await lastValueFrom(this.locationService.getLocationByAttributes(
         this.pais, this.estado, this.municipio, this.localidad,
@@ -260,9 +346,17 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       };
 
       console.log('Enviando JSON:', payload);
-      this.specimenService.uploadSpecimen(payload).subscribe({
+
+      let operation: Observable<any>;
+      if (this.isEditMode && this.specimenId) {
+        operation = this.specimenService.updateSpecimen(Number(this.specimenId), payload);
+      } else {
+        operation = this.specimenService.uploadSpecimen(payload);
+      }
+
+      operation.subscribe({
         next: (response) => {
-          alert('¡Espécimen guardado con éxito!');
+          alert(`¡Espécimen ${this.isEditMode ? 'actualizado' : 'guardado'} con éxito!`);
           this.router.navigate(['/specimens/collection', this.collectionId]);
         },
         error: (error) => {

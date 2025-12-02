@@ -30,7 +30,7 @@
 
     <div *ngIf="specimenId && specimen" class="specimen-detail-card">
       <div class="detail-header">
-        <a routerLink="/specimens" class="back-link">
+        <a [routerLink]="['/specimens/collection', collectionId]" class="back-link">
           <img src="/assets/flechaAtras.png" alt="Volver">
         </a>
         <div class="title-section">

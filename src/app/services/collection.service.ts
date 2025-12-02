@@ -64,4 +64,27 @@ export class CollectionService {
       map(collections => collections.filter(collection => collection.idManager !== currentUserId))
     );
   }
+
+  searchCollections(searchTerm: string, userId?: number): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      return new Observable<any[]>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    let url = `${this.apiUrl}`;
+    if (userId) {
+      url = `${this.apiUrl}/manager/${userId}`;
+    }
+
+    return this.http.get<any[]>(url, { headers }).pipe(
+      map(collections => collections.filter(collection =>
+        collection.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        collection.description.toLowerCase().includes(searchTerm.toLowerCase())
+      ))
+    );
+  }
 }
