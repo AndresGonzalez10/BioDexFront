@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../core/services/auth.service';
 import { environment } from '../../environments/environment';
 
@@ -25,5 +26,22 @@ export class ExpoService {
 
     // Using the correct backend endpoint for user-specific exhibitions
     return this.http.get<any[]>(`${this.apiUrl}/manager/${userId}`, { headers });
+  }
+
+  getAllExpos(): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      return new Observable<any[]>();
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any[]>(this.apiUrl, { headers });
+  }
+
+  getOtherUsersExpos(currentUserId: number): Observable<any[]> {
+    return this.getAllExpos().pipe(
+      map(expos => expos.filter(expo => expo.idManager !== currentUserId))
+    );
   }
 }

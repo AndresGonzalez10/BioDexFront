@@ -29,7 +29,7 @@ export class CollectionR implements OnInit {
   loadCollections(): void {
     const currentUser = this.authService.currentUser();
     if (currentUser && currentUser.id) {
-      this.collectionService.getCollectionsByUserId(currentUser.id).subscribe({
+      this.collectionService.getOtherUsersCollections(currentUser.id).subscribe({
         next: (data: any[]) => {
           console.log('✅ Colecciones cargadas:', data);
           this.collections = data;
@@ -46,6 +46,6 @@ export class CollectionR implements OnInit {
   }
 
   onCollectionSelected(collectionId: string): void {
-    this.router.navigate(['/specimens/collection', collectionId]);
+    this.router.navigate(['/other-specimens/collection', collectionId]);
   }
 }

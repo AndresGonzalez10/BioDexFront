@@ -16,10 +16,15 @@
         </div>
       </div>
 
-      <h2 class="sub-header">Busca Expociciones</h2>
+      <h2 class="sub-header">Exposiciones de otros usuarios</h2>
 
       <div class="expo-grid">
-        <app-expo-cart></app-expo-cart>
+        <app-expo-cart
+          *ngFor="let expo of expos"
+          [title]="expo.title"
+          [coverImageUrl]="expo.coverImageUrl"
+          [id]="expo.id"
+        ></app-expo-cart>
       </div>
     </div>
   </main>

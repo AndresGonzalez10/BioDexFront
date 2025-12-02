@@ -4,17 +4,13 @@
     
     <div *ngIf="!specimenId">
       <div class="header-specimens">
-        <h1>Especímenes</h1>
+        <h1>Especímenes de otros usuarios</h1>
       </div>
 
       <div class="search-and-add-container">
         <div class="search-bar-container">
           <img src="https://icongr.am/clarity/search.svg?size=24&color=757575" alt="Buscar">
           <input type="text" placeholder="Buscar" (input)="onSearchChange($event)">
-        </div>
-        <div class="buttons-container">
-          <button class="add-specimen-button" (click)="goToAddSpecimen()">Agregar</button>
-          <button class="delete-collection-button" (click)="deleteCollection()">Eliminar Colección</button>
         </div>
       </div>
 
@@ -30,17 +26,12 @@
 
     <div *ngIf="specimenId && specimen" class="specimen-detail-card">
       <div class="detail-header">
-        <a routerLink="/specimens" class="back-link">
+        <a routerLink="/other-specimens" class="back-link">
           <img src="/assets/flechaAtras.png" alt="Volver">
         </a>
         <div class="title-section">
           <h1>{{ specimen.commonName }}</h1>
           <p class="subtitle">{{ specimen.taxonomy.genus }} {{ specimen.taxonomy.species }}</p>
-        </div>
-
-        <div class="action-buttons">
-          <button class="edit-button" (click)="goToEditSpecimen()">Editar</button>
-          <button class="delete-button" (click)="deleteSpecimen()">Eliminar</button>
         </div>
       </div>
 
@@ -123,7 +114,9 @@
             </ng-container>
           </div>
           
-          
+          <div class="request-button-container">
+            <button class="edit-button" (click)="goToRequestForm()">Solicitar</button>
+          </div>
         </div>
       </div>
     </div>

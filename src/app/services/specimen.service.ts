@@ -20,6 +20,17 @@ export class SpecimenService {
     return this.http.get<any[]>(`${this.apiUrl}/specimens`);
   }
 
+  getAllSpecimens(): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      return new Observable<any[]>();
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/specimens`, { headers });
+  }
+
   getSpecimensByCollectionId(collectionId: string): Observable<Specimen[]> {
     return this.http.get<CollectionResponse>(`${this.apiUrl}/collections/${collectionId}`).pipe(
       map(response => response.specimens)
@@ -36,6 +47,12 @@ export class SpecimenService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get<any[]>(`${this.apiUrl}/specimens/user/${userId}`, { headers });
+  }
+
+  getOtherUsersSpecimens(currentUserId: number): Observable<any[]> {
+    return this.getAllSpecimens().pipe(
+      map(specimens => specimens.filter(specimen => specimen.idManager !== currentUserId))
+    );
   }
 
   checkConnection(): Observable<any> {

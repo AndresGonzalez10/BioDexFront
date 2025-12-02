@@ -76,7 +76,7 @@ interface Specimen {
 }
 
 @Component({
-  selector: 'app-specimen',
+  selector: 'app-other-specimen',
   standalone: true,
   imports: [
     CommonModule,
@@ -85,10 +85,10 @@ interface Specimen {
     FormsModule,
     NavBarComponent,
   ],
-  templateUrl: './specimen.component.html',
-  styleUrl: './specimen.component.css'
+  templateUrl: './other-specimen.component.html',
+  styleUrl: './other-specimen.component.css'
 })
-export class SpecimenComponent implements OnInit {
+export class OtherSpecimenComponent implements OnInit {
   specimens: any[] = [];
   filteredSpecimens: any[] = [];
   searchTerm: string = '';
@@ -139,25 +139,18 @@ export class SpecimenComponent implements OnInit {
         }
       });
     } else if (currentUser && currentUser.id) {
-      this.specimenService.getSpecimensByUserId(currentUser.id).subscribe({
+      this.specimenService.getOtherUsersSpecimens(currentUser.id).subscribe({
         next: (data: any[]) => {
           this.specimens = data;
           this.filteredSpecimens = data;
         },
         error: (error: any) => {
-          console.error('Error al cargar especímenes del usuario:', error);
+          console.error('Error al cargar especímenes de otros usuarios:', error);
         }
       });
     } else {
-      this.specimenService.getSpecimens().subscribe({
-        next: (data: any[]) => {
-          this.specimens = data;
-          this.filteredSpecimens = data;
-        },
-        error: (error: any) => {
-          console.error('Error al cargar todos:', error);
-        }
-      });
+      console.log('Usuario no autenticado o ID de usuario no disponible.');
+      this.specimens = [];
     }
   }
 
@@ -177,10 +170,6 @@ export class SpecimenComponent implements OnInit {
     }
   }
 
-  goToAddSpecimen(): void {
-    this.router.navigate(['/add-specimen', this.collectionId]);
-  }
-
   goToRequestForm(): void {
     if (this.specimen) {
       this.router.navigate(['/solicitud-forms'], { state: { specimenData: this.specimen } });
@@ -189,43 +178,7 @@ export class SpecimenComponent implements OnInit {
     }
   }
 
-  deleteSpecimen(): void {
-    if (this.specimen && confirm('¿Estás seguro de que quieres eliminar este espécimen?')) {
-      this.specimenService.deleteSpecimen(this.specimen.id).subscribe({
-        next: () => {
-          console.log('Espécimen eliminado.');
-          this.router.navigate(['/specimens']); 
-        },
-        error: (error: any) => {
-          console.error('Error al eliminar:', error);
-          alert('Error al eliminar.');
-        }
-      });
-    }
-  }
-
-  goToEditSpecimen(): void {
-    if (this.specimen) {
-      this.router.navigate(['/edit-specimen', this.specimen.id], { state: { specimenData: this.specimen } });
-    }
-  }
-
-  deleteCollection(): void {
-    if (this.collectionId && confirm('¿Eliminar colección y todo su contenido?')) {
-      this.collectionService.deleteCollection(Number(this.collectionId)).subscribe({
-        next: () => {
-          console.log('Colección eliminada.');
-          this.router.navigate(['/my-collection']);
-        },
-        error: (error: any) => {
-          console.error('Error al eliminar colección:', error);
-          alert('Error al eliminar colección.');
-        }
-      });
-    }
-  }
-
   onSpecimenSelected(specimenId: string): void {
-    this.router.navigate(['/specimens', specimenId]);
+    this.router.navigate(['/other-specimens', specimenId]);
   }
 }

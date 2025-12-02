@@ -24,6 +24,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { SolicitudFormsComponent } from './pages/solicitud-forms/solicitud-forms';
 import {SolicitudSpecimenComponent} from './pages/solicitud-specimen/solicitud-specimen.component';
 import { EditSpecimenComponent } from './pages/edit-specimen/edit-specimen.component';
+import { OtherSpecimenComponent } from './pages/other-specimen/other-specimen.component';
 
 
 export const routes: Routes = [
@@ -57,6 +58,9 @@ export const routes: Routes = [
   { path: 'specimens/:id', component: SpecimenComponent },
   { path: 'specimens/collection/:collectionId', component: SpecimenComponent },
   { path: 'specimens', component: SpecimenComponent },
+  { path: 'other-specimens/:id', component: OtherSpecimenComponent },
+  { path: 'other-specimens/collection/:collectionId', component: OtherSpecimenComponent },
+  { path: 'other-specimens', component: OtherSpecimenComponent },
   { path: 'add-specimen/:collectionId', component: SpeciesComponent },
   { path: '**', redirectTo: '' }
 ];

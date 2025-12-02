@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-specimen-card',
@@ -12,10 +12,11 @@ import { RouterModule, Router } from '@angular/router';
 export class SpecimenCardComponent {
   @Input() specimen: any;
   @Input() imageUrlBase: string = '';
+  @Output() specimenSelected = new EventEmitter<string>();
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  navigateToDetails() {
-    this.router.navigate(['/specimens', this.specimen.id]);
+  onCardClick() {
+    this.specimenSelected.emit(this.specimen.id);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../core/services/auth.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,20 @@ export class CollectionService {
 
   deleteCollection(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  getOtherUsersCollections(currentUserId: number): Observable<any[]> {
+    const token = this.authService.getToken();
+    if (!token) {
+      return new Observable<any[]>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+      map(collections => collections.filter(collection => collection.idManager !== currentUserId))
+    );
   }
 }
