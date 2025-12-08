@@ -25,7 +25,7 @@
   <div class="top-section-details">
     <div class="image-section">
       <img *ngIf="specimen.mainPhoto; else placeholder"
-           [src]="imageUrlBase + specimen.mainPhoto"
+           [src]="specimen.mainPhoto"
            alt="Specimen Image">
       <ng-template #placeholder>
         <img src="assets/placeholder.png" alt="Placeholder">
@@ -36,12 +36,9 @@
     <div class="info-section-top-right">
       <div class="info-item">
         <label for="commonName">Nombre Común</label>
-        <input type="text" id="commonName" placeholder="Nombre del especimen" class="form-control" [(ngModel)]="specimen.commonName" name="commonName" required>
+        <input type="text" id="commonName" placeholder="Nombre del espécimen" class="form-control" [(ngModel)]="specimen.commonName" name="commonName" required>
       </div>
-      <div class="info-item">
-        <label for="scientificName">Nombre Científico</label>
-        <input type="text" id="scientificName" placeholder="Nombre científico" class="form-control" [(ngModel)]="specimen.scientificName" name="scientificName" required>
-      </div>
+     
       <div class="info-item">
         <label for="family">Familia</label>
         <input type="text" id="family" placeholder="Familia" class="form-control" [(ngModel)]="specimen.taxonomy.family" name="family">
@@ -142,11 +139,11 @@
         </select>
       </div>
       <div class="info-item">
-        <label for="vegetationType">Tipo vegetación</label>
+        <label for="vegetationType">Tipo de vegetación</label>
         <input type="text" id="vegetationType" placeholder="Tipo de vegetación" class="form-control" [(ngModel)]="specimen.vegetationType" name="vegetationType">
       </div>
       <div class="info-item">
-        <label for="collectionMethod">Método colecta</label>
+        <label for="collectionMethod">Método de colecta</label>
         <input type="text" id="collectionMethod" placeholder="Método de colecta" class="form-control" [(ngModel)]="specimen.collectionMethod" name="collectionMethod">
       </div>
     </div>

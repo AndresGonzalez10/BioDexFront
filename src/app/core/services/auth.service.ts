@@ -50,8 +50,8 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://34.202.158.56:8080/auth'; 
-  private usersApiUrl = 'http://34.202.158.56:8080/users'; // Nuevo endpoint para usuarios
+  private apiUrl = 'http://localhost:8060/auth'; 
+  private usersApiUrl = 'hhttp://localhost:8060/users'; // Nuevo endpoint para usuarios
   
   currentUser = signal<UserResponse | null>(null);
   isAuthenticated = signal<boolean>(false);

@@ -172,3 +172,9 @@ input[type="file"] {
   font-weight:bolder;
   color: #757575;
 }
+
+.image-preview {
+  max-width: 100%;
+  max-height: 100px; /* Adjust as needed */
+  object-fit: contain;
+}

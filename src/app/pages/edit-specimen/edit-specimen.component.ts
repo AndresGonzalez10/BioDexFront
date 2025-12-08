@@ -19,7 +19,7 @@ import { SpecimenService } from '../../services/specimen.service';
 export class EditSpecimenComponent implements OnInit {
   specimen: any;
   specimenId: string | null = null;
-  imageUrlBase: string = 'http://34.202.158.56:8080/';
+  imageUrlBase: string = 'http://localhost:8060/';
 
   constructor(
     private route: ActivatedRoute,

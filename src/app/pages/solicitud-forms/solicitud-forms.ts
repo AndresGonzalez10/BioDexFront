@@ -16,7 +16,7 @@ export class SolicitudFormsComponent implements OnInit {
   especieSolicitada: string = 'Aulacophora femoralis';
   descripcion: string = '';
   specimen: any;
-  imageUrlBase: string = 'http://34.202.158.56:8080/';
+  imageUrlBase: string = 'http://localhost:8060/';
 
   constructor(private router: Router) { }
 

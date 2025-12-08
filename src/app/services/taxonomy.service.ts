@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaxonomyService {
-  private apiUrl = 'http://34.202.158.56:8080/taxonomy'; // Ajusta la URL de tu API
+  private apiUrl = 'http://localhost:8060/taxonomy'; // Ajusta la URL de tu API
 
   constructor(private http: HttpClient) { }
 

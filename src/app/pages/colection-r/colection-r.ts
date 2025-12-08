@@ -98,7 +98,7 @@ export class CollectionCreateComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', file);
 
-    const uploadUrl = 'http://34.202.158.56:8080/upload?folder=collections';
+    const uploadUrl = 'http://localhost:8060/upload?folder=collections';
 
     this.http.post<any>(uploadUrl, formData).subscribe({
       next: (response) => {

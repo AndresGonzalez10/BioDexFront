@@ -50,7 +50,7 @@
           <div class="image-section">
             <img *ngIf="specimen.mainPhoto; else placeholder"
                  [src]="specimen.mainPhoto"
-                 alt="Foto Principal del Especimen">
+                 alt="Foto Principal del Espécimen">
             
             <ng-template #placeholder>
               <img src="assets/placeholder.png" alt="Sin imagen disponible">
@@ -94,7 +94,7 @@
             <div class="info-item"><label>Año de determinación</label><p>{{ specimen.determinationYear }}</p></div>
             <div class="info-item"><label>Determinador</label><p>{{ specimen.determinador }}</p></div>
             <div class="info-item"><label>Sexo</label><p>{{ specimen.sex }}</p></div>
-            <div class="info-item"><label>Tipo vegetación</label><p>{{ specimen.vegetationType }}</p></div>
+            <div class="info-item"><label>Tipo de vegetación</label><p>{{ specimen.vegetationType }}</p></div>
             <div class="info-item"><label>Método colecta</label><p>{{ specimen.collectionMethod }}</p></div>
           </div>
 

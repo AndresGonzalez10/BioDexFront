@@ -113,13 +113,13 @@ main {
 }
 
 .edit-button {
-  background-color: #E2F9D1;
-  color: rgb(0, 0, 0);
+  background-color: #D60000;
+  color: rgb(255, 255, 255);
 }
 
 .delete-button {
-  background-color: #D60000;
-  color: white;
+  background-color: #E2F9D1;
+  color: rgb(0, 0, 0);
 }
 
 .detail-body {

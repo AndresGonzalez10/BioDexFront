@@ -64,15 +64,22 @@ export class SpeciesComponent implements OnInit, OnDestroy {
 
   // Variables de Imágenes (Mantenemos tu estructura)
   selectedFile: File | null = null;  imageUrl: string | ArrayBuffer | null = null;
+  mainPhotoFileName: string | null = null;
   selectedFile1: File | null = null; imageUrl1: string | ArrayBuffer | null = null;
+  imageUrl1FileName: string | null = null;
   selectedFile2: File | null = null; imageUrl2: string | ArrayBuffer | null = null;
+  imageUrl2FileName: string | null = null;
   selectedFile3: File | null = null; imageUrl3: string | ArrayBuffer | null = null;
+  imageUrl3FileName: string | null = null;
   selectedFile4: File | null = null; imageUrl4: string | ArrayBuffer | null = null;
+  imageUrl4FileName: string | null = null;
   selectedFile5: File | null = null; imageUrl5: string | ArrayBuffer | null = null;
+  imageUrl5FileName: string | null = null;
   selectedFile6: File | null = null; imageUrl6: string | ArrayBuffer | null = null;
+  imageUrl6FileName: string | null = null;
 
   // URL Base para subir a Cloudinary
-  private readonly API_BASE_URL = 'http://34.202.158.56:8080';
+  private readonly API_BASE_URL = 'http://localhost:8060';
 
   constructor(
     private fb: FormBuilder,
@@ -162,18 +169,50 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       this.altitud = location.altitude;
 
       // Cargar imágenes existentes (si las hay)
-      if (specimen.mainPhoto) this.imageUrl = specimen.mainPhoto;
-      if (specimen.additionalPhoto1) this.imageUrl1 = specimen.additionalPhoto1;
-      if (specimen.additionalPhoto2) this.imageUrl2 = specimen.additionalPhoto2;
-      if (specimen.additionalPhoto3) this.imageUrl3 = specimen.additionalPhoto3;
-      if (specimen.additionalPhoto4) this.imageUrl4 = specimen.additionalPhoto4;
-      if (specimen.additionalPhoto5) this.imageUrl5 = specimen.additionalPhoto5;
-      if (specimen.additionalPhoto6) this.imageUrl6 = specimen.additionalPhoto6;
+      if (specimen.mainPhoto) {
+        this.imageUrl = specimen.mainPhoto;
+        this.mainPhotoFileName = this.getFileNameFromUrl(specimen.mainPhoto);
+      }
+      if (specimen.additionalPhoto1) {
+        this.imageUrl1 = specimen.additionalPhoto1;
+        this.imageUrl1FileName = this.getFileNameFromUrl(specimen.additionalPhoto1);
+      }
+      if (specimen.additionalPhoto2) {
+        this.imageUrl2 = specimen.additionalPhoto2;
+        this.imageUrl2FileName = this.getFileNameFromUrl(specimen.additionalPhoto2);
+      }
+      if (specimen.additionalPhoto3) {
+        this.imageUrl3 = specimen.additionalPhoto3;
+        this.imageUrl3FileName = this.getFileNameFromUrl(specimen.additionalPhoto3);
+      }
+      if (specimen.additionalPhoto4) {
+        this.imageUrl4 = specimen.additionalPhoto4;
+        this.imageUrl4FileName = this.getFileNameFromUrl(specimen.additionalPhoto4);
+      }
+      if (specimen.additionalPhoto5) {
+        this.imageUrl5 = specimen.additionalPhoto5;
+        this.imageUrl5FileName = this.getFileNameFromUrl(specimen.additionalPhoto5);
+      }
+      if (specimen.additionalPhoto6) {
+        this.imageUrl6 = specimen.additionalPhoto6;
+        this.imageUrl6FileName = this.getFileNameFromUrl(specimen.additionalPhoto6);
+      }
 
     } catch (error) {
       console.error('Error al cargar el espécimen para edición:', error);
       alert('Error al cargar los datos del espécimen.');
       this.router.navigate(['/specimens/collection', this.collectionId]); // Redirigir si falla la carga
+    }
+  }
+
+    getFileNameFromUrl(url: string): string {
+    try {
+      const urlObj = new URL(url);
+      const pathSegments = urlObj.pathname.split('/');
+      return pathSegments[pathSegments.length - 1];
+    } catch (e) {
+      console.error("Error parsing URL for filename:", e);
+      return url; // Fallback to full URL if parsing fails
     }
   }
 
@@ -188,13 +227,13 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       reader.onload = () => {
         const result = reader.result;
         // Asignamos según el nombre de variable
-        if (imageVarName === 'imageUrl') { this.selectedFile = file; this.imageUrl = result; }
-        else if (imageVarName === 'imageUrl1') { this.selectedFile1 = file; this.imageUrl1 = result; }
-        else if (imageVarName === 'imageUrl2') { this.selectedFile2 = file; this.imageUrl2 = result; }
-        else if (imageVarName === 'imageUrl3') { this.selectedFile3 = file; this.imageUrl3 = result; }
-        else if (imageVarName === 'imageUrl4') { this.selectedFile4 = file; this.imageUrl4 = result; }
-        else if (imageVarName === 'imageUrl5') { this.selectedFile5 = file; this.imageUrl5 = result; }
-        else if (imageVarName === 'imageUrl6') { this.selectedFile6 = file; this.imageUrl6 = result; }
+        if (imageVarName === 'imageUrl') { this.selectedFile = file; this.imageUrl = result; this.mainPhotoFileName = file.name; }
+        else if (imageVarName === 'imageUrl1') { this.selectedFile1 = file; this.imageUrl1 = result; this.imageUrl1FileName = file.name; }
+        else if (imageVarName === 'imageUrl2') { this.selectedFile2 = file; this.imageUrl2 = result; this.imageUrl2FileName = file.name; }
+        else if (imageVarName === 'imageUrl3') { this.selectedFile3 = file; this.imageUrl3 = result; this.imageUrl3FileName = file.name; }
+        else if (imageVarName === 'imageUrl4') { this.selectedFile4 = file; this.imageUrl4 = result; this.imageUrl4FileName = file.name; }
+        else if (imageVarName === 'imageUrl5') { this.selectedFile5 = file; this.imageUrl5 = result; this.imageUrl5FileName = file.name; }
+        else if (imageVarName === 'imageUrl6') { this.selectedFile6 = file; this.imageUrl6 = result; this.imageUrl6FileName = file.name; }
       };
       reader.readAsDataURL(file);
     }
@@ -357,7 +396,8 @@ export class SpeciesComponent implements OnInit, OnDestroy {
       operation.subscribe({
         next: (response) => {
           alert(`¡Espécimen ${this.isEditMode ? 'actualizado' : 'guardado'} con éxito!`);
-          this.router.navigate(['/specimens/collection', this.collectionId]);
+          // Redirigir a la vista del espécimen recién creado/actualizado
+          this.router.navigate(['/specimens', response.id]);
         },
         error: (error) => {
           console.error('Error backend:', error);

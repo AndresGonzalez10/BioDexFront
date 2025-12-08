@@ -13,7 +13,7 @@
         
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" placeholder="Nombre del especimen" class="form-control" [(ngModel)]="nombreComun" name="nombreComun">
+          <input type="text" id="nombre" placeholder="Nombre del espécimen" class="form-control" [(ngModel)]="nombreComun" name="nombreComun">
           
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@
 
         <div class="form-group">
           <label for="genero">Género</label>
-          <input type="text" id="genero" placeholder="Genero" class="form-control" [(ngModel)]="genero" name="genero">
+          <input type="text" id="genero" placeholder="Género" class="form-control" [(ngModel)]="genero" name="genero">
         </div>
     
         <div class="form-group">
@@ -43,9 +43,18 @@
      <div class="subir-foto principal">
             <input type="file" id="fotoPrincipal" style="display: none;" (change)="onFileSelected($event, 'imageUrl')">
             <label for="fotoPrincipal" style="cursor: pointer;">
-              <img *ngIf="!imageUrl" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube la foto<br>principal</p>
+              <ng-container *ngIf="imageUrl && !selectedFile; else showMainFileNameOrUpload">
+                <img [src]="imageUrl" alt="Preview" class="image-preview">
+              </ng-container>
+              <ng-template #showMainFileNameOrUpload>
+                <ng-container *ngIf="mainPhotoFileName; else showMainUploadIcon">
+                  <p>{{ mainPhotoFileName }}</p>
+                </ng-container>
+                <ng-template #showMainUploadIcon>
+                  <img src="assets/image18.png" alt="Upload Icon">
+                  <p>Sube la foto<br>principal</p>
+                </ng-template>
+              </ng-template>
             </label>
           </div>
     
@@ -55,7 +64,7 @@
         </div>
         <div class="form-group">
           <label for="pais">País</label>
-          <input type="text" id="pais" placeholder="Pais" class="form-control" [(ngModel)]="pais" name="pais">
+          <input type="text" id="pais" placeholder="País" class="form-control" [(ngModel)]="pais" name="pais">
         </div>
         <div class="form-group">
           <label for="estado">Estado</label>
@@ -114,7 +123,7 @@
     
         <div class="form-group">
           <label for="determinador">Determinador</label>
-          <input type="text" id="determinador" placeholder="nmbre" class="form-control" [(ngModel)]="determinador" name="determinador">
+          <input type="text" id="determinador" placeholder="nombre" class="form-control" [(ngModel)]="determinador" name="determinador">
         </div>
         <div class="form-group">
           <label for="anioDeterminacion">Año de determinación</label>
@@ -138,7 +147,7 @@
         </div>
         <div class="form-group">
           <label for="metodoColecta">Método de colecta</label>
-          <input type="text" id="metodoColecta" placeholder="metodo" class="form-control" [(ngModel)]="metodoColecta" name="metodoColecta">
+          <input type="text" id="metodoColecta" placeholder="método" class="form-control" [(ngModel)]="metodoColecta" name="metodoColecta">
         </div>
         <div class="form-group">
           <label for="notas">Notas</label>
@@ -148,56 +157,108 @@
     
         <br>
     
-        <div class="additional-images-container">
           <div class="subir-foto">
                 <input type="file" id="foto1" style="display: none;" (change)="onFileSelected($event, 'imageUrl1')">
                 <label for="foto1" style="cursor: pointer;">
-                  <img *ngIf="!imageUrl1" src="assets/image18.png" alt="Upload Icon">
-                  <img *ngIf="imageUrl1" [src]="imageUrl1" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                  <p>Sube una foto</p>
+                  <ng-container *ngIf="imageUrl1 && !selectedFile1; else showFileNameOrUpload1">
+                    <img [src]="imageUrl1" alt="Preview" class="image-preview">
+                  </ng-container>
+                  <ng-template #showFileNameOrUpload1>
+                    <ng-container *ngIf="imageUrl1FileName; else showUploadIcon1">
+                      <p>{{ imageUrl1FileName }}</p>
+                    </ng-container>
+                    <ng-template #showUploadIcon1>
+                      <img src="assets/image18.png" alt="Upload Icon">
+                      <p>Sube una foto</p>
+                    </ng-template>
+                  </ng-template>
                 </label>
               </div>
           <div class="subir-foto">
                 <input type="file" id="foto2" style="display: none;" (change)="onFileSelected($event, 'imageUrl2')">
                 <label for="foto2" style="cursor: pointer;">
-                  <img *ngIf="!imageUrl2" src="assets/image18.png" alt="Upload Icon">
-                  <img *ngIf="imageUrl2" [src]="imageUrl2" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                  <p>Sube una foto</p>
+                  <ng-container *ngIf="imageUrl2 && !selectedFile2; else showFileNameOrUpload2">
+                    <img [src]="imageUrl2" alt="Preview" class="image-preview">
+                  </ng-container>
+                  <ng-template #showFileNameOrUpload2>
+                    <ng-container *ngIf="imageUrl2FileName; else showUploadIcon2">
+                      <p>{{ imageUrl2FileName }}</p>
+                    </ng-container>
+                    <ng-template #showUploadIcon2>
+                      <img src="assets/image18.png" alt="Upload Icon">
+                      <p>Sube una foto</p>
+                    </ng-template>
+                  </ng-template>
                 </label>
               </div>
           <div class="subir-foto">
                 <input type="file" id="foto3" style="display: none;" (change)="onFileSelected($event, 'imageUrl3')">
                 <label for="foto3" style="cursor: pointer;">
-                  <img *ngIf="!imageUrl3" src="assets/image18.png" alt="Upload Icon">
-                  <img *ngIf="imageUrl3" [src]="imageUrl3" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                  <p>Sube una foto</p>
+                  <ng-container *ngIf="imageUrl3 && !selectedFile3; else showFileNameOrUpload3">
+                    <img [src]="imageUrl3" alt="Preview" class="image-preview">
+                  </ng-container>
+                  <ng-template #showFileNameOrUpload3>
+                    <ng-container *ngIf="imageUrl3FileName; else showUploadIcon3">
+                      <p>{{ imageUrl3FileName }}</p>
+                    </ng-container>
+                    <ng-template #showUploadIcon3>
+                      <img src="assets/image18.png" alt="Upload Icon">
+                      <p>Sube una foto</p>
+                    </ng-template>
+                  </ng-template>
                 </label>
               </div>
           <div class="subir-foto">
                 <input type="file" id="foto4" style="display: none;" (change)="onFileSelected($event, 'imageUrl4')">
                 <label for="foto4" style="cursor: pointer;">
-                  <img *ngIf="!imageUrl4" src="assets/image18.png" alt="Upload Icon">
-                  <img *ngIf="imageUrl4" [src]="imageUrl4" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                  <p>Sube una foto</p>
+                  <ng-container *ngIf="imageUrl4 && !selectedFile4; else showFileNameOrUpload4">
+                    <img [src]="imageUrl4" alt="Preview" class="image-preview">
+                  </ng-container>
+                  <ng-template #showFileNameOrUpload4>
+                    <ng-container *ngIf="imageUrl4FileName; else showUploadIcon4">
+                      <p>{{ imageUrl4FileName }}</p>
+                    </ng-container>
+                    <ng-template #showUploadIcon4>
+                      <img src="assets/image18.png" alt="Upload Icon">
+                      <p>Sube una foto</p>
+                    </ng-template>
+                  </ng-template>
                 </label>
               </div>
           <div class="subir-foto">
             <input type="file" id="foto5" style="display: none;" (change)="onFileSelected($event, 'imageUrl5')">
             <label for="foto5" style="cursor: pointer;">
-              <img *ngIf="!imageUrl5" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl5" [src]="imageUrl5" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
+              <ng-container *ngIf="imageUrl5 && !selectedFile5; else showFileNameOrUpload5">
+                <img [src]="imageUrl5" alt="Preview" class="image-preview">
+              </ng-container>
+              <ng-template #showFileNameOrUpload5>
+                <ng-container *ngIf="imageUrl5FileName; else showUploadIcon5">
+                  <p>{{ imageUrl5FileName }}</p>
+                </ng-container>
+                <ng-template #showUploadIcon5>
+                  <img src="assets/image18.png" alt="Upload Icon">
+                  <p>Sube una foto</p>
+                </ng-template>
+              </ng-template>
             </label>
           </div>
           <div class="subir-foto">
             <input type="file" id="foto6" style="display: none;" (change)="onFileSelected($event, 'imageUrl6')">
             <label for="foto6" style="cursor: pointer;">
-              <img *ngIf="!imageUrl6" src="assets/image18.png" alt="Upload Icon">
-              <img *ngIf="imageUrl6" [src]="imageUrl6" alt="Selected Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-              <p>Sube una foto</p>
+              <ng-container *ngIf="imageUrl6 && !selectedFile6; else showFileNameOrUpload6">
+                <img [src]="imageUrl6" alt="Preview" class="image-preview">
+              </ng-container>
+              <ng-template #showFileNameOrUpload6>
+                <ng-container *ngIf="imageUrl6FileName; else showUploadIcon6">
+                  <p>{{ imageUrl6FileName }}</p>
+                </ng-container>
+                <ng-template #showUploadIcon6>
+                  <img src="assets/image18.png" alt="Upload Icon">
+                  <p>Sube una foto</p>
+                </ng-template>
+              </ng-template>
             </label>
           </div>
-        </div>
 
 
         <div class="acciones">

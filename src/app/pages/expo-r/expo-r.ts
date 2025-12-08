@@ -53,7 +53,7 @@ export class ExpoR {
     selectedCoverImage: File | null = null;
     dynamicContent: ContentField[] = [];
     private nextContentId = 1;
-    private readonly API_BASE_URL = 'http://34.202.158.56:8080'; 
+    private readonly API_BASE_URL = 'http://localhost:8060'; 
 
     constructor(private http: HttpClient, private authService: AuthService) {
         this.anadirContenido('TEXT');
