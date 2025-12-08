@@ -235,6 +235,35 @@ main {
   margin-top: 10px;
 }
 
+.additional-images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 210px;
+  margin-top: 10px;
+}
+
+.request-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.request-button {
+  background-color: #4CAF50; /* Un verde que combine con el tema */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.request-button:hover {
+  background-color: #45a049;
+}
+
 .additional-images-grid img {
   width: 400px;
   height: 400px;

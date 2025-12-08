@@ -46,7 +46,7 @@ export class Form1Component {
       institution: this.institution,
       email: this.email,
       password: this.password,
-      role: 'RESEARCHER' // Asignamos el rol por defecto
+      role: 'MANAGER' // Asignamos el rol por defecto
     };
 
     // 3. ¡IMPORTANTE! Guardar en sessionStorage para que no se pierdan al cambiar de página

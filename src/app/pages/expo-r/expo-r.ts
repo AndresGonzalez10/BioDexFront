@@ -56,7 +56,7 @@ export class ExpoR {
     coverImageFileName: string | null = null; // Añadido para mostrar el nombre del archivo de portada
     dynamicContent: ContentField[] = [];
     private nextContentId = 1;
-    private readonly API_BASE_URL = 'http://localhost:8060'; 
+    private readonly API_BASE_URL = 'http://34.202.158.56:8080'; 
 
     constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
         this.anadirContenido('TEXT');

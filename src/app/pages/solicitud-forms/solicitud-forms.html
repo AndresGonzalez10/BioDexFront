@@ -43,7 +43,7 @@
         <div class="image-preview">
           <img 
             *ngIf="specimen?.mainPhoto" 
-            [src]="imageUrlBase + specimen.mainPhoto" 
+            [src]="specimen.mainPhoto" 
             [alt]="specimen?.commonName || 'Specimen Image'" 
             class="species-image"
           />

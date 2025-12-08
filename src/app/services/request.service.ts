@@ -7,7 +7,7 @@ import { AuthService } from '../core/services/auth.service';
   providedIn: 'root'
 })
 export class RequestService {
-  private apiUrl = 'http://localhost:8060'; // Asume la misma URL base de la API
+  private apiUrl = 'http://34.202.158.56:8080';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -26,15 +26,14 @@ export class RequestService {
       managerId: managerId,
       specimenId: specimenId,
       description: description,
-      requestType: requestType
-    };
+     requestType: requestType    };
 
     console.log('Request body being sent:', body);
 
     return this.http.post(`${this.apiUrl}/requests`, body, { headers });
   }
 
-  // Otros métodos para obtener solicitudes pendientes, aceptar/rechazar, etc., se añadirán aquí
+  
 
   getMyReceivedRequests(): Observable<any[]> {
     const token = this.authService.getToken();

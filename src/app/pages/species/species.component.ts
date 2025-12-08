@@ -79,7 +79,7 @@ export class SpeciesComponent implements OnInit, OnDestroy {
   imageUrl6FileName: string | null = null;
 
   // URL Base para subir a Cloudinary
-  private readonly API_BASE_URL = 'http://localhost:8060';
+  private readonly API_BASE_URL = 'http://34.202.158.56:8080';
 
   constructor(
     private fb: FormBuilder,

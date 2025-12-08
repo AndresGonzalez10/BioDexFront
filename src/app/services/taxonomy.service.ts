@@ -6,20 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaxonomyService {
-  private apiUrl = 'http://localhost:8060/taxonomy'; // Ajusta la URL de tu API
+  private apiUrl = 'http://34.202.158.56:8080/taxonomy';
 
   constructor(private http: HttpClient) { }
 
-  // Método para obtener una taxonomía por sus atributos
+  
   getTaxonomyByAttributes(family: string, genus: string, species: string, category: string): Observable<any> {
-    // Asumiendo que tu backend tiene un endpoint para buscar por atributos
-    // Esto es un ejemplo, puede que necesites ajustar la URL y los parámetros
+    
+    
     return this.http.get<any>(`${this.apiUrl}/search`, {
       params: { family, genus, species, category }
     });
   }
 
-  // Método para crear una nueva taxonomía
+  
   createTaxonomy(taxonomyData: { family: string, genus: string, species: string, category: string }): Observable<any> {
     return this.http.post<any>(this.apiUrl, taxonomyData);
   }
