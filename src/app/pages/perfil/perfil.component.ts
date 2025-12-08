@@ -40,7 +40,6 @@ export class PerfilComponent implements OnInit {
   toggleEditMode(): void {
     this.isEditMode = !this.isEditMode;
     if (this.isEditMode) {
-      // Initialize the form with current user data when entering edit mode
       this.editForm = {
         nombre: this.usuario.nombre,
         apellido: this.usuario.apellido,
@@ -64,8 +63,8 @@ export class PerfilComponent implements OnInit {
       this.authService.updateProfile(userId, updatedData).subscribe({
         next: (response) => {
           console.log('Profile updated successfully:', response);
-          this.loadUserData(); // Reload user data to reflect changes
-          this.isEditMode = false; // Exit edit mode
+          this.loadUserData(); 
+          this.isEditMode = false; 
         },
         error: (error) => {
           console.error('Error updating profile:', error);

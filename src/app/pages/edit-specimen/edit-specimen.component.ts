@@ -58,27 +58,23 @@ export class EditSpecimenComponent implements OnInit {
     if (this.specimen && this.specimenId) {
       const updatedSpecimen: any = { ...this.specimen };
 
-      // Extraer idLocation y idTaxonomy si existen
       if (updatedSpecimen.location && typeof updatedSpecimen.location === 'object' && updatedSpecimen.location.id) {
         updatedSpecimen.idLocation = updatedSpecimen.location.id;
-        delete updatedSpecimen.location; // Eliminar el objeto completo
+        delete updatedSpecimen.location; 
       }
       if (updatedSpecimen.taxonomy && typeof updatedSpecimen.taxonomy === 'object' && updatedSpecimen.taxonomy.id) {
         updatedSpecimen.idTaxonomy = updatedSpecimen.taxonomy.id;
-        delete updatedSpecimen.taxonomy; // Eliminar el objeto completo
+        delete updatedSpecimen.taxonomy; 
       }
 
-      // Asegurarse de que collectionDate sea una cadena en formato 'YYYY-MM-DD'
       if (updatedSpecimen.collectionDate instanceof Date) {
         updatedSpecimen.collectionDate = updatedSpecimen.collectionDate.toISOString().split('T')[0];
       } else if (typeof updatedSpecimen.collectionDate === 'string' && updatedSpecimen.collectionDate.includes('T')) {
         updatedSpecimen.collectionDate = updatedSpecimen.collectionDate.split('T')[0];
       }
 
-      // Eliminar propiedades que no deben enviarse o que el backend no espera
-      delete updatedSpecimen.id; // El ID ya está en la URL
-      delete updatedSpecimen.idCollection; // Si idCollection no se actualiza directamente
-      // Eliminar propiedades de fotos adicionales si son nulas o vacías y no se deben enviar
+      delete updatedSpecimen.id; 
+      delete updatedSpecimen.idCollection; 
       for (let i = 1; i <= 6; i++) {
         const photoKey = `additionalPhoto${i}`;
         if (updatedSpecimen[photoKey] === null || updatedSpecimen[photoKey] === '') {

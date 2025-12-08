@@ -8,7 +8,7 @@ import { AuthService } from "../../../services/auth.service";
   selector: 'app-form',
   standalone: true,
   imports: [CommonModule, FormsModule], 
-  templateUrl: './form.html', // Asumo que el HTML ya está actualizado con [(ngModel)]
+  templateUrl: './form.html', 
   styleUrl: './form.css'
 })
 export class FormComponent {
@@ -37,11 +37,9 @@ export class FormComponent {
     this.authService.login(loginData).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
-        // Redirigir a la vista principal
         this.router.navigate(['/mainview']); 
       },
       error: (error) => {
-        // Muestra el error del backend (ej: "Credenciales inválidas")
         this.errorMessage = error.message; 
       }
     });

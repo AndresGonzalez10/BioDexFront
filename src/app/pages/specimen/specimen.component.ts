@@ -122,7 +122,7 @@ export class SpecimenComponent implements OnInit {
         next: (data: any) => {
           this.specimen = data;
           console.log("Datos completos del espécimen cargado:", data);
-          this.collectionId = data.idCollection ? String(data.idCollection) : null; // Asegurarse de que collectionId esté disponible
+          this.collectionId = data.idCollection ? String(data.idCollection) : null; 
           console.log("Espécimen cargado:", this.specimen);
         },
         error: (error: any) => {

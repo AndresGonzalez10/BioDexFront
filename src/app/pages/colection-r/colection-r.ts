@@ -22,7 +22,7 @@ export class CollectionCreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient, // Necesario para la subida directa de la imagen
+    private http: HttpClient, 
     private collectionService: CollectionService,
     private router: Router,
     private authService: AuthService
@@ -33,12 +33,11 @@ export class CollectionCreateComponent implements OnInit {
       nombreColeccion: ['', Validators.required],
       descripcion: ['', Validators.required],
       categoria: ['', Validators.required],
-      portadaFile: [null], // Aquí guardamos el objeto File
+      portadaFile: [null], 
       portadaFileName: ['']
     });
   }
 
-  // --- LÓGICA DE SELECCIÓN DE ARCHIVO (IGUAL QUE ANTES) ---
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
     if (file) {
@@ -76,7 +75,6 @@ export class CollectionCreateComponent implements OnInit {
     this.coverImageFileName = null;
   }
 
-  // --- LÓGICA DE ENVÍO (MODIFICADA) ---
   onSubmit(): void {
     if (this.collectionForm.invalid) {
       this.collectionForm.markAllAsTouched();
@@ -86,17 +84,14 @@ export class CollectionCreateComponent implements OnInit {
     this.isSubmitting = true;
     const file = this.collectionForm.get('portadaFile')?.value;
 
-    // ESCENARIO 1: El usuario seleccionó una imagen
     if (file) {
       this.uploadImageFirst(file);
     } 
-    // ESCENARIO 2: No hay imagen, guardamos directo (si tu lógica lo permite)
     else {
       this.saveCollectionToBackend(null);
     }
   }
 
-  // PASO 1: Subir imagen a Cloudinary (vía tu Backend Ktor)
   private uploadImageFirst(file: File): void {
     const formData = new FormData();
     formData.append('file', file);

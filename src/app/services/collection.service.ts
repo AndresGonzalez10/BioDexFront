@@ -15,8 +15,7 @@ export class CollectionService {
   getCollectionsByUserId(userId: number): Observable<any[]> {
     const token = this.authService.getToken();
     if (!token) {
-      // Manejar el caso donde no hay token, quizás redirigir al login o lanzar un error
-      return new Observable<any[]>(); // O throwError
+      return new Observable<any[]>(); 
     }
 
     const headers = new HttpHeaders({

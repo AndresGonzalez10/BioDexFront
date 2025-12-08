@@ -7,21 +7,20 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 
-// --- INTERFACES ---
 interface RenewExhibitionData {
     idManager: number;
     title: string;
     description: string;
     category: string;
     createdAt: string; 
-    coverImageUrl?: string; // ✅ CORREGIDO: Usamos el nombre de tu BD
+    coverImageUrl?: string; 
 }
 
 interface RenewExhibitionContent {
     idExhibition: number;
     contentType: 'TEXT' | 'IMAGE';
     textContent: string | null;
-    imageUrl: string | null; // Para contenido seguimos usando imageUrl (según tu DTO de contenido)
+    imageUrl: string | null; 
     imageDescription: string | null;
     displayOrder: number;
 }
@@ -30,11 +29,11 @@ interface ContentField {
     id: number;
     contentType: 'TEXT' | 'IMAGE';
     textContent: string | null;
-    imageUrl: string | null; // Para contenido seguimos usando imageUrl (según tu DTO de contenido)
+    imageUrl: string | null; 
     imageDescription: string | null;
     isNew: boolean;
     selectedFile?: File | null;
-    imageFileName?: string | null; // Añadido para mostrar el nombre del archivo
+    imageFileName?: string | null; 
 }
 
 @Component({
@@ -53,7 +52,7 @@ export class ExpoR {
     };
 
     selectedCoverImage: File | null = null;
-    coverImageFileName: string | null = null; // Añadido para mostrar el nombre del archivo de portada
+    coverImageFileName: string | null = null; 
     dynamicContent: ContentField[] = [];
     private nextContentId = 1;
     private readonly API_BASE_URL = 'http://34.202.158.56:8080'; 
@@ -199,7 +198,7 @@ export class ExpoR {
     resetForm() {
         this.exhibitionData = { title: '', description: '', category: '', idManager: 0 };
         this.selectedCoverImage = null;
-        this.coverImageFileName = null; // Reiniciar el nombre del archivo de portada
+        this.coverImageFileName = null; 
         this.dynamicContent = [];
         this.nextContentId = 1;
         this.anadirContenido('TEXT');

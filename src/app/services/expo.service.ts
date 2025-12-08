@@ -16,7 +16,6 @@ export class ExpoService {
   getExposByUserId(userId: number): Observable<any[]> {
     const token = this.authService.getToken();
     if (!token) {
-      // Handle case where token is not available, e.g., user not logged in
       return new Observable<any[]>();
     }
 
@@ -24,7 +23,6 @@ export class ExpoService {
       'Authorization': `Bearer ${token}`
     });
 
-    // Using the correct backend endpoint for user-specific exhibitions
     return this.http.get<any[]>(`${this.apiUrl}/manager/${userId}`, { headers });
   }
 

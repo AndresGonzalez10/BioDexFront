@@ -27,7 +27,7 @@ export class SolicitudFormsComponent implements OnInit {
     private router: Router,
     private requestService: RequestService,
     private authService: AuthService,
-    private managerIdService: ManagerIdService  // 👈 agregado correctamente
+    private managerIdService: ManagerIdService  
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class SolicitudFormsComponent implements OnInit {
 
     if (this.descripcion.trim() && this.specimen) {
 
-      const managerId = this.managerIdService.getManagerId(); // 👈 YA NO ES UNDEFINED
+      const managerId = this.managerIdService.getManagerId();
       const specimenId = this.specimen.id;
       const description = this.descripcion;
       const requestType = 'INFORMATION';
