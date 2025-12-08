@@ -33,8 +33,13 @@
         <h3>Portada de la colección</h3>
         <div class="upload-box">
           <label for="portada-file" class="upload-label">
-            <img src="/assets/imagenes.png" alt="Icono de imagen">
-            <span>Suba una foto</span>
+            <ng-container *ngIf="coverImageFileName; else uploadCoverIcon">
+              {{ coverImageFileName }}
+            </ng-container>
+            <ng-template #uploadCoverIcon>
+              <img src="/assets/imagenes.png" alt="Icono de imagen">
+              <span>Suba una foto</span>
+            </ng-template>
           </label>
           <input type="file" id="portada-file" (change)="onFileSelected($event)" hidden>
         </div>

@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 // --- INTERFACES ---
 interface RenewExhibitionData {
@@ -29,10 +30,11 @@ interface ContentField {
     id: number;
     contentType: 'TEXT' | 'IMAGE';
     textContent: string | null;
-    imageUrl: string | null;
+    imageUrl: string | null; // Para contenido seguimos usando imageUrl (según tu DTO de contenido)
     imageDescription: string | null;
     isNew: boolean;
     selectedFile?: File | null;
+    imageFileName?: string | null; // Añadido para mostrar el nombre del archivo
 }
 
 @Component({
@@ -51,11 +53,12 @@ export class ExpoR {
     };
 
     selectedCoverImage: File | null = null;
+    coverImageFileName: string | null = null; // Añadido para mostrar el nombre del archivo de portada
     dynamicContent: ContentField[] = [];
     private nextContentId = 1;
     private readonly API_BASE_URL = 'http://localhost:8060'; 
 
-    constructor(private http: HttpClient, private authService: AuthService) {
+    constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
         this.anadirContenido('TEXT');
     }
 
@@ -79,16 +82,20 @@ export class ExpoR {
     onCoverImageSelected(event: any): void {
         if (event.target.files && event.target.files.length > 0) {
             this.selectedCoverImage = event.target.files[0];
+            this.coverImageFileName = event.target.files[0].name;
         } else {
             this.selectedCoverImage = null;
+            this.coverImageFileName = null;
         }
     }
 
     onContentImageSelected(event: any, contentBlock: ContentField): void {
         if (event.target.files && event.target.files.length > 0) {
             contentBlock.selectedFile = event.target.files[0];
+            contentBlock.imageFileName = event.target.files[0].name;
         } else {
             contentBlock.selectedFile = null;
+            contentBlock.imageFileName = null;
         }
     }
 
@@ -146,6 +153,7 @@ export class ExpoR {
 
             alert('🎉 Exposición y contenido registrados con éxito!');
             this.resetForm();
+            this.router.navigate(['/exposition', exhibitionId]);
 
         } catch (error) {
             console.error('Error en el proceso de publicación:', error);
@@ -191,6 +199,7 @@ export class ExpoR {
     resetForm() {
         this.exhibitionData = { title: '', description: '', category: '', idManager: 0 };
         this.selectedCoverImage = null;
+        this.coverImageFileName = null; // Reiniciar el nombre del archivo de portada
         this.dynamicContent = [];
         this.nextContentId = 1;
         this.anadirContenido('TEXT');

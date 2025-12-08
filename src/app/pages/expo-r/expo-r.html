@@ -53,7 +53,14 @@
             name="coverImage"
             class="hidden-file-input"
           />
-          <label for="coverImage" class="btn-upload-file">Seleccionar Imagen de Portada</label>
+          <label for="coverImage" class="btn-upload-file">
+              <ng-container *ngIf="coverImageFileName; else uploadCoverIcon">
+                {{ coverImageFileName }}
+              </ng-container>
+              <ng-template #uploadCoverIcon>
+                Seleccionar Imagen de Portada
+              </ng-template>
+            </label>
         </div>
       </div>
 
@@ -81,7 +88,14 @@
               (change)="onContentImageSelected($event, contentBlock)"
               name="imageUrl-{{i}}"
             />
-            <label for="imagen-{{i}}" class="btn-upload-file">Seleccionar Imagen</label>
+            <label for="imagen-{{i}}" class="btn-upload-file">
+              <ng-container *ngIf="contentBlock.imageFileName; else uploadContentIcon">
+                {{ contentBlock.imageFileName }}
+              </ng-container>
+              <ng-template #uploadContentIcon>
+                Seleccionar Imagen
+              </ng-template>
+            </label>
           </div>
           <label for="desc-imagen-{{i}}">Descripción de la imagen</label>
           <input

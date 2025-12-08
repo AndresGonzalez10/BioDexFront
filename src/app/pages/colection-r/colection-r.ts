@@ -16,7 +16,8 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class CollectionCreateComponent implements OnInit {
   collectionForm!: FormGroup;
-  imagePreview: string | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  coverImageFileName: string | null = null;
   isSubmitting = false;
 
   constructor(
@@ -54,7 +55,8 @@ export class CollectionCreateComponent implements OnInit {
 
       // Guardamos el archivo en el formulario
       this.collectionForm.patchValue({ portadaFile: file });
-      this.collectionForm.get('portadaFileName')?.setValue(file.name);
+            this.collectionForm.get('portadaFileName')?.setValue(file.name);
+            this.coverImageFileName = file.name;
 
       // Previsualización
       const reader = new FileReader();
@@ -71,6 +73,7 @@ export class CollectionCreateComponent implements OnInit {
       portadaFileName: ''
     });
     this.imagePreview = null;
+    this.coverImageFileName = null;
   }
 
   // --- LÓGICA DE ENVÍO (MODIFICADA) ---
@@ -137,7 +140,7 @@ export class CollectionCreateComponent implements OnInit {
         console.log('Colección creada:', response);
         alert('Colección creada con éxito');
         this.isSubmitting = false;
-        this.router.navigate(['/collections']);
+        this.router.navigate(['/my-collection']);
       },
       error: (error) => {
         console.error('Error al crear colección:', error);
